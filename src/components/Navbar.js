@@ -10,6 +10,23 @@ class Navbar extends Component {
           <Link to="/" className="navbar-brand">
             Joblify
           </Link>
+          <div className="collapse navbar-collapse" id="navbarResponsive">
+            <ul className="navbar-nav ml-auto">
+                <li className="nav-item">
+                  <Link className="nav-link" to="/login">
+                    Login
+                  </Link>
+                </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    );
+  }
+}
+
+export default Navbar;
+
         </a>
         <button
           className="navbar-toggler bg-dark"
@@ -94,10 +111,3 @@ class Navbar extends Component {
               </Link>
             </li>
           </ul>
-        </div>
-      </nav>
-    );
-  }
-}
-
-export default Navbar;
