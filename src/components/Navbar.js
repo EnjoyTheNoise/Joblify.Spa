@@ -31,12 +31,12 @@ class Navbar extends Component {
               aria-label="Search"
               style={{ width: "400px" }}
             />
-            <fieldset class="form-group  my-2 my-lg-0">
-              <div class="form-check">
-                <label class="form-check-label">
+            <fieldset className="form-group  my-2 my-lg-0">
+              <div className="form-check">
+                <label className="form-check-label">
                   <input
                     type="radio"
-                    class="form-check-input"
+                    className="form-check-input"
                     name="optionsRadios"
                     id="optionsRadios1"
                     value="option1"
@@ -44,21 +44,20 @@ class Navbar extends Component {
                   Pracodawcy
                 </label>
               </div>
-              <div class="form-check disabled">
-                <label class="form-check-label">
+              <div className="form-check disabled">
+                <label className="form-check-label">
                   <input
                     type="radio"
-                    class="form-check-input"
+                    className="form-check-input"
                     name="optionsRadios"
                     id="optionsRadios2"
                     value="option2"
-                    disabled=""
                   />
                   Pracobiorcy
                 </label>
               </div>
             </fieldset>
-            <button class="btn btn-secondary mx-3 my-2 my-sm-2" type="submit">
+            <button className="btn btn-secondary mx-3 my-2 my-sm-2" type="submit">
               Search
             </button>
           </form>
