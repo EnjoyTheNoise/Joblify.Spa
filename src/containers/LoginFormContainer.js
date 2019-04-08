@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import FacebookLogin from "react-facebook-login";
 import GoogleLogin from "react-google-login";
-import { BASE_URL, API_FB_ID } from "../constants";
+import { BASE_URL, API_FB_ID, API_GOOGLE_ID } from "../constants";
 import axios from "axios";
 
 export default class LoginFormContainer extends Component {
@@ -33,6 +33,20 @@ export default class LoginFormContainer extends Component {
     console.log(response.accessToken);
   };
 
+  responseGoogle = response => {
+    console.log(response);
+
+    this.setState({
+      isLoggedIn: true,
+      userID: response.profileObj.googleId,
+      firstName: response.profileObj.givenName,
+      lastName: response.profileObj.familyName,
+      email: response.profileObj.email,
+      birthday: response.birthday,
+      picture: response.profileObj.imageUrl
+    });
+  };
+
   addNewUser = () => {
     axios
       .post(`${BASE_URL}/login`, {
@@ -49,7 +63,7 @@ export default class LoginFormContainer extends Component {
   };
 
   render() {
-    const { isLoggedIn, picture, firstName, lastName,  email } = this.state;
+    const { isLoggedIn, picture, firstName, lastName, email } = this.state;
     const profileContent = isLoggedIn ? (
       <div
         style={{
@@ -60,17 +74,28 @@ export default class LoginFormContainer extends Component {
         }}
       >
         <img src={picture} alt={firstName} />
-        <h2>Witaj mordo: {firstName} {lastName} </h2>
+        <h2>
+          Witaj mordo: {firstName} {lastName}{" "}
+        </h2>
         Email: {email}
       </div>
     ) : (
-      <FacebookLogin
-        appId={API_FB_ID}
-        autoLoad={true}
-        fields="first_name,last_name,email,picture"
-        onClick={this.componentClicked}
-        callback={this.responseFacebook}
-      />
+      <React.Fragment>
+        <FacebookLogin
+          appId={API_FB_ID}
+          autoLoad={true}
+          fields="first_name,last_name,email,picture"
+          onClick={this.componentClicked}
+          callback={this.responseFacebook}
+        />
+
+        <GoogleLogin
+          clientId={API_GOOGLE_ID}
+          buttonText="LOGIN WITH GOOGLE"
+          onSuccess={this.responseGoogle}
+          onFailure={this.responseGoogle}
+        />
+      </React.Fragment>
     );
 
     return <div>{profileContent}</div>;
