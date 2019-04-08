@@ -1,4 +1,6 @@
-
+:root {
+  --back-color: #ececec;
+}
 .App {
   text-align: center;
   background-color: #ececec;
