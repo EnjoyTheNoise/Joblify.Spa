@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import FacebookLogin from "react-facebook-login";
-import { BASE_URL } from "../constants";
+import GoogleLogin from "react-google-login";
+import { BASE_URL, API_FB_ID } from "../constants";
 import axios from "axios";
 
 export default class LoginFormContainer extends Component {
@@ -48,34 +49,30 @@ export default class LoginFormContainer extends Component {
   };
 
   render() {
-    let fbCotent;
+    const { isLoggedIn, picture, firstName, lastName,  email } = this.state;
+    const profileContent = isLoggedIn ? (
+      <div
+        style={{
+          width: "700px",
+          margin: "auto",
+          background: "#f4f4f4",
+          padding: "20px"
+        }}
+      >
+        <img src={picture} alt={firstName} />
+        <h2>Witaj mordo: {firstName} {lastName} </h2>
+        Email: {email}
+      </div>
+    ) : (
+      <FacebookLogin
+        appId={API_FB_ID}
+        autoLoad={true}
+        fields="first_name,last_name,email,picture"
+        onClick={this.componentClicked}
+        callback={this.responseFacebook}
+      />
+    );
 
-    if (this.state.isLoggedIn) {
-      fbCotent = (
-        <div
-          style={{
-            width: "700px",
-            margin: "auto",
-            background: "#f4f4f4",
-            padding: "20px"
-          }}
-        >
-          <img src={this.state.picture} alt={this.state.firstName} />
-          <h2>Witaj mordo: {this.state.firstName} </h2>
-          Email: {this.state.email}
-        </div>
-      );
-    } else {
-      fbCotent = (
-        <FacebookLogin
-          appId="355726405039496"
-          autoLoad={true}
-          fields="first_name,last_name,email,picture"
-          onClick={this.componentClicked}
-          callback={this.responseFacebook}
-        />
-      );
-    }
-    return <div>{fbCotent}</div>;
+    return <div>{profileContent}</div>;
   }
 }
