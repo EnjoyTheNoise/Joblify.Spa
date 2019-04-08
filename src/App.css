@@ -3,18 +3,18 @@
 }
 .App {
   text-align: center;
-  background-color: #ececec;
+  background-color: var(--back-color)
 }
 
 html {
   position: relative;
   min-height: 100%;
-  background-color: #ececec;
+  background-color: var(--back-color)
 }
 
 .content {
   margin-top: 100px;
-  background-color: #ececec;
+  background-color: var(--back-color)
 }
 
 .title {
