@@ -1,0 +1,23 @@
+.gridPage {
+    margin-top: 0;
+    display:grid;
+    grid-template-rows:50% 50%;
+}
+.gridPage>div {
+    margin-top: 0;
+    height: 44vh;
+    box-sizing: border-box;
+}
+#top{
+    background-color: rgb(18, 107, 180);
+}
+
+/* .leftColumnPicture{
+    display: inline;
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-bottom: 2%;
+    width: 35%;
+    height: 35vh;
+    background-color: brown;
+} */

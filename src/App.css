@@ -13,8 +13,7 @@ html {
 }
 
 .content {
-  margin-top: 100px;
-  background-color: var(--back-color)
+   background-color: var(--back-color)
 }
 
 .title {

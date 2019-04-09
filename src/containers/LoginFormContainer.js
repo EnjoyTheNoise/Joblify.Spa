@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import FacebookLogin from "react-facebook-login";
-import GoogleLogin from "react-google-login";
+//import GoogleLogin from "react-google-login";
 import { BASE_URL, API_FB_ID, API_GOOGLE_ID } from "../constants";
 import axios from "axios";
 
@@ -89,12 +89,12 @@ export default class LoginFormContainer extends Component {
           callback={this.responseFacebook}
         />
 
-        <GoogleLogin
+        {/* <GoogleLogin
           clientId={API_GOOGLE_ID}
           buttonText="LOGIN WITH GOOGLE"
           onSuccess={this.responseGoogle}
           onFailure={this.responseGoogle}
-        />
+        /> */}
       </React.Fragment>
     );
 
