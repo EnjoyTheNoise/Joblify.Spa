@@ -1,0 +1,38 @@
+.BlueSection{
+    padding: 25px;
+    width: 100%;
+    /* background-color: rgb(18, 107, 180); */
+    background-color: #005CBF;
+    /* min-height: 400px; */
+    height: 560px;
+}
+
+.BlueSection span {
+    float: left;
+}
+
+.hammer {
+    width: auto;
+    height: 100%;
+    /* display: inline-block; */
+    /* position: absolute; */
+    float: left;
+    /* left: 2%; */
+    /* margin-top: 1%; */
+  }
+
+  .offerButton {
+      font-size: 20px;
+      width: 200px;
+      /* padding: 5px; */
+      /* text-align: center; */
+      /* display: inline-block; */
+      margin-left: 15px;
+      margin-top: 80%;
+  }
+
+  .blueSectionHeaderText {
+      margin-right: 20px;
+      color: whitesmoke;
+      text-align: right;
+  }

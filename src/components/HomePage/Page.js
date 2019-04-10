@@ -15,6 +15,7 @@ const Page = () => {
           Potrzebuję pomoc
         </button>
         <SingleOpinion />
+        <SingleOpinion />
       </div>
     </div>
   );
