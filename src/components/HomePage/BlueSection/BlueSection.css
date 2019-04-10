@@ -3,8 +3,8 @@
     width: 100%;
     /* background-color: rgb(18, 107, 180); */
     background-color: #005CBF;
-    /* min-height: 400px; */
-    height: 560px;
+    height: 460px;
+    border-bottom: 1px solid #001F40;
 }
 
 .BlueSection span {
@@ -14,6 +14,7 @@
 .hammer {
     width: auto;
     height: 100%;
+    padding: 5px;
     /* display: inline-block; */
     /* position: absolute; */
     float: left;
@@ -28,7 +29,7 @@
       /* text-align: center; */
       /* display: inline-block; */
       margin-left: 15px;
-      margin-top: 80%;
+      margin-top: 75%;
   }
 
   .blueSectionHeaderText {

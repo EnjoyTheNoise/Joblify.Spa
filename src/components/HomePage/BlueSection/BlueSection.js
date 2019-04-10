@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import './BlueSection.css'
-import hammer from "../hammer.png";
+import hammer from "../../../assets/arts-and-crafts-carpenter-carpentry-1972569.jpg";
 import OpinionSection from './OpinionSection/OpinionSection'
 
 class BlueSection extends Component {
