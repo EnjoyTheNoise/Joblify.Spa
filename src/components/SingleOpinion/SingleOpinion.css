@@ -1,0 +1,9 @@
+.position {
+  position: absolute;
+  width: 30%;
+  margin-right: 5%;
+  margin-top: 2%;
+  right: 0;
+  height: 30%;
+  display: inline-block;
+}

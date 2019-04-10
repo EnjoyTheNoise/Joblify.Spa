@@ -1,23 +1,32 @@
 .gridPage {
-    margin-top: 0;
-    display:grid;
-    grid-template-rows:50% 50%;
+  margin-top: 0;
+  display: grid;
+  grid-template-rows: 50% 50%;
 }
-.gridPage>div {
-    margin-top: 0;
-    height: 44vh;
-    box-sizing: border-box;
+.gridPage > div {
+  margin-top: 0;
+  height: 44vh;
+  box-sizing: border-box;
 }
-#top{
-    background-color: rgb(18, 107, 180);
+#top {
+  background-color: rgb(18, 107, 180);
 }
-
-/* .leftColumnPicture{
-    display: inline;
-    margin-top: 2%;
-    margin-left: 2%;
-    margin-bottom: 2%;
-    width: 35%;
-    height: 35vh;
-    background-color: brown;
-} */
+.btnPos {
+  display: inline-block;
+  margin-top: 10%;
+  margin-right: 1%;
+  background-color: var(--back-color);
+  color: rgb(18, 27, 107);
+}
+.btnPos:hover {
+  background-color: rgb(231, 210, 22);
+  color: black;
+}
+.hammer {
+  width: auto;
+  height: 40%;
+  display: inline-block;
+  position: absolute;
+  left: 2%;
+  margin-top: 1%;
+}
