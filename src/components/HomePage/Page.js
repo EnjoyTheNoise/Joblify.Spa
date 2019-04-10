@@ -1,10 +1,11 @@
 import React from "react";
 import "./Page.css";
+import SingleOpinion from "../SingleOpinion";
 const TopPageHalf = props => {
   return (
     <div className="gridPage">
-      <div id="top">        
-       <div>{props.children}</div> 
+      <div id="top">
+        <SingleOpinion />
       </div>
     </div>
   );

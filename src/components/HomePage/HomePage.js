@@ -1,15 +1,10 @@
 import React, { Component } from "react";
 import "../../App.css";
-import Page from "./Page"
-import SingleOpinion from "../SingleOpinion";
+import Page from "./Page";
 
 class HomePage extends Component {
   render() {
-    return (
-      <Page>
-      <SingleOpinion/>
-      </Page>
-    );
+    return <Page />;
   }
 }
 
