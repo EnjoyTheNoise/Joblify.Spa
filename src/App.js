@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import LoginFormContainer from "./containers/LoginFormContainer";
 import HomePage from "./components/HomePage/HomePage";
-import NavbarUnlogged from "./components/NavbarUnlogged";
+import NavbarUnlogged from "./components/Navbar/NavbarUnlogged";
 
 class App extends Component {
   render() {

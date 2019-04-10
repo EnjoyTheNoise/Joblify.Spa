@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import "../App.css";
+import "../../App.css";
 
-class NavbarUnlogged extends Component {
+class Navbar extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -58,13 +58,38 @@ class NavbarUnlogged extends Component {
               </div>
             </fieldset>
             <button className="btn btn-secondary mx-3 my-2 my-sm-2" type="submit">
-              Szukaj
+              Search
             </button>
           </form>
           <button className="btn btn-outline-secondary" type="button">
             Stwórz oferte
-          </button>
+            </button>
           <ul className="navbar-nav ml-auto">
+            <li className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                user123
+              </a>
+              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a className="dropdown-item" href="#">
+                  Ulubione
+                </a>
+                <a className="dropdown-item" href="#">
+                  Moje Oferty
+                </a>
+                <div className="dropdown-divider" />
+                <a className="dropdown-item" href="#">
+                  Edytuj Profil
+                </a>
+              </div>
+            </li>
             <li className="nav-item">
               <Link className="nav-link" to="/login">
                 Login
@@ -77,4 +102,4 @@ class NavbarUnlogged extends Component {
   }
 }
 
-export default NavbarUnlogged;
+export default Navbar;
