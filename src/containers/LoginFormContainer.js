@@ -31,7 +31,7 @@ export default class LoginFormContainer extends Component {
       picture: response.picture.data.url,
       token: response.accessToken,
       externalProviderName: 'Facebook',
-      roleName: 'Normal'
+      roleName: 'User'
     });
 
     this.addNewUser();
