@@ -3,6 +3,7 @@ import FacebookLogin from "react-facebook-login";
 import GoogleLogin from "react-google-login";
 import { BASE_URL, API_FB_ID, API_GOOGLE_ID } from "../constants";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 export default class LoginFormContainer extends Component {
   state = {
@@ -12,7 +13,8 @@ export default class LoginFormContainer extends Component {
     lastName: "",
     email: "",
     picture: "",
-    token: ""
+    token: "",
+    roleName: "",
   };
 
   componentClicked = () => console.log("clicked");
@@ -27,9 +29,12 @@ export default class LoginFormContainer extends Component {
       lastName: response.last_name,
       email: response.email,
       picture: response.picture.data.url,
-      token: response.accessToken
+      token: response.accessToken,
+      externalProviderName: 'Facebook',
+      roleName: 'Normal'
     });
 
+    this.addNewUser();
     console.log(response.accessToken);
   };
 
@@ -38,47 +43,50 @@ export default class LoginFormContainer extends Component {
 
     this.setState({
       isLoggedIn: true,
-      userID: response.profileObj.googleId,
+      token: response.accessToken,
       firstName: response.profileObj.givenName,
       lastName: response.profileObj.familyName,
       email: response.profileObj.email,
       birthday: response.birthday,
-      picture: response.profileObj.imageUrl
+      picture: response.profileObj.imageUrl,
+      externalProviderName: 'Google',
+      roleName: 'Normal'
+
     });
+    this.addNewUser();
   };
 
   addNewUser = () => {
-    axios
-      .post(`${BASE_URL}/login`, {
-        firstName: this.state.first_name,
-        lastName: this.state.last_name,
+    axios.post(`${BASE_URL}/login`, {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
         email: this.state.email,
-        picture: this.state.picture.data.url,
-        token: this.state.accessToken
+        photoUrl: this.state.picture,
+        externalProviderToken: this.state.token,
+        externalProviderName: this.state.externalProviderName,
+        roleName: this.state.roleName
+
       })
-      .then(() => {
-        this.props.history.push("/");
+      .then((response) => {
+        console.log(response);
+        if(response.status === 200)
+          this.props.history.push("/");
+        else if(response.status === 201)
+          this.props.history.push("/editprofile");
+        else
+          console.log("Something went wrong...");
       })
       .catch(err => console.log(err));
   };
 
   render() {
-    const { isLoggedIn, picture, firstName, lastName, email } = this.state;
+    const { isLoggedIn } = this.state;
     const profileContent = isLoggedIn ? (
-      <div
-        style={{
-          width: "700px",
-          margin: "auto",
-          background: "#f4f4f4",
-          padding: "20px"
-        }}
-      >
-        <img src={picture} alt={firstName} />
-        <h2>
-          Witaj mordo: {firstName} {lastName}{" "}
-        </h2>
-        Email: {email}
-      </div>
+      <div>
+      <Redirect to={{
+        pathname: '/'
+      }} />
+    </div>
     ) : (
       <React.Fragment>
         <FacebookLogin

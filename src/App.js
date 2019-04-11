@@ -6,6 +6,7 @@ import "./App.css";
 import LoginFormContainer from "./containers/LoginFormContainer";
 import HomePage from "./components/HomePage";
 import Navbar from "./components/Navbar";
+import EditProfileContainer from "./containers/EditProfileContainer";
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={HomePage} />
               <Route path="/login" component={LoginFormContainer} />
+              <Route path="/editprofile" component={EditProfileContainer} />
             </Switch>
           </div>
         </div>
