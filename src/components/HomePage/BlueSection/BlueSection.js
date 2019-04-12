@@ -21,6 +21,7 @@ class BlueSection extends Component {
           <h3>Odetkaj kran i bd git ok</h3>
         </div>
         <OpinionSection />
+        <div className="clear"></div>
       </div>
     );
   }

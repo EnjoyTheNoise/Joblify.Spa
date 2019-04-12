@@ -2,19 +2,17 @@
   padding: 25px;
   width: 100%;
   background-color: #005cbf;
-  height: 460px;
-  border-bottom: 1px solid #001f40;
 }
 
 .BlueSection span {
   float: left;
-}
+} 
 
 .hammer {
+  max-width: 500px;
   width: auto;
-  height: 100%;
   padding: 5px;
-  float: left;
+  float: left; 
 }
 
 .offerButton {
@@ -22,10 +20,14 @@
   width: 200px;
   margin-left: 15px;
   margin-top: 75%;
-}
+} 
 
 .blueSectionHeaderText {
   margin-right: 20px;
   color: whitesmoke;
   text-align: right;
+}
+
+.clear{
+    clear:both;
 }
