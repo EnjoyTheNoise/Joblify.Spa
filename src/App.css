@@ -11,7 +11,9 @@ html {
   min-height: 100%;
   background-color: var(--back-color)
 }
-
+.navbarTextExtension{
+  color: #ececec;
+}
 .content {
    background-color: var(--back-color)
 }
