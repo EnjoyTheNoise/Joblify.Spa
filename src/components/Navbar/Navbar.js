@@ -27,7 +27,7 @@ class NavbarUnlogged extends Component {
             <input
               className="form-control mr-sm-2"
               type="search"
-              placeholder="Search"
+              placeholder="Szukaj"
               aria-label="Search"
               style={{ width: "400px" }}
             />
@@ -62,7 +62,7 @@ class NavbarUnlogged extends Component {
             </button>
           </form>
           <button className="btn btn-secondary" type="button">
-            Stwórz oferte
+            Stwórz ofertę
             </button>
           <ul className="navbar-nav ml-auto">
             <li className="nav-item dropdown">
