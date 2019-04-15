@@ -12,6 +12,7 @@ html {
   background-color: var(--back-color)
 }
 .navbarTextExtension{
+  margin: 5px;
   color: #ececec;
 }
 .content {
