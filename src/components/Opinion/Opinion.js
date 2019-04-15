@@ -1,5 +1,5 @@
 import React from "react";
-import "./SingleOpinion.css";
+import "./Opinion.css";
 import avatarPlaceholder from "../../assets/avatar-placeholder.png";
 
 const SingleOpinion = props => {
