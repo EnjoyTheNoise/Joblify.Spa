@@ -5,14 +5,14 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import LoginFormContainer from "./containers/LoginFormContainer";
 import HomePage from "./components/HomePage/HomePage";
-import NavbarUnlogged from "./components/Navbar/NavbarUnlogged";
+import Navbar from "./components/Navbar/Navbar";
 
 class App extends Component {
   render() {
     return (
       <Router>
         <div className="App">
-          <NavbarUnlogged />
+          <Navbar/>
           <div className="content">
             <Switch>
               <Route exact path="/" component={HomePage} />

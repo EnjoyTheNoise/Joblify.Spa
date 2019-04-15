@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "../../App.css";
 
-class Navbar extends Component {
+class NavbarUnlogged extends Component {
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <a className="navbar-brand" href="#">
           <Link to="/" className="navbar-brand">
             Joblify
@@ -33,7 +33,7 @@ class Navbar extends Component {
             />
             <fieldset className="form-group  my-2 my-lg-0">
               <div className="form-check">
-                <label className="form-check-label">
+                <label className="form-check-label navbarTextExtension">
                   <input
                     type="radio"
                     className="form-check-input"
@@ -45,7 +45,7 @@ class Navbar extends Component {
                 </label>
               </div>
               <div className="form-check disabled">
-                <label className="form-check-label">
+                <label className="form-check-label navbarTextExtension">
                   <input
                     type="radio"
                     className="form-check-input"
@@ -58,10 +58,10 @@ class Navbar extends Component {
               </div>
             </fieldset>
             <button className="btn btn-secondary mx-3 my-2 my-sm-2" type="submit">
-              Search
+              Szukaj
             </button>
           </form>
-          <button className="btn btn-outline-secondary" type="button">
+          <button className="btn btn-secondary" type="button">
             Stwórz oferte
             </button>
           <ul className="navbar-nav ml-auto">
@@ -102,4 +102,4 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+export default NavbarUnlogged;
