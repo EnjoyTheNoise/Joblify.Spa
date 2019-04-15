@@ -10,22 +10,53 @@
 
 .hammer {
   max-width: 500px;
-  width: auto;
+  width: 30vw;
   padding: 5px;
   float: left; 
 }
 
 .offerButton {
-  font-size: 20px;
+  font-size: 1.4vw;
   width: 200px;
   margin-left: 15px;
-  margin-top: 75%;
+  margin-top: 22vw;
 } 
+
+@media screen and (max-width: 420px) {
+  .hammer {
+    width: 100%;
+  }
+
+  .buttonContainer {
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: center
+  }
+
+  .offerButton {
+    margin-top: 0;
+    max-width: 100px;
+    font-size: 8px;
+    font-weight: 600;
+  }
+
+  .blueSectionHeaderText {
+    text-align: left;
+  }
+}
 
 .blueSectionHeaderText {
   margin-right: 20px;
   color: whitesmoke;
   text-align: right;
+}
+
+.blueSectionHeaderText h1 {
+  font-size: 4vw;
+}
+
+.blueSectionHeaderText h3 {
+  font-size: 2vw;
 }
 
 .clear{

@@ -9,7 +9,7 @@ class BlueSection extends Component {
     return (
       <div className="BlueSection">
         <img src={hammer} className="hammer" />
-        <span>
+        <span className="buttonContainer">
           <button className="btn btn-primary offerButton">
             Potrzebuję pomocy
           </button>
@@ -21,7 +21,7 @@ class BlueSection extends Component {
           <h3>Odetkaj kran i bd git ok</h3>
         </div>
         <OpinionSection />
-        <div className="clear"></div>
+        <div className="clear" />
       </div>
     );
   }
