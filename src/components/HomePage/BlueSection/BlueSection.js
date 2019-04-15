@@ -8,20 +8,43 @@ class BlueSection extends Component {
   render() {
     return (
       <div className="BlueSection">
-        <img src={hammer} className="hammer" />
-        <span className="buttonContainer">
-          <button className="btn btn-primary offerButton">
-            Potrzebuję pomocy
-          </button>
-          <button className="btn btn-primary offerButton">Oferuję pomoc</button>
-        </span>
-        <div className="blueSectionHeaderText">
-          <h1>Dołącz do nas już dziś!</h1>
-          <h3>Twórz z nami społeczność i wystawiaj gwiazdki</h3>
-          <h3>Odetkaj kran i bd git ok</h3>
+        <div class="row">
+          <div class="col-sm-4 mb20">
+            <img src={hammer} className="hammer" />
+          </div>
+          <div class="col-sm-8 mb20">
+            <div className="blueSectionHeaderText">
+              <h1>Dołącz do nas już dziś!</h1>
+            </div>
+            <br />
+
+            <div class="row">
+              <div class="col-sm-12 mb20">
+                <div className="blueSectionHeaderText">
+                  <h3>Twórz z nami społeczność i wystawiaj gwiazdki</h3>
+                  <h3>Odetkaj kran i bd git ok</h3>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-7 mb20">
+                {" "}
+                <span className="buttonContainer">
+                  <button className="btn btn-primary offerButton">
+                    Potrzebuję pomocy
+                  </button>
+                  <button className="btn btn-primary offerButton">
+                    Oferuję pomoc
+                  </button>
+                </span>{" "}
+              </div>
+              <div class="col-sm-5 mb20">
+                <OpinionSection />
+              </div>
+            </div>
+          </div>
         </div>
-        <OpinionSection />
-        <div className="clear" />
       </div>
     );
   }

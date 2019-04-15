@@ -4,10 +4,6 @@
   background-color: #005cbf;
 }
 
-.BlueSection span {
-  float: left;
-} 
-
 .hammer {
   max-width: 500px;
   width: 30vw;
@@ -15,35 +11,17 @@
   float: left; 
 }
 
+.buttonContainer {
+  width: 100%;
+  text-align: center; 
+}
+
 .offerButton {
+  margin-right: 10px;
+  margin-bottom: 10px;
   font-size: 1.4vw;
   width: 200px;
-  margin-left: 15px;
-  margin-top: 22vw;
 } 
-
-@media screen and (max-width: 420px) {
-  .hammer {
-    width: 100%;
-  }
-
-  .buttonContainer {
-    width: 100%;
-    margin-bottom: 10px;
-    text-align: center
-  }
-
-  .offerButton {
-    margin-top: 0;
-    max-width: 100px;
-    font-size: 8px;
-    font-weight: 600;
-  }
-
-  .blueSectionHeaderText {
-    text-align: left;
-  }
-}
 
 .blueSectionHeaderText {
   margin-right: 20px;
@@ -59,6 +37,36 @@
   font-size: 2vw;
 }
 
-.clear{
-    clear:both;
+@media screen and (max-width: 420px) {
+  .hammer {
+    width: 100%;
+  }
+
+  .buttonContainer {
+    display: inline-block;
+    width: 100%;
+    text-align: center; 
+  }
+
+  .offerButton {
+    max-width: 130px;
+    font-size: 3vw;
+    font-weight: 600;
+  }
+
+  .blueSectionHeaderText {
+    text-align: left;
+  }
+
+  .blueSectionHeaderText h1 {
+    margin: 0px;
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 5vw;
+  }
+  
+  .blueSectionHeaderText h3 {
+    margin: 0px;
+    font-size: 3vw;
+  }  
 }
