@@ -11,10 +11,12 @@ html {
   min-height: 100%;
   background-color: var(--back-color)
 }
-
+.navbarTextExtension{
+  margin: 5px;
+  color: #ececec;
+}
 .content {
-  margin-top: 100px;
-  background-color: var(--back-color)
+   background-color: var(--back-color)
 }
 
 .title {
