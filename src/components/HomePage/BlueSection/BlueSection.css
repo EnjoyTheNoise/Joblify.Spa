@@ -1,0 +1,72 @@
+.BlueSection {
+  padding: 25px;
+  width: 100%;
+  background-color: #005cbf;
+}
+
+.hammer {
+  max-width: 500px;
+  width: 30vw;
+  padding: 5px;
+  float: left; 
+}
+
+.buttonContainer {
+  width: 100%;
+  text-align: center; 
+}
+
+.offerButton {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  font-size: 1.4vw;
+  width: 200px;
+} 
+
+.blueSectionHeaderText {
+  margin-right: 20px;
+  color: whitesmoke;
+  text-align: right;
+}
+
+.blueSectionHeaderText h1 {
+  font-size: 4vw;
+}
+
+.blueSectionHeaderText h3 {
+  font-size: 2vw;
+}
+
+@media screen and (max-width: 420px) {
+  .hammer {
+    width: 100%;
+  }
+
+  .buttonContainer {
+    display: inline-block;
+    width: 100%;
+    text-align: center; 
+  }
+
+  .offerButton {
+    max-width: 130px;
+    font-size: 3vw;
+    font-weight: 600;
+  }
+
+  .blueSectionHeaderText {
+    text-align: left;
+  }
+
+  .blueSectionHeaderText h1 {
+    margin: 0px;
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 5vw;
+  }
+  
+  .blueSectionHeaderText h3 {
+    margin: 0px;
+    font-size: 3vw;
+  }  
+}
