@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import FacebookLogin from "react-facebook-login";
 import GoogleLogin from "react-google-login";
 import { BASE_URL, API_FB_ID, API_GOOGLE_ID } from "../constants";
-import { externalProviderName, roleName } from "../enums.js";
+import { providers, roles } from "../enums.js";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 import HomePage from "../components/HomePage/HomePage";
@@ -33,8 +33,8 @@ export default class LoginFormContainer extends Component {
       email: response.email,
       photoUrl: response.picture.data.url,
       externalProviderToken: response.accessToken,
-      externalProviderName: externalProviderName.FACEBOOK,
-      roleName: roleName.USER
+      externalProviderName: providers.FACEBOOK,
+      roleName: roles.USER
     });
 
     this.addNewUser();
@@ -52,8 +52,8 @@ export default class LoginFormContainer extends Component {
       email: response.profileObj.email,
       birthday: response.birthday,
       photoUrl: response.profileObj.imageUrl,
-      externalProviderName: externalProviderName.GOOGLE,
-      roleName: roleName.USER
+      externalProviderName: providers.GOOGLE,
+      roleName: roles.USER
 
     });
     this.addNewUser();

@@ -1,9 +1,9 @@
-export const externalProviderName = {
+export const providers = {
     FACEBOOK: 'Facebook',
     GOOGLE: 'Google'
 }
 
-export const roleName = {
+export const roles = {
     ADMIN: 'Admin',
     USER: 'User'
 }
