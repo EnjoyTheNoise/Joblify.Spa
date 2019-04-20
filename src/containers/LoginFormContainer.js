@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import FacebookLogin from "react-facebook-login";
-//import GoogleLogin from "react-google-login";
+import GoogleLogin from "react-google-login";
 import { BASE_URL, API_FB_ID, API_GOOGLE_ID } from "../constants";
+import { providers, roles } from "../enums.js";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
+import HomePage from "../components/HomePage/HomePage";
+import EditProfileContainer from "./EditProfileContainer";
 
 export default class LoginFormContainer extends Component {
   state = {
@@ -11,8 +15,9 @@ export default class LoginFormContainer extends Component {
     firstName: "",
     lastName: "",
     email: "",
-    picture: "",
-    token: ""
+    photoUrl: "",
+    externalProviderToken: "",
+    roleName: "",
   };
 
   componentClicked = () => console.log("clicked");
@@ -26,10 +31,13 @@ export default class LoginFormContainer extends Component {
       firstName: response.first_name,
       lastName: response.last_name,
       email: response.email,
-      picture: response.picture.data.url,
-      token: response.accessToken
+      photoUrl: response.picture.data.url,
+      externalProviderToken: response.accessToken,
+      externalProviderName: providers.FACEBOOK,
+      roleName: roles.USER
     });
 
+    this.addNewUser();
     console.log(response.accessToken);
   };
 
@@ -38,63 +46,66 @@ export default class LoginFormContainer extends Component {
 
     this.setState({
       isLoggedIn: true,
-      userID: response.profileObj.googleId,
+      externalProviderToken: response.accessToken,
       firstName: response.profileObj.givenName,
       lastName: response.profileObj.familyName,
       email: response.profileObj.email,
       birthday: response.birthday,
-      picture: response.profileObj.imageUrl
+      photoUrl: response.profileObj.imageUrl,
+      externalProviderName: providers.GOOGLE,
+      roleName: roles.USER
+
     });
+    this.addNewUser();
   };
 
   addNewUser = () => {
-    axios
-      .post(`${BASE_URL}/login`, {
-        firstName: this.state.first_name,
-        lastName: this.state.last_name,
-        email: this.state.email,
-        picture: this.state.picture.data.url,
-        token: this.state.accessToken
+    const { firstName, lastName, email, photoUrl, externalProviderToken, externalProviderName, roleName } = this.state;
+    axios.post(`${BASE_URL}/login`, {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        photoUrl: photoUrl,
+        externalProviderToken: externalProviderToken,
+        externalProviderName: externalProviderName,
+        roleName: roleName
+
       })
-      .then(() => {
-        this.props.history.push("/");
+      .then((response) => {
+        if(response.status === 200)
+          this.props.history.push(HomePage);
+        else if(response.status === 201)
+          this.props.history.push(EditProfileContainer);
+        else
+          console.log("Something went wrong...");
       })
       .catch(err => console.log(err));
   };
 
   render() {
-    const { isLoggedIn, picture, firstName, lastName, email } = this.state;
+    const { isLoggedIn } = this.state;
     const profileContent = isLoggedIn ? (
-      <div
-        style={{
-          width: "700px",
-          margin: "auto",
-          background: "#f4f4f4",
-          padding: "20px"
-        }}
-      >
-        <img src={picture} alt={firstName} />
-        <h2>
-          Witaj mordo: {firstName} {lastName}{" "}
-        </h2>
-        Email: {email}
-      </div>
+      <div>
+      <Redirect to={{
+        pathname: '/'
+      }} />
+    </div>
     ) : (
       <React.Fragment>
         <FacebookLogin
           appId={API_FB_ID}
           autoLoad={true}
-          fields="first_name,last_name,email,picture"
+          fields="first_name,last_name,email,photoUrl"
           onClick={this.componentClicked}
           callback={this.responseFacebook}
         />
 
-        {/* <GoogleLogin
+        <GoogleLogin
           clientId={API_GOOGLE_ID}
           buttonText="LOGIN WITH GOOGLE"
           onSuccess={this.responseGoogle}
           onFailure={this.responseGoogle}
-        /> */}
+        />
       </React.Fragment>
     );
 
