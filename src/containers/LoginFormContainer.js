@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import FacebookLogin from "react-facebook-login";
-//import GoogleLogin from "react-google-login";
+import GoogleLogin from "react-google-login";
 import { BASE_URL, API_FB_ID, API_GOOGLE_ID } from "../constants";
+import { externalProviderName, roleName } from "../enums.js";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
+import HomePage from "../components/HomePage/HomePage";
+import EditProfileContainer from "./EditProfileContainer";
 
 export default class LoginFormContainer extends Component {
   state = {
@@ -12,8 +15,8 @@ export default class LoginFormContainer extends Component {
     firstName: "",
     lastName: "",
     email: "",
-    picture: "",
-    token: "",
+    photoUrl: "",
+    externalProviderToken: "",
     roleName: "",
   };
 
@@ -28,10 +31,10 @@ export default class LoginFormContainer extends Component {
       firstName: response.first_name,
       lastName: response.last_name,
       email: response.email,
-      picture: response.picture.data.url,
-      token: response.accessToken,
-      externalProviderName: 'Facebook',
-      roleName: 'User'
+      photoUrl: response.picture.data.url,
+      externalProviderToken: response.accessToken,
+      externalProviderName: externalProviderName.FACEBOOK,
+      roleName: roleName.USER
     });
 
     this.addNewUser();
@@ -43,36 +46,36 @@ export default class LoginFormContainer extends Component {
 
     this.setState({
       isLoggedIn: true,
-      token: response.accessToken,
+      externalProviderToken: response.accessToken,
       firstName: response.profileObj.givenName,
       lastName: response.profileObj.familyName,
       email: response.profileObj.email,
       birthday: response.birthday,
-      picture: response.profileObj.imageUrl,
-      externalProviderName: 'Google',
-      roleName: 'Normal'
+      photoUrl: response.profileObj.imageUrl,
+      externalProviderName: externalProviderName.GOOGLE,
+      roleName: roleName.USER
 
     });
     this.addNewUser();
   };
 
   addNewUser = () => {
+    const { firstName, lastName, email, photoUrl, externalProviderToken, externalProviderName, roleName } = this.state;
     axios.post(`${BASE_URL}/login`, {
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        email: this.state.email,
-        photoUrl: this.state.picture,
-        externalProviderToken: this.state.token,
-        externalProviderName: this.state.externalProviderName,
-        roleName: this.state.roleName
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        photoUrl: photoUrl,
+        externalProviderToken: externalProviderToken,
+        externalProviderName: externalProviderName,
+        roleName: roleName
 
       })
       .then((response) => {
-        console.log(response);
         if(response.status === 200)
-          this.props.history.push("/");
+          this.props.history.push(HomePage);
         else if(response.status === 201)
-          this.props.history.push("/editprofile");
+          this.props.history.push(EditProfileContainer);
         else
           console.log("Something went wrong...");
       })
@@ -92,17 +95,17 @@ export default class LoginFormContainer extends Component {
         <FacebookLogin
           appId={API_FB_ID}
           autoLoad={true}
-          fields="first_name,last_name,email,picture"
+          fields="first_name,last_name,email,photoUrl"
           onClick={this.componentClicked}
           callback={this.responseFacebook}
         />
 
-        {/* <GoogleLogin
+        <GoogleLogin
           clientId={API_GOOGLE_ID}
           buttonText="LOGIN WITH GOOGLE"
           onSuccess={this.responseGoogle}
           onFailure={this.responseGoogle}
-        /> */}
+        />
       </React.Fragment>
     );
 

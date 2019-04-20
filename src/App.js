@@ -18,7 +18,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={HomePage} />
               <Route path="/login" component={LoginFormContainer} />
-              <Route path="/editprofile" component={EditProfileContainer} />
+              <Route path="/edit-profile" component={EditProfileContainer} />
             </Switch>
           </div>
         </div>
