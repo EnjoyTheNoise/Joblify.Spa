@@ -8,7 +8,7 @@ const Birthday = props => {
       <label htmlFor="exampleInputName">Data Urodzin</label>
       <br />
       <DatePicker
-        className="form-control xd"
+        
         id="birthday"
         dateFormat="dd/MM/yyyy"
         selected={props.birthday}

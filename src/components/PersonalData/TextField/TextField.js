@@ -3,7 +3,7 @@ import "./TextField.css";
 const TextField = props => {
   return (
     <form>
-      <div className="form-group position">
+      <div className="form-group bc-color">
         <label htmlFor="exampleInputName">Email</label>
         <input
           className="form-control"

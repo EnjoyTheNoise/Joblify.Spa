@@ -5,7 +5,7 @@ import "../../App.css";
 class NavbarUnlogged extends Component {
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark navbarW">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <a className="navbar-brand" href="#">
           <Link to="/" className="navbar-brand">
             Joblify
