@@ -5,7 +5,7 @@ import "../../App.css";
 class NavbarUnlogged extends Component {
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark navbarW">
         <a className="navbar-brand" href="#">
           <Link to="/" className="navbar-brand">
             Joblify
@@ -57,16 +57,19 @@ class NavbarUnlogged extends Component {
                 </label>
               </div>
             </fieldset>
-            <button className="btn btn-secondary mx-3 my-2 my-sm-2" type="submit">
+            <button
+              className="btn btn-secondary mx-3 my-2 my-sm-2"
+              type="submit"
+            >
               Szukaj
             </button>
           </form>
           <button className="btn btn-secondary" type="button">
             Stwórz ofertę
-            </button>
+          </button>
           <ul className="navbar-nav ml-auto">
             <li className="nav-item dropdown">
-              <a
+              <div
                 className="nav-link dropdown-toggle"
                 href="#"
                 id="navbarDropdown"
@@ -76,7 +79,7 @@ class NavbarUnlogged extends Component {
                 aria-expanded="false"
               >
                 user123
-              </a>
+              </div>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a className="dropdown-item" href="#">
                   Ulubione
@@ -85,7 +88,7 @@ class NavbarUnlogged extends Component {
                   Moje Oferty
                 </a>
                 <div className="dropdown-divider" />
-                <a className="dropdown-item" href="#">
+                <a className="dropdown-item" href="/edit-profile">
                   Edytuj Profil
                 </a>
               </div>

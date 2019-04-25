@@ -17,7 +17,7 @@ export default class LoginFormContainer extends Component {
     email: "",
     photoUrl: "",
     externalProviderToken: "",
-    roleName: "",
+    roleName: ""
   };
 
   componentClicked = () => console.log("clicked");
@@ -54,14 +54,22 @@ export default class LoginFormContainer extends Component {
       photoUrl: response.profileObj.imageUrl,
       externalProviderName: providers.GOOGLE,
       roleName: roles.USER
-
     });
     this.addNewUser();
   };
 
   addNewUser = () => {
-    const { firstName, lastName, email, photoUrl, externalProviderToken, externalProviderName, roleName } = this.state;
-    axios.post(`${BASE_URL}/login`, {
+    const {
+      firstName,
+      lastName,
+      email,
+      photoUrl,
+      externalProviderToken,
+      externalProviderName,
+      roleName
+    } = this.state;
+    axios
+      .post(`${BASE_URL}/login`, {
         firstName: firstName,
         lastName: lastName,
         email: email,
@@ -69,15 +77,12 @@ export default class LoginFormContainer extends Component {
         externalProviderToken: externalProviderToken,
         externalProviderName: externalProviderName,
         roleName: roleName
-
       })
-      .then((response) => {
-        if(response.status === 200)
-          this.props.history.push(HomePage);
-        else if(response.status === 201)
+      .then(response => {
+        if (response.status === 200) this.props.history.push(HomePage);
+        else if (response.status === 201)
           this.props.history.push(EditProfileContainer);
-        else
-          console.log("Something went wrong...");
+        else console.log("Something went wrong...");
       })
       .catch(err => console.log(err));
   };
@@ -86,10 +91,12 @@ export default class LoginFormContainer extends Component {
     const { isLoggedIn } = this.state;
     const profileContent = isLoggedIn ? (
       <div>
-      <Redirect to={{
-        pathname: '/'
-      }} />
-    </div>
+        <Redirect
+          to={{
+            pathname: "/"
+          }}
+        />
+      </div>
     ) : (
       <React.Fragment>
         <FacebookLogin
