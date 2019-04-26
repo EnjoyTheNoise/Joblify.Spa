@@ -8,12 +8,12 @@
   max-width: 500px;
   width: 30vw;
   padding: 5px;
-  float: left; 
+  float: left;
 }
 
 .buttonContainer {
   width: 100%;
-  text-align: center; 
+  text-align: center;
 }
 
 .offerButton {
@@ -21,7 +21,7 @@
   margin-bottom: 10px;
   font-size: 1.4vw;
   width: 200px;
-} 
+}
 
 .blueSectionHeaderText {
   margin-right: 20px;
@@ -45,7 +45,7 @@
   .buttonContainer {
     display: inline-block;
     width: 100%;
-    text-align: center; 
+    text-align: center;
   }
 
   .offerButton {
@@ -64,9 +64,9 @@
     font-weight: 600;
     font-size: 5vw;
   }
-  
+
   .blueSectionHeaderText h3 {
     margin: 0px;
     font-size: 3vw;
-  }  
+  }
 }

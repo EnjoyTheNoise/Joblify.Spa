@@ -10,15 +10,19 @@ import Navbar from "./components/Navbar/Navbar";
 
 class App extends Component {
   render() {
+    const [routeToEditProfile, routeToLogin] = ["/edit-profile", "/login"];
     return (
       <Router>
         <div className="App">
-          <Navbar/>
+          <Navbar />
           <div className="content">
             <Switch>
               <Route exact path="/" component={HomePage} />
-              <Route path="/login" component={LoginFormContainer} />
-              <Route path="/edit-profile" component={EditProfileContainer} />
+              <Route path={routeToLogin} component={LoginFormContainer} />
+              <Route
+                path={routeToEditProfile}
+                component={EditProfileContainer}
+              />
             </Switch>
           </div>
         </div>

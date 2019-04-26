@@ -1,15 +1,26 @@
 import React from "react";
-import TextField from "./TextField/TextField.js";
+import BasicUserData from "./BacisUserData/BasicUserData.js";
+
 const personalData = props => {
+  const {
+    firstName,
+    firstNameHandler,
+    lastName,
+    lastNameHandler,
+    email,
+    phone,
+    phoneOnChange,
+  } = props;
+
   return (
-    <TextField
-      email={props.email}
-      firstName={props.firstName}
-      lastName={props.lastName}
-      phone={props.phone}
-      firstNameHandler={props.firstNameHandler}
-      lastNameHandler={props.lastNameHandler}
-      phoneHandler={props.phoneHandler}
+    <BasicUserData
+      email={email}
+      firstName={firstName}
+      lastName={lastName}
+      phone={phone}
+      firstNameHandler={firstNameHandler}
+      lastNameHandler={lastNameHandler}
+      phoneOnChange={phoneOnChange}
     />
   );
 };

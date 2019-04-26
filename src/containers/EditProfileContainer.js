@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Photo from "../components/Photo/Photo.js";
 import PersonalData from "../components/PersonalData/PersonalData.js";
-import Certifications from "../components/PersonalData/Certyfications/Certyfications.js";
 import Birthday from "../components/PersonalData/Birthday/Birthday.js";
 import Auxiliary from "../Auxiliary.js";
 export default class EditProfileContainer extends Component {
@@ -20,7 +19,7 @@ export default class EditProfileContainer extends Component {
     personDescription: ""
   };
 
-  birthdayHandler = date => {
+  birthdayOnChange = date => {
     this.setState({
       birthday: date
     });
@@ -35,34 +34,48 @@ export default class EditProfileContainer extends Component {
       lastName: event.target.value
     });
   };
-  phoneHandler = event => {
+  phoneOnChange = event => {
     this.setState({
       phone: event.target.value
     });
   };
+  
   render() {
+    const {
+      userID, 
+      email,
+      firstName,
+      lastName,
+      birthday,
+      photoUrl,
+      phone,
+      certificationsUrls,
+      jobTypeDescription,
+      experienceDescription,
+      personDescription
+    } = this.state;
     return (
       <Auxiliary className="container-fluid">
         <div className="row " style={{ marginRight: 0, marginTop: 10 }}>
           <div className="col-sm-6 col-xl-4">
             <div className="row">
-              <Photo photoUrl={this.state.photoUrl} />
+              <Photo photoUrl={photoUrl} />
             </div>
           </div>
 
           <div className="col-sm-3 col-xl-2">
             <div className="row">
               <PersonalData
-                firstName={this.state.firstName}
+                firstName={firstName}
                 firstNameHandler={this.firstNameChangeHandler}
-                lastName={this.state.lastName}
+                lastName={lastName}
                 lastNameHandler={this.lastNameChangeHandler}
-                email={this.state.email}
-                phone={this.state.phone}
-                phoneHandler={this.phoneHandler}
-                birthday={this.state.birthday}
-                birthdayHandler={this.birthdayHandler}
-                certificationsUrl={this.state.certificationsUrls}
+                email={email}
+                phone={phone}
+                phoneOnChange={this.phoneOnChange}
+                birthday={birthday}
+                birthdayOnChange={this.birthdayOnChange}
+                certificationsUrl={certificationsUrls}
               />
             </div>
           </div>
@@ -70,10 +83,9 @@ export default class EditProfileContainer extends Component {
           <div className="col-sm-3 col-xl-2">
             <div className="row">
               <Birthday
-                birthday={this.state.birthday}
-                birthdayHandler={this.birthdayHandler}
+                birthday={birthday}
+                birthdayOnChange={this.birthdayOnChange}
               />
-              <Certifications />
             </div>
           </div>
         </div>
