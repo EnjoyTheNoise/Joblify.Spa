@@ -1,9 +1,61 @@
 import React, { Component } from "react";
 import "../../App.js";
 import "./AddOffer.css";
+import axios from 'axios';
 
 class AddOffer extends Component {
+  state = {
+    title: '',
+    description: '',
+    price: '',
+    categoryId: '',
+    tradeId: '',
+    availableTime: '',
+    categories: [],
+    trades: []
+  }
+
+  postDataHandler = () => {
+    const offer = {
+      title: this.state.title,
+      description: this.state.description,
+      price: this.state.price,
+      categoryId: this.state.categoryId,
+      tradeId: this.state.tradeId,
+      availableTime: this.state.availableTime
+    }
+    axios.post(BASE_URL+"/offers", offer)
+    .then(response => {
+      console.log(response);
+    });
+  }
+
+  componentDidMount() {
+    axios.get(BASE_URL+"/offers/GetAllCategories")
+      .then(response => {
+        console.log(response);
+        this.setState({categories: response.data});
+      });
+
+    axios.get(BASE_URL+"/offers/GetAllTrades")
+    .then(response => {
+      console.log(response);
+      this.setState({trades: response.data});
+    });
+  }
+
   render() {
+
+    const categories = this.state.categories;
+    let categoriesOptionItems = categories.map(category => 
+      <option key={category.id}>{category.name}</option>
+    );
+
+    const trades = this.state.trades;
+    let tradesOptionItems = trades.map(trade => 
+      <option key={trade.id}>{trade.name}</option>
+    );
+
     return (
       <div className="row">
         <div className="titleAddOffer">
@@ -17,9 +69,9 @@ class AddOffer extends Component {
                 Kategoria
               </label>
               <div className="col-sm-10">
-                <select id="inputCategory" className="form-control">
+                <select id="inputCategory" className="form-control" onChange={(event) => this.setState({categoryId: event.target.selectedIndex})}>
                   <option selected>Wybierz kategorię</option>
-                  <option>...</option>
+                  {categoriesOptionItems}
                 </select>
               </div>
             </div>
@@ -28,9 +80,9 @@ class AddOffer extends Component {
                 Branża
               </label>
               <div className="col-sm-10">
-                <select id="inputTrade" className="form-control">
+                <select id="inputTrade" className="form-control" onChange={(event) => this.setState({tradeId: event.target.selectedIndex})}>
                   <option selected>Wybierz branżę</option>
-                  <option>...</option>
+                  {categoriesOptionItems}
                 </select>
               </div>
             </div>
@@ -47,19 +99,21 @@ class AddOffer extends Component {
                   className="form-control"
                   id="inputAvailableTime"
                   placeholder="Podaj czas usługi"
+                  onChange={(event) => this.setState({availableTime: event.target.value})}
                 />
               </div>
             </div>
             <div className="form-group row">
-              <label for="inputPrize" className="col-sm-2 col-form-label">
+              <label for="inputPrice" className="col-sm-2 col-form-label">
                 Cena usługi
               </label>
               <div className="col-sm-10">
                 <input
                   type="number"
                   className="form-control"
-                  id="inputPrize"
+                  id="inputPrice"
                   placeholder="Podaj cenę usługi"
+                  onChange={(event) => this.setState({price: event.target.value})}
                 />
               </div>
             </div>
@@ -73,6 +127,7 @@ class AddOffer extends Component {
                   className="form-control"
                   id="inputOfferTitle"
                   placeholder="Podaj tytuł oferty"
+                  onChange={(event) => this.setState({title: event.target.value})}
                 />
               </div>
             </div>
@@ -85,9 +140,10 @@ class AddOffer extends Component {
               </label>
               <div className="col-sm-10">
                 <textarea
-                  class="form-control"
+                  className="form-control"
                   id="inputDescription"
                   rows="10"
+                  onChange={(event) => this.setState({description: event.target.value})}
                 />
               </div>
             </div>
@@ -95,7 +151,7 @@ class AddOffer extends Component {
         </div>
 
         <div className="col-sm-12">
-          <button className="btn btn-primary saveOfferButton">Zapisz</button>
+          <button onClick={this.postDataHandler} className="btn btn-primary saveOfferButton">Zapisz</button>
         </div>
       </div>
     );
