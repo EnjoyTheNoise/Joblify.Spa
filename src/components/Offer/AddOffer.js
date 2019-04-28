@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "../../App.js";
 import "./AddOffer.css";
 import axios from 'axios';
+import {BASE_URL} from "../../constants.js"
 
 class AddOffer extends Component {
   state = {
