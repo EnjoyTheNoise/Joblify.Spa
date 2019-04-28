@@ -9,15 +9,17 @@ const BasicUserData = props => {
     phone,
     firstNameHandler,
     lastNameHandler,
-    phoneOnChange
+    phoneOnChange,
+    certificationsUrls
   } = props;
 
-  const [emailLabel, firstNameLabel, lastNameLabel, phoneLabel] = [
-    "Email",
-    "Imię",
-    "Nazwisko",
-    "Numer telefonu"
-  ];
+  const [
+    emailLabel,
+    firstNameLabel,
+    lastNameLabel,
+    phoneLabel,
+    certificationsLabel
+  ] = ["Email", "Imię", "Nazwisko", "Numer telefonu", "Certyfikaty"];
   return (
     <form>
       <div className="form-group form-background-color">
@@ -43,6 +45,12 @@ const BasicUserData = props => {
           id="phone"
           defaultValue={phone}
           onChange={phoneOnChange}
+        />
+        <label>{certificationsLabel}</label>
+        <input
+          className="form-control"
+          id="certyfications"
+          defaultValue={certificationsUrls}
         />
       </div>
     </form>

@@ -1,5 +1,5 @@
 import React from "react";
-import BasicUserData from "./BacisUserData/BasicUserData.js";
+import BasicUserData from "./BasicUserData/BasicUserData.js";
 
 const personalData = props => {
   const {
@@ -10,6 +10,7 @@ const personalData = props => {
     email,
     phone,
     phoneOnChange,
+    certificationsUrls
   } = props;
 
   return (
@@ -21,6 +22,7 @@ const personalData = props => {
       firstNameHandler={firstNameHandler}
       lastNameHandler={lastNameHandler}
       phoneOnChange={phoneOnChange}
+      certificationsUrls={certificationsUrls}
     />
   );
 };
