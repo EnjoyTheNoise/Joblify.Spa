@@ -18,6 +18,8 @@ class AddOffer extends Component {
 
   postDataHandler = () => {
     const offer = {
+      //userId value for tests
+      userId: 2002,
       title: this.state.title,
       description: this.state.description,
       price: this.state.price,
@@ -25,10 +27,11 @@ class AddOffer extends Component {
       tradeId: this.state.tradeId,
       availableTime: this.state.availableTime
     }
-    axios.post(BASE_URL+"/offer", offer)
+    axios.post(BASE_URL + "/offer/", offer) 
     .then(response => {
       console.log(response);
-    });
+    })
+    .catch(err => console.log(err));;
   }
 
   componentDidMount() {
