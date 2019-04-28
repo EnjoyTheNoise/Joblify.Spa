@@ -1,8 +1,12 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import "../../App.css";
 
-class NavbarUnlogged extends Component {
+class Navbar extends Component {
+  handleAddOffer = () => {
+    this.props.history.push("/add-offer");
+  };
+
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -57,13 +61,20 @@ class NavbarUnlogged extends Component {
                 </label>
               </div>
             </fieldset>
-            <button className="btn btn-secondary mx-3 my-2 my-sm-2" type="submit">
+            <button
+              className="btn btn-secondary mx-3 my-2 my-sm-2"
+              type="submit"
+            >
               Szukaj
             </button>
           </form>
-          <button className="btn btn-secondary" type="button">
+          <button
+            className="btn btn-secondary"
+            type="button"
+            onClick={this.handleAddOffer}
+          >
             Stwórz ofertę
-            </button>
+          </button>
           <ul className="navbar-nav ml-auto">
             <li className="nav-item dropdown">
               <a
@@ -102,4 +113,4 @@ class NavbarUnlogged extends Component {
   }
 }
 
-export default NavbarUnlogged;
+export default withRouter(Navbar);

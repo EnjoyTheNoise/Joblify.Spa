@@ -1,0 +1,25 @@
+.titleAddOffer {
+  width: 100%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.saveOfferButton {
+  font-size: 23px;
+  line-height: 25px;
+}
+
+.rowButton {
+  margin: auto;
+}
+
+.customForm {
+  margin: auto;
+  padding-bottom: 50px;
+}
+
+@media screen and (min-width: 576px) {
+  .labelDescription {
+    padding-top: 100px;
+  }
+}
