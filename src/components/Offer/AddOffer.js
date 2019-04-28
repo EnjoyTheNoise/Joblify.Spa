@@ -25,28 +25,27 @@ class AddOffer extends Component {
       tradeId: this.state.tradeId,
       availableTime: this.state.availableTime
     }
-    axios.post(BASE_URL+"/offers", offer)
+    axios.post(BASE_URL+"/offer", offer)
     .then(response => {
       console.log(response);
     });
   }
 
   componentDidMount() {
-    axios.get(BASE_URL+"/offers/GetAllCategories")
+    axios.get(BASE_URL+"/offer/getallcategories")
       .then(response => {
         console.log(response);
         this.setState({categories: response.data});
       });
 
-    axios.get(BASE_URL+"/offers/GetAllTrades")
+    axios.get(BASE_URL+"/offer/getalltrades")
     .then(response => {
       console.log(response);
       this.setState({trades: response.data});
-    });
+    })
   }
 
   render() {
-
     const categories = this.state.categories;
     let categoriesOptionItems = categories.map(category => 
       <option key={category.id}>{category.name}</option>
@@ -66,30 +65,30 @@ class AddOffer extends Component {
         <div className="col-sm-9 customForm">
           <form>
             <div className="form-group row">
-              <label for="inputCategory" className="col-sm-2 col-form-label">
+              <label htmlFor="inputCategory" className="col-sm-2 col-form-label">
                 Kategoria
               </label>
               <div className="col-sm-10">
                 <select id="inputCategory" className="form-control" onChange={(event) => this.setState({categoryId: event.target.selectedIndex})}>
-                  <option selected>Wybierz kategorię</option>
+                  <option value="" disabled selected>Wybierz kategorię</option>
                   {categoriesOptionItems}
                 </select>
               </div>
             </div>
             <div className="form-group row">
-              <label for="inputTrade" className="col-sm-2 col-form-label">
+              <label htmlFor="inputTrade" className="col-sm-2 col-form-label">
                 Branża
               </label>
               <div className="col-sm-10">
                 <select id="inputTrade" className="form-control" onChange={(event) => this.setState({tradeId: event.target.selectedIndex})}>
-                  <option selected>Wybierz branżę</option>
-                  {categoriesOptionItems}
+                  <option value="" disabled selected>Wybierz branżę</option>
+                  {tradesOptionItems}
                 </select>
               </div>
             </div>
             <div className="form-group row">
               <label
-                for="inputAvailableTime"
+                htmlFor="inputAvailableTime"
                 className="col-sm-2 col-form-label"
               >
                 Dostępny czas
@@ -105,7 +104,7 @@ class AddOffer extends Component {
               </div>
             </div>
             <div className="form-group row">
-              <label for="inputPrice" className="col-sm-2 col-form-label">
+              <label htmlFor="inputPrice" className="col-sm-2 col-form-label">
                 Cena usługi
               </label>
               <div className="col-sm-10">
@@ -119,7 +118,7 @@ class AddOffer extends Component {
               </div>
             </div>
             <div className="form-group row">
-              <label for="inputOfferTitle" className="col-sm-2 col-form-label">
+              <label htmlFor="inputOfferTitle" className="col-sm-2 col-form-label">
                 Tytuł oferty
               </label>
               <div className="col-sm-10">
@@ -134,7 +133,7 @@ class AddOffer extends Component {
             </div>
             <div className="form-group row">
               <label
-                for="inputDescription"
+                htmlFor="inputDescription"
                 className="col-sm-2 labelDescription"
               >
                 Opis
