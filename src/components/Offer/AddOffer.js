@@ -43,7 +43,7 @@ class AddOffer extends Component {
               </label>
               <div className="col-sm-10">
                 <input
-                  type="password"
+                  type="text"
                   className="form-control"
                   id="inputAvailableTime"
                   placeholder="Podaj czas usługi"
@@ -56,7 +56,7 @@ class AddOffer extends Component {
               </label>
               <div className="col-sm-10">
                 <input
-                  type="password"
+                  type="number"
                   className="form-control"
                   id="inputPrize"
                   placeholder="Podaj cenę usługi"
@@ -69,7 +69,7 @@ class AddOffer extends Component {
               </label>
               <div className="col-sm-10">
                 <input
-                  type="password"
+                  type="text"
                   className="form-control"
                   id="inputOfferTitle"
                   placeholder="Podaj tytuł oferty"
