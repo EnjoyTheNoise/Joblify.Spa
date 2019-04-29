@@ -2,17 +2,12 @@ import React, { Component } from "react";
 import { API_FB_ID, FACEBOOK_SCOPES, API_GOOGLE_ID } from "../constants";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {
-  loginRequested,
-  handleGoogleSuccess,
-  handleGoogleFailure,
-  handleFacebookResponse
-} from "../actions/LoginActions";
+import * as loginActions from "../actions/LoginActions";
 import LoginForm from "../components/Login/LoginForm";
 
 class LoginFormContainer extends Component {
-  loginRequested = () => {
-    this.props.actions.loginRequested();
+  loginRequest = () => {
+    this.props.actions.loginRequest();
   };
 
   handleFacebookResponse = response => {
@@ -35,7 +30,7 @@ class LoginFormContainer extends Component {
         facebookScopes={FACEBOOK_SCOPES}
         fbApi={API_FB_ID}
         googleApi={API_GOOGLE_ID}
-        loginRequested={this.loginRequested}
+        loginRequest={this.loginRequest}
         handleFacebookResponse={this.handleFacebookResponse}
         handleGoogleSuccess={this.handleGoogleSuccess}
         handleGoogleFailure={this.handleGoogleFailure}
@@ -54,10 +49,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
-      loginRequested,
-      handleGoogleSuccess,
-      handleGoogleFailure,
-      handleFacebookResponse
+      ...loginActions
     },
     dispatch
   )
