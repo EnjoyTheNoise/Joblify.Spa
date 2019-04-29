@@ -10,7 +10,10 @@ const BasicUserData = props => {
     firstNameHandler,
     lastNameHandler,
     phoneOnChange,
-    certificationsUrls
+    certificationsUrls,
+    firstNameValidation,
+    lastNameValidation,
+    phoneValidation
   } = props;
 
   const [
@@ -18,8 +21,20 @@ const BasicUserData = props => {
     firstNameLabel,
     lastNameLabel,
     phoneLabel,
-    certificationsLabel
-  ] = ["Email", "Imię", "Nazwisko", "Numer telefonu", "Certyfikaty"];
+    certificationsLabel,
+    phoneMessage
+  ] = [
+    "Email",
+    "Imię",
+    "Nazwisko",
+    "Numer telefonu",
+    "Certyfikaty",
+    "Spacje w numerze telefonu są niedozwolone"
+  ];
+
+  const validationStyleSuccess = "form-control is-valid";
+  const validationStyleFail = "form-control is-invalid";
+
   return (
     <form>
       <div className="form-group form-background-color">
@@ -27,25 +42,34 @@ const BasicUserData = props => {
         <input className="form-control" id="email" value={email} />
         <label>{firstNameLabel}</label>
         <input
-          className="form-control"
+          className={
+            firstNameValidation ? validationStyleSuccess : validationStyleFail
+          }
           id="firstName"
           defaultValue={firstName}
           onChange={firstNameHandler}
         />
         <label>{lastNameLabel}</label>
         <input
-          className="form-control"
+          className={
+            lastNameValidation ? validationStyleSuccess : validationStyleFail
+          }
           id="lastname"
           defaultValue={lastName}
           onChange={lastNameHandler}
         />
         <label>{phoneLabel}</label>
         <input
-          className="form-control"
+          className={
+            phoneValidation ? validationStyleSuccess : validationStyleFail
+          }
           id="phone"
           defaultValue={phone}
           onChange={phoneOnChange}
         />
+        <small id="emailHelp" class="form-text text-muted">
+          {phoneMessage}
+        </small>
         <label>{certificationsLabel}</label>
         <input
           className="form-control"

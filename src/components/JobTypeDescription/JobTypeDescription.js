@@ -2,16 +2,27 @@ import React from "react";
 import "./JobTypeDescription.css";
 
 const jobTypeDescription = props => {
-  const description = props.jobTypeDescription;
+  const {
+    jobTypeDescription,
+    jobTypeDescriptionValidation,
+    jobDescriptionChangeHandler
+  } = props;
+  const validationStyleSuccess = "form-control is-valid";
+  const validationStyleFail = "form-control is-invalid";
   const title = "Czym się zajmujesz?";
   return (
-    <div class="form-group textbox-area-style">
+    <div className="form-group textbox-area-style">
       <label for="jobDescriptionTextarea">{title}</label>
       <textarea
-        class="form-control"
+        className={
+          jobTypeDescriptionValidation
+            ? validationStyleSuccess
+            : validationStyleFail
+        }
         id="jobDescriptionTextarea"
         rows="3"
-        defaultValue={description}
+        defaultValue={jobTypeDescription}
+        onChange={jobDescriptionChangeHandler}
       />
     </div>
   );
