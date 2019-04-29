@@ -41,15 +41,19 @@
   border-radius: 2px;
   padding: calc(0.34435vw + 13.38843px) calc(0.34435vw + 18.38843px);
 }
+
 .facebook-btn.small {
   padding: calc(0.34435vw + 3.38843px) calc(0.34435vw + 8.38843px);
 }
+
 .facebook-btn.medium {
   padding: calc(0.34435vw + 8.38843px) calc(0.34435vw + 13.38843px);
 }
+
 .facebook-btn.metro {
   border-radius: 0;
 }
+
 .facebook-btn .fa {
   margin-right: calc(0.34435vw + 3.38843px);
 }
