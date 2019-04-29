@@ -6,7 +6,7 @@ export const FACEBOOK_FAILURE = "FACEBOOK_FAILURE";
 export const GOOGLE_SUCCESS = "GOOGLE_SUCCESS";
 export const GOOGLE_FAILURE = "GOOGLE_FAILURE";
 
-export const loginRequested = () => dispatch => {
+export const loginRequest = () => dispatch => {
   dispatch({ type: LOGIN_REQUESTED });
 };
 
