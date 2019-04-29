@@ -1,0 +1,55 @@
+.google-btn {
+  background-color: rgb(255, 255, 255);
+  display: inline-flex;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.54);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px,
+    rgba(0, 0, 0, 0.24) 0px 0px 1px 0px;
+  padding: 0px;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: Roboto, sans-serif;
+}
+
+.google-btn-icon {
+  margin-right: 10px;
+  background: rgb(255, 255, 255);
+  padding: 10px;
+  border-radius: 2px;
+}
+
+.google-btn-text {
+  padding: 10px 10px 10px 0px;
+  font-weight: 500;
+}
+
+.facebook-btn {
+  font-family: Helvetica, sans-serif;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  font-size: calc(0.27548vw + 12.71074px);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 0.3s, border-color 0.3s;
+  background-color: #4c69ba;
+  border: calc(0.06887vw + 0.67769px) solid #4c69ba;
+  border-radius: 2px;
+  padding: calc(0.34435vw + 13.38843px) calc(0.34435vw + 18.38843px);
+}
+.facebook-btn.small {
+  padding: calc(0.34435vw + 3.38843px) calc(0.34435vw + 8.38843px);
+}
+.facebook-btn.medium {
+  padding: calc(0.34435vw + 8.38843px) calc(0.34435vw + 13.38843px);
+}
+.facebook-btn.metro {
+  border-radius: 0;
+}
+.facebook-btn .fa {
+  margin-right: calc(0.34435vw + 3.38843px);
+}
