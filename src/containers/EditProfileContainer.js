@@ -22,7 +22,7 @@ export default class EditProfileContainer extends Component {
     phone: "",
     phoneValidation: false,
     certificationsUrls: ["Fixing shopping carts"],
-    jobTypeDescription: "I can steal and fix shopping carts",
+    jobTypeDescription: "I can",
     experienceDescription: "thousands of carts",
     personDescription:
       "I love cats. I've started collecting money on security deposit for my friends Ricky and Julian",
@@ -107,7 +107,7 @@ export default class EditProfileContainer extends Component {
 
   isJobDescriptionValid(description) {
     if (
-      validator.isByteLength(description, { min: 0, max: 10 }) &&
+      validator.isByteLength(description, { min: 0, max: 1000 }) &&
       !validator.isEmpty(description)
     ) {
       console.log("noelo");
@@ -130,7 +130,7 @@ export default class EditProfileContainer extends Component {
 
   isExperienceDescriptionValid(description) {
     if (
-      validator.isByteLength(description, { min: 1, max: 10 }) &&
+      validator.isByteLength(description, { min: 0, max: 1000 }) &&
       !validator.isEmpty(description)
     ) {
       this.setState({
@@ -152,7 +152,7 @@ export default class EditProfileContainer extends Component {
 
   isPersonDescriptionValid(description) {
     if (
-      validator.isByteLength(description, { min: 1, max: 10 }) &&
+      validator.isByteLength(description, { min: 0, max: 1000 }) &&
       !validator.isEmpty(description)
     ) {
       this.setState({
@@ -176,6 +176,9 @@ export default class EditProfileContainer extends Component {
     this.isFirstNameValid(this.state.firstName);
     this.isLastNameValid(this.state.lastName);
     this.isPhoneValid(this.state.phone);
+    this.isExperienceDescriptionValid(this.state.experienceDescription);
+    this.isJobDescriptionValid(this.state.jobTypeDescription);
+    this.isPersonDescriptionValid(this.state.personDescription);
   }
   render() {
     const {
