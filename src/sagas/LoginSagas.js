@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 import axios from "axios";
-import { push } from 'connected-react-router'
+import { push } from "connected-react-router";
 import { FACEBOOK_SUCCESS, GOOGLE_SUCCESS } from "../actions/LoginActions";
 import { BASE_URL } from "../constants";
 
@@ -9,7 +9,7 @@ const checkEmail = email => {
 };
 
 function* handleLogin(action) {
-  let isFacebook = action.type == FACEBOOK_SUCCESS ? true : false;
+  let isFacebook = action.type === FACEBOOK_SUCCESS;
 
   let email = isFacebook
     ? action.payload.email
