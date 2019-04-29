@@ -6,35 +6,6 @@ import "./LoginButtons.css";
 
 class LoginForm extends Component {
   render() {
-    const googleButton = renderProps => {
-      return (
-        <button
-          className="google-btn"
-          onClick={() => {
-            renderProps.onClick();
-            loginRequest();
-          }}
-        >
-          <div className="google-btn-icon" />
-          <div className="google-btn-text">LOGIN WITH GOOGLE</div>
-        </button>
-      );
-    };
-
-    const facebookButton = renderProps => {
-      return (
-        <button
-          className="facebook-btn small"
-          onClick={() => {
-            renderProps.onClick();
-            loginRequest();
-          }}
-        >
-          LOGIN WITH FACEBOOK
-        </button>
-      );
-    };
-
     const {
       fbApi,
       googleApi,
@@ -44,6 +15,35 @@ class LoginForm extends Component {
       handleGoogleSuccess,
       handleGoogleFailure
     } = this.props;
+
+    const googleButton = (renderProps, onClickAction) => {
+      return (
+        <button
+          className="google-btn"
+          onClick={() => {
+            renderProps.onClick();
+            onClickAction();
+          }}
+        >
+          <div className="google-btn-icon" />
+          <div className="google-btn-text">LOGIN WITH GOOGLE</div>
+        </button>
+      );
+    };
+
+    const facebookButton = (renderProps, onClickAction) => {
+      return (
+        <button
+          className="facebook-btn small"
+          onClick={() => {
+            renderProps.onClick();
+            onClickAction();
+          }}
+        >
+          LOGIN WITH FACEBOOK
+        </button>
+      );
+    };
 
     const profileContent = this.props.isLegit ? (
       <div>
@@ -59,7 +59,7 @@ class LoginForm extends Component {
           appId={fbApi}
           fields={facebookScopes}
           callback={handleFacebookResponse}
-          render={renderProps => facebookButton(renderProps)}
+          render={renderProps => facebookButton(renderProps, loginRequest)}
         />
 
         <GoogleLogin
@@ -67,7 +67,7 @@ class LoginForm extends Component {
           buttonText="LOGIN WITH GOOGLE"
           onSuccess={handleGoogleSuccess}
           onFailure={handleGoogleFailure}
-          render={renderProps => googleButton(renderProps)}
+          render={renderProps => googleButton(renderProps, loginRequest)}
         />
       </React.Fragment>
     );
