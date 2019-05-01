@@ -1,3 +1,13 @@
-const rootReducer = {};
+import { combineReducers } from "redux";
+import { connectRouter } from "connected-react-router";
+import facebookLogin from "./reducers/FacebookLoginReducer";
+import googleLogin from "./reducers/GoogleLoginReducer";
 
-export default rootReducer;
+const createRootReducer = history =>
+  combineReducers({
+    router: connectRouter(history),
+    facebookLogin,
+    googleLogin
+  });
+
+export default createRootReducer;
