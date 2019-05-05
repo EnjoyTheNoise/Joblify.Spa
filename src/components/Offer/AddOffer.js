@@ -3,6 +3,7 @@ import "../../App.js";
 import "./AddOffer.css";
 import axios from 'axios';
 import {BASE_URL} from "../../constants.js"
+import { getAllCategories} from "../../actions/addOfferActions";
 
 class AddOffer extends Component {
   state = {
@@ -35,11 +36,7 @@ class AddOffer extends Component {
   }
 
   componentDidMount() {
-    axios.get(BASE_URL+"/offer/getallcategories")
-      .then(response => {
-        console.log(response);
-        this.setState({categories: response.data});
-      });
+    
 
     axios.get(BASE_URL+"/offer/getalltrades")
     .then(response => {
@@ -47,6 +44,8 @@ class AddOffer extends Component {
       this.setState({trades: response.data});
     })
   }
+
+
 
   render() {
     const categories = this.state.categories;
