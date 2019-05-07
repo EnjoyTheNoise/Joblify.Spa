@@ -1,55 +1,20 @@
 import React, { Component } from "react";
 import "../../App.js";
 import "./AddOffer.css";
-import axios from 'axios';
-import {BASE_URL} from "../../constants.js"
-import { getAllCategories, getAllTrades, postNewOffer} from "../../actions/addOfferAction";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
 
 class AddOffer extends Component {
-  state = {
-    title: '',
-    description: '',
-    price: '',
-    categoryId: '',
-    tradeId: '',
-    availableTime: ''
-  }
-
-  postDataHandler = () => {
-    const offer = {
-      //userId value for tests
-      userId: 2002,
-      title: this.state.title,
-      description: this.state.description,
-      price: this.state.price,
-      categoryId: this.state.categoryId,
-      tradeId: this.state.tradeId,
-      availableTime: this.state.availableTime
-    }
-    console.log(this.props.actions.postNewOffer(this.addOffer));
-    // axios.post(BASE_URL + "/offer/", offer) 
-    // .then(response => {
-    //   console.log(response);
-    // })
-    // .catch(err => console.log(err));;
-  }
-
+  
   componentDidMount = () => {
     console.log(this.props.actions.getAllCategories(this.addOffer));
   
     console.log(this.props.actions.getAllTrades(this.addOffer));
   }
   render() {
-    //const {categories1} = this.props.actions.getAllCategories(this.addOffer);//this.props;//.actions.getAllCategories();
-  //  console.log(categories1);
-    const categories = this.state.categories;
+
     let categoriesOptionItems = this.props.categories.map(category => 
       <option key={category.id}>{category.name}</option>
     );
 
-    const trades = this.state.trades;
     let tradesOptionItems = this.props.trades.map(trade => 
       <option key={trade.id}>{trade.name}</option>
     );
@@ -156,20 +121,4 @@ class AddOffer extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  isFetching: state.addOffer.isFetching,
-  categories: state.addOffer.categories,
-  trades: state.addOffer.trades,
-  availableTime: state.addOffer.availableTime,
-  price: state.addOffer.price,
-  title: state.addOffer.title,
-  description: state.addOffer.description,
-  tradeId: state.addOffer.tradeId,
-  categoryId: state.addOffer.categoryId
-});
-
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({getAllCategories, getAllTrades, postNewOffer}, dispatch)
-});
-
-export default connect(mapStateToProps, mapDispatchToProps) (AddOffer);
+export default AddOffer;

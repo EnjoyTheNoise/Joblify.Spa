@@ -65,27 +65,11 @@ export default function categories(state = initialState, action) {
         return {
             ...state,
             isFetching: true,
-            categories: action.payload.categories,
-            trades: action.payload.trades,
-            title: action.payload.title,
-            description: action.payload.description,
-            price: action.payload.price,
-            categoryId: action.payload.categoryId,
-            tradeId: action.payload.tradeId,
-            availableTime: action.payload.availableTime
         };
         case POST_NEW_OFFER_SUCCESS:
         return {
             ...state,
             isFetching: false,
-            categories: action.payload.categories,
-            trades: action.payload.trades,
-            title: action.payload.title,
-            description: action.payload.description,
-            price: action.payload.price,
-            categoryId: action.payload.categoryId,
-            tradeId: action.payload.tradeId,
-            availableTime: action.payload.availableTime
         };
         case POST_NEW_OFFER_FAILURE:
         return {
