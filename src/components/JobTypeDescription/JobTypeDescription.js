@@ -9,6 +9,7 @@ const jobTypeDescription = props => {
   } = props;
   const validationStyleSuccess = "form-control is-valid";
   const validationStyleFail = "form-control is-invalid";
+  const textfieldName = "jobTypeDescription";
   const title = "Czym się zajmujesz?";
   return (
     <div className="form-group textbox-area-style">
@@ -23,6 +24,7 @@ const jobTypeDescription = props => {
         rows="3"
         defaultValue={jobTypeDescription}
         onChange={jobDescriptionChangeHandler}
+        name={textfieldName}
       />
     </div>
   );

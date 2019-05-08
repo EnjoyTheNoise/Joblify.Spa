@@ -15,7 +15,7 @@ class NavbarUnlogged extends Component {
       favorite,
       myOffers,
       editProfile,
-      login,
+      login
     ] = [
       "/edit-profile",
       "/login",
@@ -29,7 +29,7 @@ class NavbarUnlogged extends Component {
       "Edytuj profil",
       "Login"
     ];
-    
+
     const userName = "user123"; //it will change later
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">

@@ -3,12 +3,12 @@ import "./BasicUserData.css";
 
 const BasicUserData = props => {
   const {
-    email,
     firstName,
-    lastName,
-    phone,
     firstNameHandler,
+    lastName,
     lastNameHandler,
+    email,
+    phone,
     phoneOnChange,
     certificationsUrls,
     firstNameValidation,
@@ -54,7 +54,7 @@ const BasicUserData = props => {
           className={
             lastNameValidation ? validationStyleSuccess : validationStyleFail
           }
-          id="lastname"
+          id="lastName"
           defaultValue={lastName}
           onChange={lastNameHandler}
         />
@@ -67,7 +67,7 @@ const BasicUserData = props => {
           defaultValue={phone}
           onChange={phoneOnChange}
         />
-        <small id="emailHelp" class="form-text text-muted">
+        <small id="phoneHelp" className="form-text text-muted">
           {phoneMessage}
         </small>
         <label>{certificationsLabel}</label>

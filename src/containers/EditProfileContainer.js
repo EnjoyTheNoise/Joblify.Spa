@@ -31,12 +31,11 @@ export default class EditProfileContainer extends Component {
     personDescriptionValidation: false
   };
 
-  birthdayOnChange = date => {
+  birthdayChangeHandler = date => {
     this.setState({
       birthday: date
     });
   };
-
   isFirstNameValid = firstname => {
     if (
       validator.isAscii(firstname) &&
@@ -53,13 +52,35 @@ export default class EditProfileContainer extends Component {
       });
     }
   };
-
-  firstNameChangeHandler = event => {
-    this.isFirstNameValid(event.target.value);
-    if (this.state.firstNameValidation) {
-      this.setState({
-        firstName: event.target.value
-      });
+  fieldChangeHandler = event => {
+    switch (event.target.id) {
+      case "firstName":
+        console.log("sukces");
+        this.isFirstNameValid(event.target.value);
+        if (this.state.firstNameValidation) {
+          this.setState({
+            firstName: event.target.value
+          });
+        }
+        break;
+      case "lastName":
+        this.isLastNameValid(event.target.value);
+        if (this.state.lastNameValidation) {
+          this.setState({
+            lastName: event.target.value
+          });
+        }
+        break;
+      case "phone":
+        this.isPhoneValid(event.target.value);
+        if (this.state.phoneValidation) {
+          this.setState({
+            phone: event.target.value
+          });
+        }
+        break;
+      default:
+        break;
     }
   };
   isLastNameValid = lastname => {
@@ -78,14 +99,6 @@ export default class EditProfileContainer extends Component {
       });
     }
   };
-  lastNameChangeHandler = event => {
-    this.isFirstNameValid(event.target.value);
-    if (this.state.lastNameValidation) {
-      this.setState({
-        lastName: event.target.value
-      });
-    }
-  };
   isPhoneValid = phone => {
     if (validator.isMobilePhone(phone) && !validator.isEmpty(phone)) {
       this.setState({
@@ -97,11 +110,34 @@ export default class EditProfileContainer extends Component {
       });
     }
   };
-  phoneOnChange = event => {
-    if (this.isPhoneValid(event.target.value)) {
-      this.setState({
-        phone: event.target.value
-      });
+
+  descriptionsChangeHandler = event => {
+    switch (event.target.id) {
+      case "jobDescriptionTextarea":
+        this.isJobDescriptionValid(event.target.value);
+        if (this.state.jobTypeDescriptionValidation)
+          this.setState({
+            jobTypeDescription: event.target.value
+          });
+        break;
+
+      case "experienceDescriptionTextarea":
+        this.isExperienceDescriptionValid(event.target.value);
+        if (this.state.experienceDescriptionValidation)
+          this.setState({
+            experienceDescription: event.target.value
+          });
+        break;
+
+      case "personDescriptionTextarea":
+        this.isPersonDescriptionValid(event.target.value);
+        if (this.state.personDescriptionValidation)
+          this.setState({
+            personDescription: event.target.value
+          });
+        break;
+      default:
+        break;
     }
   };
 
@@ -110,7 +146,6 @@ export default class EditProfileContainer extends Component {
       validator.isByteLength(description, { min: 0, max: 1000 }) &&
       !validator.isEmpty(description)
     ) {
-      console.log("noelo");
       this.setState({
         jobTypeDescriptionValidation: true
       });
@@ -120,13 +155,6 @@ export default class EditProfileContainer extends Component {
       });
     }
   }
-  jobDescriptionChangeHandler = event => {
-    this.isJobDescriptionValid(event.target.value);
-    if (this.state.jobTypeDescriptionValidation)
-      this.setState({
-        jobTypeDescription: event.target.value
-      });
-  };
 
   isExperienceDescriptionValid(description) {
     if (
@@ -142,13 +170,6 @@ export default class EditProfileContainer extends Component {
       });
     }
   }
-  experienceDescriptionChangeHandler = event => {
-    this.isExperienceDescriptionValid(event.target.value);
-    if (this.state.experienceDescriptionValidation)
-      this.setState({
-        experienceDescription: event.target.value
-      });
-  };
 
   isPersonDescriptionValid(description) {
     if (
@@ -164,13 +185,6 @@ export default class EditProfileContainer extends Component {
       });
     }
   }
-  personDescriptionChangeHandler = event => {
-    this.isPersonDescriptionValid(event.target.value);
-    if (this.state.personDescriptionValidation)
-      this.setState({
-        personDescription: event.target.value
-      });
-  };
 
   componentDidMount() {
     this.isFirstNameValid(this.state.firstName);
@@ -217,14 +231,12 @@ export default class EditProfileContainer extends Component {
             <div className="row-fluid">
               <BasicUserData
                 firstName={firstName}
-                firstNameHandler={this.firstNameChangeHandler}
+                firstNameHandler={this.fieldChangeHandler}
                 lastName={lastName}
-                lastNameHandler={this.lastNameChangeHandler}
+                lastNameHandler={this.fieldChangeHandler}
                 email={email}
                 phone={phone}
-                phoneOnChange={this.phoneOnChange}
-                birthday={birthday}
-                birthdayOnChange={this.birthdayOnChange}
+                phoneOnChange={this.fieldChangeHandler}
                 certificationsUrls={certificationsUrls}
                 firstNameValidation={firstNameValidation}
                 lastNameValidation={lastNameValidation}
@@ -234,7 +246,7 @@ export default class EditProfileContainer extends Component {
             <div className="row-fluid">
               <Birthday
                 birthday={birthday}
-                birthdayOnChange={this.birthdayOnChange}
+                birthdayOnChange={this.birthdayChangeHandler}
               />
             </div>
           </div>
@@ -244,7 +256,7 @@ export default class EditProfileContainer extends Component {
               <JobTypeDescription
                 jobTypeDescription={jobTypeDescription}
                 jobTypeDescriptionValidation={jobTypeDescriptionValidation}
-                jobDescriptionChangeHandler={this.jobDescriptionChangeHandler}
+                jobDescriptionChangeHandler={this.descriptionsChangeHandler}
               />
             </div>
           </div>
@@ -256,7 +268,7 @@ export default class EditProfileContainer extends Component {
                   experienceDescriptionValidation
                 }
                 experienceDescriptionChangeHandler={
-                  this.experienceDescriptionChangeHandler
+                  this.descriptionsChangeHandler
                 }
               />
             </div>
@@ -266,9 +278,7 @@ export default class EditProfileContainer extends Component {
               <PersonDescription
                 personDescription={personDescription}
                 personDescriptionValidation={personDescriptionValidation}
-                personDescriptionChangeHandler={
-                  this.personDescriptionChangeHandler
-                }
+                personDescriptionChangeHandler={this.descriptionsChangeHandler}
               />
             </div>
           </div>

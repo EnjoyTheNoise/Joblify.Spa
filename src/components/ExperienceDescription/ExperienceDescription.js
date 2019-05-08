@@ -12,14 +12,14 @@ const experienceDescription = props => {
   const title = "Jakie masz doświadczenie?";
   return (
     <div className="form-group textbox-area-style">
-      <label for="ExperienceDescriptionTextarea">{title}</label>
+      <label for="experienceDescriptionTextarea">{title}</label>
       <textarea
         className={
           experienceDescriptionValidation
             ? validationStyleSuccess
             : validationStyleFail
         }
-        id="ExperienceDescriptionTextarea"
+        id="experienceDescriptionTextarea"
         rows="3"
         defaultValue={experienceDescription}
         onChange={experienceDescriptionChangeHandler}
