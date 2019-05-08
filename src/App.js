@@ -21,7 +21,7 @@ class App extends Component {
               <Route exact path="/" component={HomePage} />
               <Route path="/login" component={LoginFormContainer} />
               <Route path="/edit-profile" component={EditProfileContainer} />
-              <Route path="/add-offer" component={AddOffer} />
+              <Route path="/add-offer" component={AddOfferContainer} />
             </Switch>
           </div>
         </div>

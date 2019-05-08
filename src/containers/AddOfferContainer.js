@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { getAllCategories, getAllTrades, postNewOffer} from "../actions/addOfferAction";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import AddOffer from "../components/Offer/AddOffer";
 
 export class AddOfferContainer extends Component {
     state = {
@@ -24,7 +25,31 @@ export class AddOfferContainer extends Component {
           tradeId: this.state.tradeId,
           availableTime: this.state.availableTime
         }
-        console.log(this.props.actions.postNewOffer(this.addOffer));
+        // console.log(this.props.actions.postNewOffer(this.addOffer));
+      }
+
+      handleUserInput = e => {
+        this.setState({ [e.target.name]: e.target.value });
+        this.showInputError(e.target.name);
+    };
+
+      render() {
+        const {isFetching, categories, trades, availableTime, price, title, description, tradeId, categoryId, actions, postDataHandler} = this.props;
+        return (
+          <AddOffer
+          isFetching = {isFetching}
+          categories = {categories}
+          trades = {trades}
+          availableTime = {availableTime}
+          price = {price}
+          title = {title}
+          description = {description}
+          tradeId = {tradeId}
+          categoryId = {categoryId}
+          actions = {actions}
+          postDataHandler = {postDataHandler}
+          />
+        );
       }
 }
 

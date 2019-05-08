@@ -5,19 +5,27 @@ import "./AddOffer.css";
 class AddOffer extends Component {
   
   componentDidMount = () => {
-    console.log(this.props.actions.getAllCategories(this.addOffer));
+    this.props.actions.getAllCategories();
   
-    console.log(this.props.actions.getAllTrades(this.addOffer));
+    this.props.actions.getAllTrades();
   }
   render() {
 
-    let categoriesOptionItems = this.props.categories.map(category => 
-      <option key={category.id}>{category.name}</option>
-    );
-
-    let tradesOptionItems = this.props.trades.map(trade => 
-      <option key={trade.id}>{trade.name}</option>
-    );
+    let categoriesOptionItems;
+    let tradesOptionItems;
+    if (this.props.categories != null)
+    {
+      categoriesOptionItems = this.props.categories.map(category => 
+        <option key={category.id}>{category.name}</option>
+      );
+    }
+    
+    if (this.props.trades != null) {
+      tradesOptionItems = this.props.trades.map(trade => 
+        <option key={trade.id}>{trade.name}</option>
+      );
+    }
+    
 
     return (
       <div className="row">
@@ -114,7 +122,7 @@ class AddOffer extends Component {
         </div>
 
         <div className="col-sm-12">
-          <button onClick={this.postDataHandler} className="btn btn-primary saveOfferButton">Zapisz</button>
+          <button onClick={this.props.actions.postNewOffer} className="btn btn-primary saveOfferButton">Zapisz</button>
         </div>
       </div>
     );
