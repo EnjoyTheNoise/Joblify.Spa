@@ -70,7 +70,8 @@ class AddOffer extends Component {
                   className="form-control"
                   id="inputAvailableTime"
                   placeholder="Podaj czas usługi"
-                  onChange={(event) => this.props.availableTime}
+                  name="availableTime"
+                  onChange={this.props.handleUserInput}
                 />
               </div>
             </div>
@@ -84,7 +85,8 @@ class AddOffer extends Component {
                   className="form-control"
                   id="inputPrice"
                   placeholder="Podaj cenę usługi"
-                  onChange={(event) => this.setState({price: event.target.value})}
+                  name="price"
+                  onChange={this.props.handleUserInput}
                 />
               </div>
             </div>
@@ -98,7 +100,9 @@ class AddOffer extends Component {
                   className="form-control"
                   id="inputOfferTitle"
                   placeholder="Podaj tytuł oferty"
-                  onChange={(event) => this.setState({title: event.target.value})}
+                  name={this.props.title}
+                  required
+                  onChange={this.props.handleUserInput}
                 />
               </div>
             </div>
@@ -114,7 +118,8 @@ class AddOffer extends Component {
                   className="form-control"
                   id="inputDescription"
                   rows="10"
-                  onChange={(event) => this.setState({description: event.target.value})}
+                  name="description"
+                  onChange={this.props.handleUserInput}
                 />
               </div>
             </div>

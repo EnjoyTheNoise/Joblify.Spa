@@ -34,7 +34,7 @@ export class AddOfferContainer extends Component {
     };
 
       render() {
-        const {isFetching, categories, trades, availableTime, price, title, description, tradeId, categoryId, actions, postDataHandler} = this.props;
+        const {isFetching, categories, trades, availableTime, price, title, description, tradeId, categoryId, actions, postDataHandler, handleUserInput} = this.props;
         return (
           <AddOffer
           isFetching = {isFetching}
@@ -48,6 +48,7 @@ export class AddOfferContainer extends Component {
           categoryId = {categoryId}
           actions = {actions}
           postDataHandler = {postDataHandler}
+          handleUserInput = {handleUserInput}
           />
         );
       }
