@@ -1,10 +1,13 @@
-import React from 'react'
+import React from 'react';
 import { Route, Switch } from "react-router-dom";
 
 import LoginFormContainer from "./containers/LoginFormContainer";
 import EditProfileContainer from "./containers/EditProfileContainer";
 import HomePage from "./components/HomePage/HomePage";
 import Navbar from "./components/Navbar/Navbar";
+import SearchPage from "./components/SearchPage/SearchPage";
+import Footer from "./components/Footer/Footer";
+
 
 const routes = (
   <div className="App">
@@ -14,8 +17,10 @@ const routes = (
         <Route exact path="/" component={HomePage} />
         <Route path="/login" component={LoginFormContainer} />
         <Route path="/edit-profile" component={EditProfileContainer} />
+        <Route path="/search" component={SearchPage} />
       </Switch>
     </div>
+    <Footer />
   </div>
 );
 

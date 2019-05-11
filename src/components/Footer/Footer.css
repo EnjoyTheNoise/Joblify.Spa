@@ -1,0 +1,10 @@
+.footer {
+    height: 50px;
+    border: solid 1px #727F8C;
+    background-color: #343a40;
+    color: white;
+}
+
+.footer > p {
+    margin-top: 11px;
+}

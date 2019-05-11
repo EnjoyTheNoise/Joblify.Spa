@@ -40,6 +40,7 @@ class NavbarUnlogged extends Component {
                     name="optionsRadios"
                     id="optionsRadios1"
                     value="option1"
+                    checked
                   />
                   Pracodawcy
                 </label>
@@ -57,9 +58,11 @@ class NavbarUnlogged extends Component {
                 </label>
               </div>
             </fieldset>
+            <Link className="nav-link" to="/search">
             <button className="btn btn-secondary mx-3 my-2 my-sm-2" type="submit">
               Szukaj
             </button>
+            </Link>
           </form>
           <button className="btn btn-secondary" type="button">
             Stwórz ofertę
