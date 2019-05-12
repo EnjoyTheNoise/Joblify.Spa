@@ -4,17 +4,27 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import AddOffer from "../components/Offer/AddOffer";
 
+const initialState = {
+  title: "",
+  description: "",
+  price: "",
+  categoryId: "",
+  tradeId: "",
+  availableTime: ""
+};
+
 export class AddOfferContainer extends Component {
-    state = {
-        title: '',
-        description: '',
-        price: '',
-        categoryId: '',
-        tradeId: '',
-        availableTime: ''
-      }
-    
-      postDataHandler = () => {
+   constructor(props) {
+     super(props);
+     this.state = initialState;
+   }
+   componentDidMount = () => {
+    this.props.actions.getAllCategories();
+  
+    this.props.actions.getAllTrades();
+  }
+      onSubmit = e => {
+        e.preventDefault();
         const offer = {
           //userId value for tests
           userId: 2002,
@@ -24,17 +34,30 @@ export class AddOfferContainer extends Component {
           categoryId: this.state.categoryId,
           tradeId: this.state.tradeId,
           availableTime: this.state.availableTime
+         
         }
-        // console.log(this.props.actions.postNewOffer(this.addOffer));
+        console.log(this.props.availableTime);
+        this.props.actions.postNewOffer(
+          this.state.offer
+        )
+        
       }
 
       handleUserInput = e => {
-        this.setState({ [e.target.name]: e.target.value });
-        this.showInputError(e.target.name);
+        // const newState = this.state.cos;
+        // newState[e.target.name] = e.target.value;
+        // this.setState({
+        //   cos: newState
+        //})
+        let state = this.state;
+        state[e.target.name] = e.target.value;
+        this.setState(state);
+        // this.setState({ [e.target.name]: e.target.value });
+    
     };
 
       render() {
-        const {isFetching, categories, trades, availableTime, price, title, description, tradeId, categoryId, actions, postDataHandler, handleUserInput} = this.props;
+        const {isFetching, categories, trades, availableTime, price, title, description, tradeId, categoryId, actions} = this.props;
         return (
           <AddOffer
           isFetching = {isFetching}
@@ -47,8 +70,8 @@ export class AddOfferContainer extends Component {
           tradeId = {tradeId}
           categoryId = {categoryId}
           actions = {actions}
-          postDataHandler = {postDataHandler}
-          handleUserInput = {handleUserInput}
+          onSubmit = {this.onSubmit}
+          handleUserInput = {this.handleUserInput}
           />
         );
       }

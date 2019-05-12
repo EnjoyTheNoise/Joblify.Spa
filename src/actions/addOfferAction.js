@@ -76,7 +76,7 @@ export const getAllTrades = props => dispatch => {
 
 export const postNewOffer = (offer, props) => dispatch => {
   dispatch({type: POST_NEW_OFFER});
-
+console.log(offer);
   return  axios.post(BASE_URL + "/offer/", offer) 
     .then(response => { console.log(response);
       dispatch(postNewOfferSuccess(response));},

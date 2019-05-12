@@ -23,7 +23,7 @@ const initialState = {
     availableTime: ''
 }
 
-export default function categories(state = initialState, action) {
+export default function addOffer(state = initialState, action) {
     switch(action.type) {
         case GET_ALL_CATEGORIES:
         return {

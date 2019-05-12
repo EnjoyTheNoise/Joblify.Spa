@@ -4,11 +4,7 @@ import "./AddOffer.css";
 
 class AddOffer extends Component {
   
-  componentDidMount = () => {
-    this.props.actions.getAllCategories();
-  
-    this.props.actions.getAllTrades();
-  }
+
   render() {
 
     let categoriesOptionItems;
@@ -25,7 +21,7 @@ class AddOffer extends Component {
         <option key={trade.id}>{trade.name}</option>
       );
     }
-    
+    console.log(this.props.title);
 
     return (
       <div className="row">
@@ -71,6 +67,7 @@ class AddOffer extends Component {
                   id="inputAvailableTime"
                   placeholder="Podaj czas usługi"
                   name="availableTime"
+                  defaultValue={this.props.availableTime}
                   onChange={this.props.handleUserInput}
                 />
               </div>
@@ -82,10 +79,11 @@ class AddOffer extends Component {
               <div className="col-sm-10">
                 <input
                   type="number"
-                  className="form-control"
+                  className="form-control form-field"
                   id="inputPrice"
                   placeholder="Podaj cenę usługi"
                   name="price"
+                  defaultValue={this.props.price}
                   onChange={this.props.handleUserInput}
                 />
               </div>
@@ -100,7 +98,8 @@ class AddOffer extends Component {
                   className="form-control"
                   id="inputOfferTitle"
                   placeholder="Podaj tytuł oferty"
-                  name={this.props.title}
+                  defaultValue={this.props.title}
+                  name="title"
                   required
                   onChange={this.props.handleUserInput}
                 />
@@ -119,6 +118,7 @@ class AddOffer extends Component {
                   id="inputDescription"
                   rows="10"
                   name="description"
+                  defaultValue={this.props.description}
                   onChange={this.props.handleUserInput}
                 />
               </div>
@@ -127,7 +127,7 @@ class AddOffer extends Component {
         </div>
 
         <div className="col-sm-12">
-          <button onClick={this.props.actions.postNewOffer} className="btn btn-primary saveOfferButton">Zapisz</button>
+          <button onClick={this.props.onSubmit} className="btn btn-primary saveOfferButton">Zapisz</button>
         </div>
       </div>
     );
