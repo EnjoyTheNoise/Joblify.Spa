@@ -1,5 +1,7 @@
 import React, { Component, StrictMode } from "react";
-import Photo from "../components/Photo/Photo.js";
+import Spinner from "../components/Photo/Spinner.js";
+import Buttons from "../components/Photo/Buttons.js";
+import Images from "../components/Photo/Images.js";
 import Birthday from "../components/PersonalData/Birthday/Birthday.js";
 import JobTypeDescription from "../components/JobTypeDescription/JobTypeDescription.js";
 import ExperienceDescription from "../components/ExperienceDescription/ExperienceDescription.js";
@@ -11,14 +13,22 @@ import BasicUserData from "../components/PersonalData/BasicUserData/BasicUserDat
 export default class EditProfileContainer extends Component {
   state = {
     userID: "",
-    email: "123@123.xd",
+    email: "wwwwwa@wp.pl",
     firstName: "123",
     firstNameValidation: false,
     lastName: "bubbels",
     lastNameValidation: false,
+    externalProviderName: "Google",
+    roleName: "rola",
     birthday: new Date(),
-    photoUrl:
-      "https://img1.looper.com/img/gallery/the-untold-truth-of-trailer-park-boys/intro.jpg",
+    uploading: false,
+    images: [
+      {
+        secure_url: [
+          "https://img1.looper.com/img/gallery/the-untold-truth-of-trailer-park-boys/intro.jpg"
+        ]
+      }
+    ],
     phone: "",
     phoneValidation: false,
     certificationsUrls: ["Fixing shopping carts"],
@@ -36,6 +46,7 @@ export default class EditProfileContainer extends Component {
       birthday: date
     });
   };
+
   isFirstNameValid = firstname => {
     if (
       validator.isAscii(firstname) &&
@@ -52,10 +63,10 @@ export default class EditProfileContainer extends Component {
       });
     }
   };
+
   fieldChangeHandler = event => {
     switch (event.target.id) {
       case "firstName":
-        console.log("sukces");
         this.isFirstNameValid(event.target.value);
         if (this.state.firstNameValidation) {
           this.setState({
@@ -83,6 +94,7 @@ export default class EditProfileContainer extends Component {
         break;
     }
   };
+
   isLastNameValid = lastname => {
     if (
       validator.isAscii(lastname) &&
@@ -99,6 +111,7 @@ export default class EditProfileContainer extends Component {
       });
     }
   };
+
   isPhoneValid = phone => {
     if (validator.isMobilePhone(phone) && !validator.isEmpty(phone)) {
       this.setState({
@@ -194,6 +207,35 @@ export default class EditProfileContainer extends Component {
     this.isJobDescriptionValid(this.state.jobTypeDescription);
     this.isPersonDescriptionValid(this.state.personDescription);
   }
+
+  ImageOnChange = e => {
+    const files = Array.from(e.target.files);
+    this.setState({ uploading: true });
+
+    const formData = new FormData();
+
+    files.forEach((file, i) => {
+      formData.append(i, file);
+    });
+
+    fetch(`$localhost:2150/api/user/image-upload`, {
+      method: "POST",
+      body: formData
+    })
+      .then(res => res.json())
+      .then(images => {
+        this.setState({
+          uploading: false,
+          images
+        });
+      });
+  };
+
+  removeImage = id => {
+    this.setState({
+      images: this.state.images.filter(image => image.public_id !== id)
+    });
+  };
   render() {
     const {
       userID,
@@ -201,7 +243,8 @@ export default class EditProfileContainer extends Component {
       firstName,
       lastName,
       birthday,
-      photoUrl,
+      uploading,
+      images,
       phone,
       certificationsUrls,
       jobTypeDescription,
@@ -209,6 +252,8 @@ export default class EditProfileContainer extends Component {
       personDescription,
       firstNameValidation,
       lastNameValidation,
+      externalProviderName,
+      roleName,
       phoneValidation,
       jobTypeDescriptionValidation,
       personDescriptionValidation,
@@ -218,13 +263,23 @@ export default class EditProfileContainer extends Component {
       "Potwierdź zmiany",
       "Usuń konto"
     ];
+
+    const photoUploader = () => {
+      switch (true) {
+        case uploading:
+          return <Spinner />;
+        case images.length > 0:
+          return <Images images={images} removeImage={this.removeImage} />;
+        default:
+          return <Buttons onChange={this.ImageOnChange} />;
+      }
+    };
+
     return (
       <Auxiliary className="container-fluid">
         <div className="row " style={{ marginRight: 0, marginTop: 10 }}>
           <div className="col-sm-6 col-xl-4">
-            <div className="row-fluid">
-              <Photo photoUrl={photoUrl} />
-            </div>
+            <div className="row-fluid">{photoUploader()}</div>
           </div>
 
           <div className="col-sm-6 col-xl-8">

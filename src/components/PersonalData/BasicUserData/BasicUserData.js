@@ -70,7 +70,8 @@ const BasicUserData = props => {
         <small id="phoneHelp" className="form-text text-muted">
           {phoneMessage}
         </small>
-        <label>{certificationsLabel}</label>
+        <label>{certificationsLabel}</label>{" "}
+        {/*TO DO! it should enable uploading documents*/}
         <input
           className="form-control"
           id="certyfications"
