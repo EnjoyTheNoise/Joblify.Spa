@@ -3,13 +3,15 @@ import { getAllCategories, getAllTrades, postNewOffer} from "../actions/addOffer
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import AddOffer from "../components/Offer/AddOffer";
+import axios from "axios";
+import { BASE_URL } from "../constants";
 
 const initialState = {
   title: "",
   description: "",
-  price: "",
-  categoryId: "",
-  tradeId: "",
+  price: 0,
+  categoryId: 0,
+  tradeId: 0,
   availableTime: ""
 };
 
@@ -27,37 +29,35 @@ export class AddOfferContainer extends Component {
         e.preventDefault();
         const offer = {
           //userId value for tests
-          userId: 2002,
+          userId: 5,
           title: this.state.title,
           description: this.state.description,
           price: this.state.price,
           categoryId: this.state.categoryId,
           tradeId: this.state.tradeId,
-          availableTime: this.state.availableTime
-         
+          availableTime: this.state.availableTime        
         }
-        console.log(this.props.availableTime);
+
         this.props.actions.postNewOffer(
-          this.state.offer
-        )
-        
+         offer 
+        )       
       }
 
       handleUserInput = e => {
-        // const newState = this.state.cos;
-        // newState[e.target.name] = e.target.value;
-        // this.setState({
-        //   cos: newState
-        //})
         let state = this.state;
         state[e.target.name] = e.target.value;
-        this.setState(state);
-        // this.setState({ [e.target.name]: e.target.value });
-    
+        this.setState(state);    
     };
 
+    handleUserSelect = e => {
+      let state = this.state;
+      state[e.target.name] = e.target.selectedIndex;
+      this.setState(state);
+    }
+
       render() {
-        const {isFetching, categories, trades, availableTime, price, title, description, tradeId, categoryId, actions} = this.props;
+        const {isFetching, categories, trades, actions} = this.props;
+        const { price, title, description, tradeId, categoryId, availableTime} = this.state;
         return (
           <AddOffer
           isFetching = {isFetching}
@@ -72,6 +72,7 @@ export class AddOfferContainer extends Component {
           actions = {actions}
           onSubmit = {this.onSubmit}
           handleUserInput = {this.handleUserInput}
+          handleUserSelect = {this.handleUserSelect}
           />
         );
       }
@@ -81,12 +82,6 @@ const mapStateToProps = state => ({
     isFetching: state.addOffer.isFetching,
     categories: state.addOffer.categories,
     trades: state.addOffer.trades,
-    availableTime: state.addOffer.availableTime,
-    price: state.addOffer.price,
-    title: state.addOffer.title,
-    description: state.addOffer.description,
-    tradeId: state.addOffer.tradeId,
-    categoryId: state.addOffer.categoryId
   });
   
   const mapDispatchToProps = dispatch => ({

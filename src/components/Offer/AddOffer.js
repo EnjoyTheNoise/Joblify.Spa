@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import "../../App.js";
 import "./AddOffer.css";
 
+
 class AddOffer extends Component {
   
-
   render() {
 
     let categoriesOptionItems;
@@ -21,7 +21,6 @@ class AddOffer extends Component {
         <option key={trade.id}>{trade.name}</option>
       );
     }
-    console.log(this.props.title);
 
     return (
       <div className="row">
@@ -36,7 +35,7 @@ class AddOffer extends Component {
                 Kategoria
               </label>
               <div className="col-sm-10">
-                <select id="inputCategory" className="form-control">
+                <select id="inputCategory" className="form-control" name="categoryId" onChange={this.props.handleUserSelect}>
                   <option value="" disabled selected>Wybierz kategorię</option>
                   {categoriesOptionItems}
                 </select>
@@ -47,7 +46,7 @@ class AddOffer extends Component {
                 Branża
               </label>
               <div className="col-sm-10">
-                <select id="inputTrade" className="form-control">
+                <select id="inputTrade" className="form-control" name="tradeId" onChange={this.props.handleUserSelect}>
                   <option value="" disabled selected>Wybierz branżę</option>
                   {tradesOptionItems}
                 </select>
@@ -67,7 +66,7 @@ class AddOffer extends Component {
                   id="inputAvailableTime"
                   placeholder="Podaj czas usługi"
                   name="availableTime"
-                  defaultValue={this.props.availableTime}
+                  value={this.props.availableTime}
                   onChange={this.props.handleUserInput}
                 />
               </div>
@@ -83,7 +82,7 @@ class AddOffer extends Component {
                   id="inputPrice"
                   placeholder="Podaj cenę usługi"
                   name="price"
-                  defaultValue={this.props.price}
+                  value={this.props.price}
                   onChange={this.props.handleUserInput}
                 />
               </div>
@@ -98,7 +97,7 @@ class AddOffer extends Component {
                   className="form-control"
                   id="inputOfferTitle"
                   placeholder="Podaj tytuł oferty"
-                  defaultValue={this.props.title}
+                  value={this.props.title}
                   name="title"
                   required
                   onChange={this.props.handleUserInput}
@@ -118,7 +117,7 @@ class AddOffer extends Component {
                   id="inputDescription"
                   rows="10"
                   name="description"
-                  defaultValue={this.props.description}
+                  value={this.props.description}
                   onChange={this.props.handleUserInput}
                 />
               </div>
