@@ -17,7 +17,7 @@ const routes = (
         <Route exact path="/" component={HomePage} />
         <Route path="/login" component={LoginFormContainer} />
         <Route path="/edit-profile" component={EditProfileContainer} />
-        <Route path="/search" component={SearchPage} />
+        <Route path="/search/:phrase" component={SearchPage} />
       </Switch>
     </div>
     <Footer />

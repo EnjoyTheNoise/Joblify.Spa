@@ -1,8 +1,10 @@
 .footer {
+    margin-top: 20px;
     height: 50px;
     border: solid 1px #727F8C;
     background-color: #343a40;
     color: white;
+    box-sizing: border-box;
 }
 
 .footer > p {

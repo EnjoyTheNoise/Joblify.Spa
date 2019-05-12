@@ -8,6 +8,7 @@
     overflow: hidden;
     background-color: whitesmoke;
     border-radius: 5px;
+    box-sizing: border-box;
 }
 
 .offerResultAvatar {
@@ -17,17 +18,16 @@
 
 .avatarWithStars{
     margin-top: 5%;
-    display: inline-block;
-    max-width: 10%;
+    max-width: 12%;
     width: auto;
 }
 
 .offerContent { 
     padding-top: 15px;
-    vertical-align: middle;
     padding-left: 2%;
     text-align: left;
     font-size: 14px;
     width: auto;
+    display: block;
 }
 

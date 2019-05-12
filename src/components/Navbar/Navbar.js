@@ -3,6 +3,11 @@ import { Link } from "react-router-dom";
 import "../../App.css";
 
 class NavbarUnlogged extends Component {
+  state = {
+    phrase: '',
+    option: 'employers'
+  }
+
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -25,11 +30,13 @@ class NavbarUnlogged extends Component {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <form className="form-inline ml-auto my-2 my-lg-0">
             <input
+              id="searchBar" 
               className="form-control mr-sm-2"
               type="search"
               placeholder="Szukaj"
               aria-label="Search"
               style={{ width: "400px" }}
+              onChange={(event) => this.setState({phrase: event.target.value})}
             />
             <fieldset className="form-group  my-2 my-lg-0">
               <div className="form-check">
@@ -39,8 +46,9 @@ class NavbarUnlogged extends Component {
                     className="form-check-input"
                     name="optionsRadios"
                     id="optionsRadios1"
-                    value="option1"
-                    checked
+                    value="employers"
+                    defaultChecked
+                    onChange={(event) => this.setState({option: event.target.value})}
                   />
                   Pracodawcy
                 </label>
@@ -52,13 +60,14 @@ class NavbarUnlogged extends Component {
                     className="form-check-input"
                     name="optionsRadios"
                     id="optionsRadios2"
-                    value="option2"
+                    value="employees"
+                    onChange={(event) => this.setState({option: event.target.value})}
                   />
                   Pracobiorcy
                 </label>
               </div>
             </fieldset>
-            <Link className="nav-link" to="/search">
+            <Link className="nav-link" to={{pathname:"/search/"+this.state.phrase, search: "?option="+this.state.option}}>
             <button className="btn btn-secondary mx-3 my-2 my-sm-2" type="submit">
               Szukaj
             </button>
