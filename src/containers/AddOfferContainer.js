@@ -3,10 +3,11 @@ import {
   getAllCategories,
   getAllTrades,
   postNewOffer
-} from "../actions/addOfferAction";
+} from "../actions/AddOfferAction";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import AddOffer from "../components/Offer/AddOffer";
+import  PropTypes  from "prop-types";
 
 const initialState = {
   title: "",
@@ -102,3 +103,7 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(AddOfferContainer);
+
+AddOfferContainer.contextType = {
+  router: PropTypes.object.isRequired
+};

@@ -8,7 +8,7 @@ GET_ALL_TRADES_FAILURE,
 POST_NEW_OFFER,
 POST_NEW_OFFER_SUCCESS,
 POST_NEW_OFFER_FAILURE
-} from "../actions/addOfferAction";
+} from "../actions/AddOfferAction";
 
 const initialState = {
     isFetching: false,

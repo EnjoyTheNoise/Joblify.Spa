@@ -5,6 +5,7 @@ import LoginFormContainer from "./containers/LoginFormContainer";
 import EditProfileContainer from "./containers/EditProfileContainer";
 import HomePage from "./components/HomePage/HomePage";
 import Navbar from "./components/Navbar/Navbar";
+import AddOfferContainer  from './containers/AddOfferContainer';
 
 const routes = (
   <div className="App">
@@ -14,6 +15,7 @@ const routes = (
         <Route exact path="/" component={HomePage} />
         <Route path="/login" component={LoginFormContainer} />
         <Route path="/edit-profile" component={EditProfileContainer} />
+        <Route path="/add-offer" component={AddOfferContainer} />
       </Switch>
     </div>
   </div>
