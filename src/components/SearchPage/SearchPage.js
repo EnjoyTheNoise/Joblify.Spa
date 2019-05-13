@@ -3,25 +3,20 @@ import "./SearchPage.css";
 import Offer from "./Offer/Offer";
 
 class SearchPage extends Component {
-  state = {
-    phrase: "",
-    option: "",
-    page: 0
-  };
-
+  
   render() {
-    this.state.phrase = this.props.match.params.phrase;
-    this.state.option = this.props.location.search.substring(8, 17);
+    // this.state.phrase = this.props.match.params.phrase;
+    // this.state.option = this.props.location.search.substring(8, 17);
 
     let option = "";
-    if (this.state.option === "employers") option = "Pracodawcy";
+    if (this.props.option === "employers") option = "Pracodawcy";
     else option = "Pracobiorcy";
 
 
     return (
       <div className="row">
         <p className="phraseSearchPage">
-          wyniki dla frazy: {this.state.phrase}
+          wyniki dla frazy: {this.props.phrase}
         </p>
 
         <form className="form-inline filter" style={{ clear: "left" }}>

@@ -5,7 +5,7 @@ import LoginFormContainer from "./containers/LoginFormContainer";
 import EditProfileContainer from "./containers/EditProfileContainer";
 import HomePage from "./components/HomePage/HomePage";
 import Navbar from "./components/Navbar/Navbar";
-import SearchPage from "./components/SearchPage/SearchPage";
+import SearchPageContainer from "./containers/SearchPageContainer";
 import Footer from "./components/Footer/Footer";
 
 
@@ -17,7 +17,7 @@ const routes = (
         <Route exact path="/" component={HomePage} />
         <Route path="/login" component={LoginFormContainer} />
         <Route path="/edit-profile" component={EditProfileContainer} />
-        <Route path="/search/:phrase" component={SearchPage} />
+        <Route path="/search/:phrase" component={SearchPageContainer} />
       </Switch>
     </div>
     <Footer />
