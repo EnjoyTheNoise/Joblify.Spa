@@ -41,9 +41,6 @@ export class SearchPageContainer extends Component {
 const mapStateToProps = state => ({
     isFetching: state.searchPage.isFetching,
     offers: state.searchPage.offers,
-    phrase: state.searchPage.phrase,
-    option: state.searchPage.option,
-    page: state.searchPage.page
 });
 
 const mapDispatchToProps = dispatch => ({

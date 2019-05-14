@@ -24,7 +24,7 @@ const Offer = props => {
         <p>{fullName}</p>
         <p>{props.description}</p>
         <p>telefon: {props.phone}</p>
-        <p>cena: {props.price}</p>
+        <p>cena: {props.price} PLN</p>
       </div>
     </div>
   );
