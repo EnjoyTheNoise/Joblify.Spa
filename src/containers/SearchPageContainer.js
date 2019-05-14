@@ -5,46 +5,50 @@ import { connect } from "react-redux";
 import SearchPage from "../components/SearchPage/SearchPage";
 
 const initialState = {
-    phrase: '',
-    option: '',
-    page: 0
+  phrase: "",
+  option: "",
+  page: 0
 };
 
 export class SearchPageContainer extends Component {
-    constructor(props){
-        super(props);
-        this.state = initialState;
-    }
+  constructor(props) {
+    super(props);
+    this.state = initialState;
+  }
 
-    // componentDidMount = () => {
-        // this.props.actions.getOffers();
-    // };
+  // componentDidMount = () => {
+  // this.props.actions.getOffers();
+  // };
 
-    render() {
-        const {isFetching, offers, page} = this.props;
+  render() {
+    console.log(this.props);
+    const { isFetching, offers } = this.props;
+    const page = this.state.page;
+    const phrase = this.props.match.params.phrase;
+    const option = this.props.location.search.substring(8, 17);
 
-        const phrase = this.props.match.params.phrase;
-        const option = this.props.location.search.substring(8, 17);
-
-        return(
-            <SearchPage 
-            isFetching = {isFetching}
-            offers = {offers}
-            phrase = {phrase}
-            option = {option}
-            page = {page}
-            />
-        );
-    }
+    return (
+      <SearchPage
+        isFetching={isFetching}
+        offers={offers}
+        phrase={phrase}
+        option={option}
+        page={page}
+      />
+    );
+  }
 }
 
 const mapStateToProps = state => ({
-    isFetching: state.searchPage.isFetching,
-    offers: state.searchPage.offers,
+  isFetching: state.searchPage.isFetching,
+  offers: state.searchPage.offers
 });
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators({getOffers}, dispatch)
+  actions: bindActionCreators({ getOffers }, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps) (SearchPageContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SearchPageContainer);
