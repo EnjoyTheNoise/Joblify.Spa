@@ -31,13 +31,6 @@ export class SearchPageContainer extends Component {
     const filter = params.get("filter");
     const page = params.get("page");
 
-    console.log("isFetching:" + isFetching);
-    console.log("offers:" + offers);
-    console.log("phrase:" + phrase);
-    console.log("option:" + option);
-    console.log("filter:" + filter);
-    console.log("page:" + page);
-
     return (
       <SearchPage
         isFetching={isFetching}
@@ -53,7 +46,7 @@ export class SearchPageContainer extends Component {
 
 const mapStateToProps = state => ({
   isFetching: state.searchPage.isFetching,
-  offers: state.searchPage.offers,
+  offers: state.searchPage.offers
 });
 
 const mapDispatchToProps = dispatch => ({
