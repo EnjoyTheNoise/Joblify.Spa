@@ -67,7 +67,7 @@ class NavbarUnlogged extends Component {
                 </label>
               </div>
             </fieldset>
-            <Link className="nav-link" to={{pathname:"/search/"+this.state.phrase, search: "?option="+this.state.option}}>
+            <Link className="nav-link" to="/search">
             <button className="btn btn-secondary mx-3 my-2 my-sm-2" type="submit">
               Szukaj
             </button>

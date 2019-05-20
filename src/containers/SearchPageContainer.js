@@ -4,16 +4,17 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import SearchPage from "../components/SearchPage/SearchPage";
 
-const initialState = {
-  phrase: "",
-  option: "",
-  page: 0
-};
+// const initialState = {
+//   phrase: "",
+//   option: "",
+//   filter: "",
+//   page: 0
+// };
 
 export class SearchPageContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = initialState;
+    // this.state = initialState;
   }
 
   // componentDidMount = () => {
@@ -21,11 +22,21 @@ export class SearchPageContainer extends Component {
   // };
 
   render() {
-    console.log(this.props);
+    const query = this.props.location.search;
     const { isFetching, offers } = this.props;
-    const page = this.state.page;
-    const phrase = this.props.match.params.phrase;
-    const option = this.props.location.search.substring(8, 17);
+
+    const params = new URLSearchParams(query);
+    const phrase = params.get("phrase");
+    const option = params.get("option");
+    const filter = params.get("filter");
+    const page = params.get("page");
+
+    console.log("isFetching:" + isFetching);
+    console.log("offers:" + offers);
+    console.log("phrase:" + phrase);
+    console.log("option:" + option);
+    console.log("filter:" + filter);
+    console.log("page:" + page);
 
     return (
       <SearchPage
@@ -33,6 +44,7 @@ export class SearchPageContainer extends Component {
         offers={offers}
         phrase={phrase}
         option={option}
+        filter={filter}
         page={page}
       />
     );
@@ -41,7 +53,7 @@ export class SearchPageContainer extends Component {
 
 const mapStateToProps = state => ({
   isFetching: state.searchPage.isFetching,
-  offers: state.searchPage.offers
+  offers: state.searchPage.offers,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -5,9 +5,9 @@ import Pagination from "./Pagination/Pagination";
 
 class SearchPage extends Component {
   render() {
-    let option = "";
-    if (this.props.option === "employers") option = "Pracodawcy";
-    else option = "Pracobiorcy";
+    let optionDisplay =
+      this.props.option === "employers" ? "Pracodawcy" : "Pracobiorcy";
+    const filterState = this.props.filter;
 
     return (
       <div className="row">
@@ -17,17 +17,16 @@ class SearchPage extends Component {
 
         <form className="form-inline filter" style={{ clear: "left" }}>
           <div className="form-group">
-            <label className="control-label filterDropboxLabel">{option}</label>
+            <label className="control-label filterDropboxLabel">
+              {optionDisplay}
+              <select value={filterState} className="form-control">
+                <option value="stars">wg ilości gwiazdek</option>
+                <option value="price">wg ceny</option>
+                <option value="date">wg daty utworzenia</option>
+              </select>
+            </label>
           </div>
-          <div className="form-group">
-            <select id="memoryType" className="form-control">
-              <option value="stars" value="selected">
-                wg ilości gwiazdek
-              </option>
-              <option value="price">wg ceny</option>
-              <option value="date">wg daty utworzenia</option>
-            </select>
-          </div>
+          <div className="form-group" />
         </form>
 
         <div className="offers">
