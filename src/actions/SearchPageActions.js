@@ -9,9 +9,10 @@ export const SEARCH_OFFERS = "SEARCH_OFFERS";
 export const HANDLE_FILTER_SELECT = "HANDLE_FILTER_SELECT";
 export const HANDLE_PAGE_CHANGE = "HANDLE_PAGE_CHANGE";
 
-const getOffersSuccess = response => ({
+const getOffersSuccess = (response, page) => ({
   type: GET_OFFERS_SUCCESS,
-  payload: response.data
+  payload: response.data,
+  page: page
 });
 
 const getOffersFailure = error => ({
@@ -20,13 +21,14 @@ const getOffersFailure = error => ({
 });
 
 //todo
-export const getOffers = props => dispatch => {
-  dispatch({ type: GET_OFFERS });
-
-  return axios.get(BASE_URL + "/abc").then(
+export const getOffers = page => dispatch => {
+  dispatch({ type: GET_OFFERS, page: page });
+  console.log(page);
+  return axios.get("https://jsonplaceholder.typicode.com/posts/" + page).then(
+  // return axios.get(BASE_URL + "/abc").then(
     response => {
-      console.log(response);
-      dispatch(getOffersSuccess(response));
+      // console.log(response);
+      dispatch(getOffersSuccess(response, page));
     },
     error => {
       if (error.response.status === 400) {

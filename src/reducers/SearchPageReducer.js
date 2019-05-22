@@ -10,7 +10,7 @@ import {
 const initialState = {
   isFetching: false,
   error: null,
-  offers: [],
+  // offers: [],
   phrase: "",
   option: "",
   page: "",
@@ -23,17 +23,20 @@ export default function searchPage(state = initialState, action) {
       return {
         ...state,
         isFetching: true,
+        page: action.page,
         offers: []
       };
     case GET_OFFERS_SUCCESS:
       return {
         ...state,
         isFetching: false,
+        page: action.page,
         offers: action.payload
       };
     case GET_OFFERS_FAILURE:
       return {
         ...state,
+        page: action.page,
         isFetching: false,
         error: action.error.response.data
       };
@@ -52,7 +55,8 @@ export default function searchPage(state = initialState, action) {
     case HANDLE_PAGE_CHANGE:
       return {
         ...state,
-        page: action.pageIndex
+        page: action.pageIndex,
+        offers: action.payload
       };
 
     default:

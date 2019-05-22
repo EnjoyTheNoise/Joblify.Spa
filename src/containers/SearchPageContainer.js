@@ -21,13 +21,13 @@ export class SearchPageContainer extends Component {
     this.state = initialState;
   }
 
-  componentDidMount = () => {
-    // this.props.actions.getOffers();
-    console.log("Did mount: " + Date.now());
-  };
+  // componentDidMount = () => {
+  //   // this.props.actions.getOffers();
+  //   console.log("Did mount: " + Date.now());
+  // };
 
-  componentDidUpdate = () => {
-    // this.props.actions.getOffers();
+  componentDidMount = () => {
+    this.props.actions.getOffers(1);
     console.log("Did update: " + Date.now());
   };
 
@@ -47,7 +47,7 @@ export class SearchPageContainer extends Component {
         filter={filter}
         page={page}
         handleFilterSelect={this.props.actions.handleFilterSelect}
-        handlePageChange={this.props.actions.handlePageChange}
+        handlePageChange={this.props.actions.getOffers}
       />
     );
   }
