@@ -190,7 +190,12 @@ class SearchPage extends Component {
           <div className="form-group">
             <label className="control-label filterDropboxLabel">
               {optionDisplay}
-              <select value={filterState} className="form-control">
+              <select
+                value={filterState}
+                className="form-control"
+                name="filter"
+                onChange={this.props.handleFilterSelect}
+              >
                 <option value="stars">wg ilości gwiazdek</option>
                 <option value="price">wg ceny</option>
                 <option value="date">wg daty utworzenia</option>
@@ -202,7 +207,11 @@ class SearchPage extends Component {
 
         <div className="offers">
           {mock}
-          <Pagination currentPage={this.props.page} totalItems={mock.length} />
+          <Pagination
+            currentPage={this.props.page}
+            totalItems={mock.length}
+            handlePageChange={this.props.handlePageChange}
+          />
         </div>
       </div>
     );

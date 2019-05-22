@@ -5,6 +5,10 @@ export const GET_OFFERS = "GET_OFFERS";
 export const GET_OFFERS_SUCCESS = "GET_OFFERS_SUCCESS";
 export const GET_OFFERS_FAILURE = "GET_OFFERS_FAILURE";
 
+export const SEARCH_OFFERS = "SEARCH_OFFERS";
+export const HANDLE_FILTER_SELECT = "HANDLE_FILTER_SELECT";
+export const HANDLE_PAGE_CHANGE = "HANDLE_PAGE_CHANGE";
+
 const getOffersSuccess = response => ({
   type: GET_OFFERS_SUCCESS,
   payload: response.data
@@ -31,4 +35,16 @@ export const getOffers = props => dispatch => {
       }
     }
   );
+};
+
+export const searchOffers = (phrase, option) => dispatch => {
+  dispatch({ type: SEARCH_OFFERS, phrase: phrase, option: option });
+};
+
+export const handleFilterSelect = event => dispatch => {
+  dispatch({ type: HANDLE_FILTER_SELECT, event: event });
+};
+
+export const handlePageChange = pageIndex => dispatch => {
+  dispatch({ type: HANDLE_PAGE_CHANGE, pageIndex: pageIndex });
 };

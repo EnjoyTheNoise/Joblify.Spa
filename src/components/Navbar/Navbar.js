@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { searchOffers } from "../../actions/SearchPageActions";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 import "../../App.css";
 
 class NavbarUnlogged extends Component {
@@ -9,6 +12,34 @@ class NavbarUnlogged extends Component {
   };
 
   render() {
+    const [
+      routeToSearchPage,
+      routeToEditProfile,
+      routeToLogin,
+      siteName,
+      employers,
+      employees,
+      search,
+      createOffer,
+      favorite,
+      myOffers,
+      editProfile,
+      login
+    ] = [
+      "/search",
+      "/edit-profile",
+      "/login",
+      "Joblify",
+      "Pracodawcy",
+      "Pracobiorcy",
+      "Szukaj",
+      "Stwórz ofertę",
+      "Ulubione",
+      "Moje oferty",
+      "Edytuj profil",
+      "Login"
+    ];
+
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <a className="navbar-brand" href="#">
@@ -74,18 +105,18 @@ class NavbarUnlogged extends Component {
             <Link
               className="nav-link"
               to={{
-                pathname: "/search",
-                search:
-                  "?phrase=" +
-                  this.state.phrase +
-                  "&option=" +
-                  this.state.option +
-                  "&filter=price&page=1"
+                pathname: routeToSearchPage
               }}
             >
               <button
                 className="btn btn-secondary mx-3 my-2 my-sm-2"
                 type="submit"
+                onClick={() =>
+                  this.props.actions.searchOffers(
+                    this.state.phrase,
+                    this.state.option
+                  )
+                }
               >
                 Szukaj
               </button>
@@ -132,4 +163,11 @@ class NavbarUnlogged extends Component {
   }
 }
 
-export default NavbarUnlogged;
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators({ searchOffers }, dispatch)
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(NavbarUnlogged);

@@ -1,35 +1,42 @@
 import React, { Component } from "react";
-import { getOffers } from "../actions/SearchPageActions";
+import {
+  getOffers,
+  handleFilterSelect,
+  handlePageChange
+} from "../actions/SearchPageActions";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import SearchPage from "../components/SearchPage/SearchPage";
 
-// const initialState = {
-//   phrase: "",
-//   option: "",
-//   filter: "",
-//   page: 0
-// };
+const initialState = {
+  phrase: "",
+  option: "",
+  filter: "stars",
+  page: 1
+};
 
 export class SearchPageContainer extends Component {
   constructor(props) {
     super(props);
-    // this.state = initialState;
+    this.state = initialState;
   }
 
-  // componentDidMount = () => {
-  // this.props.actions.getOffers();
-  // };
+  componentDidMount = () => {
+    // this.props.actions.getOffers();
+    console.log("Did mount: " + Date.now());
+  };
+
+  componentDidUpdate = () => {
+    // this.props.actions.getOffers();
+    console.log("Did update: " + Date.now());
+  };
 
   render() {
-    const query = this.props.location.search;
-    const { isFetching, offers } = this.props;
-
-    const params = new URLSearchParams(query);
-    const phrase = params.get("phrase");
-    const option = params.get("option");
-    const filter = params.get("filter");
-    const page = params.get("page");
+    const { isFetching, offers, phrase, filter, page, option } = this.props;
+    this.state.phrase = phrase;
+    this.state.filter = filter;
+    this.state.page = page;
+    this.state.option = option;
 
     return (
       <SearchPage
@@ -39,6 +46,8 @@ export class SearchPageContainer extends Component {
         option={option}
         filter={filter}
         page={page}
+        handleFilterSelect={this.props.actions.handleFilterSelect}
+        handlePageChange={this.props.actions.handlePageChange}
       />
     );
   }
@@ -46,11 +55,18 @@ export class SearchPageContainer extends Component {
 
 const mapStateToProps = state => ({
   isFetching: state.searchPage.isFetching,
-  offers: state.searchPage.offers
+  offers: state.searchPage.offers,
+  phrase: state.searchPage.phrase,
+  option: state.searchPage.option,
+  filter: state.searchPage.filter,
+  page: state.searchPage.page
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ getOffers }, dispatch)
+  actions: bindActionCreators(
+    { getOffers, handleFilterSelect, handlePageChange },
+    dispatch
+  )
 });
 
 export default connect(

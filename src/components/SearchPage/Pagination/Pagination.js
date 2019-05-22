@@ -29,7 +29,12 @@ class Pagination extends Component {
     }
 
     for (let i = startPage; i <= endPage; i++) {
-      let k = i === currentPage ? <a href="#" className="active">{i}</a> : <a href="#">{i}</a>;
+      let k =
+        i === currentPage ? (
+          <a className="active">{i}</a>
+        ) : (
+          <a onClick={() => this.props.handlePageChange(i)}>{i}</a>
+        );
       table.push(k);
     }
 
