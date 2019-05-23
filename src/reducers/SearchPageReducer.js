@@ -23,14 +23,14 @@ export default function searchPage(state = initialState, action) {
       return {
         ...state,
         isFetching: true,
-        page: action.page,
+        page: action.params.page,
         offers: []
       };
     case GET_OFFERS_SUCCESS:
       return {
         ...state,
         isFetching: false,
-        page: action.page,
+        page: action.params.page,
         offers: action.payload
       };
     case GET_OFFERS_FAILURE:
@@ -52,12 +52,12 @@ export default function searchPage(state = initialState, action) {
         ...state,
         filter: action.event.target.value
       };
-    case HANDLE_PAGE_CHANGE:
-      return {
-        ...state,
-        page: action.pageIndex,
-        offers: action.payload
-      };
+    // case HANDLE_PAGE_CHANGE:
+    //   return {
+    //     ...state,
+    //     page: action.pageIndex,
+    //     offers: action.payload
+    //   };
 
     default:
       return state;

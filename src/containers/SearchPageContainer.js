@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import {
   getOffers,
-  handleFilterSelect,
-  handlePageChange
+  handleFilterSelect
+  // handlePageChange
 } from "../actions/SearchPageActions";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -21,14 +21,14 @@ export class SearchPageContainer extends Component {
     this.state = initialState;
   }
 
-  // componentDidMount = () => {
-  //   // this.props.actions.getOffers();
-  //   console.log("Did mount: " + Date.now());
-  // };
-
   componentDidMount = () => {
-    this.props.actions.getOffers(1);
-    console.log("Did update: " + Date.now());
+    this.props.actions.getOffers({
+      page: this.state.page,
+      option: this.state.option,
+      filter: this.state.filter,
+      phrase: this.state.phrase
+    });
+    console.log("Did mount: " + Date.now());
   };
 
   render() {
@@ -64,7 +64,11 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
-    { getOffers, handleFilterSelect, handlePageChange },
+    {
+      getOffers,
+      handleFilterSelect
+      // handlePageChange
+    },
     dispatch
   )
 });

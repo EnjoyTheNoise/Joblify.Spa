@@ -7,8 +7,8 @@ class Pagination extends Component {
     const totalItems = parseInt(this.props.totalItems);
     const pageSize = 10;
     const totalPages = Math.ceil(totalItems / pageSize);
-    let table = [];
     let startPage, endPage;
+    let pagesToRender = [];
 
     if (totalPages <= 10) {
       // less than 10 total pages so show all
@@ -28,21 +28,18 @@ class Pagination extends Component {
       }
     }
 
+    // TODO: 2 komponent renderowany jest 2 razy (?)
+    console.log("CURRENT PAGE: " + currentPage);
     for (let i = startPage; i <= endPage; i++) {
-      let k =
-        i === currentPage ? (
-          <a className="active">{i}</a>
-        ) : (
-          <a onClick={() => this.props.handlePageChange(i)}>{i}</a>
-        );
-      table.push(k);
+      let k = i === currentPage ? <a className="active">{i}</a> : <a onClick={() => this.props.handlePageChange({page: i})}>{i}</a>;
+      pagesToRender.push(k);
     }
 
     return (
       <div className="pagination">
-        <a href="#">&laquo;</a>
-        {table}
-        <a href="#">&raquo;</a>
+        {currentPage-1 < 1 ? <a>&laquo;</a> : <a onClick={() => this.props.handlePageChange({page: currentPage-1})}>&laquo;</a>}
+        {pagesToRender}
+        {currentPage+1 > totalPages ? <a>&raquo;</a> : <a onClick={() => this.props.handlePageChange({page: currentPage+1})}>&raquo;</a>}
       </div>
     );
   }
