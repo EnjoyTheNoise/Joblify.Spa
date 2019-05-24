@@ -11,13 +11,13 @@ class EditProfileForm extends React.Component {
       email,
       firstName,
       lastName,
-      birthday,
-      phone,
-      jobTypeDescription,
-      experienceDescription,
-      personDescription,
+      birthdate,
+      phoneNumber,
+      description,
+      experience,
+      fieldOfInterest,
       handleInput,
-      handleBirthday
+      handlebirthdate
     } = this.props;
 
     const [successButtonText, warningButtonText] = [
@@ -25,18 +25,25 @@ class EditProfileForm extends React.Component {
       "Usuń konto"
     ];
 
+    const firstLogin = (
+      <div className="col-sm-12">
+        <div className="row-fluid">Pierwszy login, potwierdz albo elo XD</div>
+      </div>
+    );
+
     return (
       <div className="container-fluid">
         <form className="form-center">
+          {this.props.isFirstLogin ? firstLogin : null}
           <div className="col-sm-12">
             <div className="row-fluid">
               <BasicUserData
                 firstName={firstName}
                 lastName={lastName}
                 email={email}
-                phone={phone}
-                birthday={birthday}
-                handleBirthday={handleBirthday}
+                phoneNumber={phoneNumber}
+                birthdate={birthdate}
+                handlebirthdate={handlebirthdate}
                 handleInput={handleInput}
               />
             </div>
@@ -44,7 +51,7 @@ class EditProfileForm extends React.Component {
           <div className="col-sm-12">
             <div className="row-fluid">
               <JobTypeDescription
-                jobTypeDescription={jobTypeDescription}
+                description={description}
                 handleInput={handleInput}
               />
             </div>
@@ -52,7 +59,7 @@ class EditProfileForm extends React.Component {
           <div className="col-sm-12">
             <div className="row-fluid">
               <ExperienceDescription
-                experienceDescription={experienceDescription}
+                experience={experience}
                 handleInput={handleInput}
               />
             </div>
@@ -60,7 +67,7 @@ class EditProfileForm extends React.Component {
           <div className="col-sm-12">
             <div className="row-fluid">
               <PersonDescription
-                personDescription={personDescription}
+                fieldOfInterest={fieldOfInterest}
                 handleInput={handleInput}
               />
             </div>
@@ -70,6 +77,7 @@ class EditProfileForm extends React.Component {
               <button
                 type="button"
                 className="btn btn-success save-button-extension"
+                onClick={this.props.handleConfirmation}
               >
                 {successButtonText}
               </button>
@@ -80,6 +88,7 @@ class EditProfileForm extends React.Component {
               <button
                 type="button"
                 className="btn btn-danger save-button-extension"
+                onClick={this.props.handleRejection}
               >
                 {warningButtonText}
               </button>
