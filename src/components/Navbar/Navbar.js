@@ -115,9 +115,9 @@ class NavbarUnlogged extends Component {
                   {myOffers}
                 </a>
                 <div className="dropdown-divider" />
-                <a className="dropdown-item" href={routeToEditProfile}>
-                  {editProfile}
-                </a>
+                <Link to="/edit-profile" className="dropdown-item">
+                  Edytuj profil
+                </Link>
               </div>
             </li>
             <li className="nav-item">
