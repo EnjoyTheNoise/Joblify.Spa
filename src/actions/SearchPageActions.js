@@ -20,7 +20,6 @@ const getOffersFailure = error => ({
   error
 });
 
-// TODO: Jaki url?
 export const getOffers = params => dispatch => {
   dispatch({ type: GET_OFFERS, params: params });
   console.log(params);
@@ -43,11 +42,3 @@ export const getOffers = params => dispatch => {
 export const searchOffers = (phrase, option) => dispatch => {
   dispatch({ type: SEARCH_OFFERS, phrase: phrase, option: option });
 };
-
-export const handleFilterSelect = event => dispatch => {
-  dispatch({ type: HANDLE_FILTER_SELECT, event: event });
-};
-
-// export const handlePageChange = pageIndex => dispatch => {
-//   dispatch({ type: HANDLE_PAGE_CHANGE, pageIndex: pageIndex });
-// };

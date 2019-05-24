@@ -2,15 +2,12 @@ import {
   GET_OFFERS,
   GET_OFFERS_SUCCESS,
   GET_OFFERS_FAILURE,
-  SEARCH_OFFERS,
-  HANDLE_FILTER_SELECT,
-  HANDLE_PAGE_CHANGE
+  SEARCH_OFFERS
 } from "../actions/SearchPageActions";
 
 const initialState = {
   isFetching: false,
   error: null,
-  // offers: [],
   phrase: "",
   option: "",
   page: "",
@@ -24,6 +21,8 @@ export default function searchPage(state = initialState, action) {
         ...state,
         isFetching: true,
         page: action.params.page,
+        filter: action.params.filter,
+        option: action.params.option,
         offers: []
       };
     case GET_OFFERS_SUCCESS:
@@ -31,6 +30,8 @@ export default function searchPage(state = initialState, action) {
         ...state,
         isFetching: false,
         page: action.params.page,
+        option: action.params.option,
+        filter: action.params.filter,
         offers: action.payload
       };
     case GET_OFFERS_FAILURE:
@@ -47,18 +48,6 @@ export default function searchPage(state = initialState, action) {
         option: action.option,
         page: 1
       };
-    case HANDLE_FILTER_SELECT:
-      return {
-        ...state,
-        filter: action.event.target.value
-      };
-    // case HANDLE_PAGE_CHANGE:
-    //   return {
-    //     ...state,
-    //     page: action.pageIndex,
-    //     offers: action.payload
-    //   };
-
     default:
       return state;
   }

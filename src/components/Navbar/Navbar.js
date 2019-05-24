@@ -79,10 +79,8 @@ class NavbarUnlogged extends Component {
                     id="optionsRadios1"
                     value="employers"
                     defaultChecked
-                    onChange={event =>
-                      this.setState({ option: event.target.value })
-                    }
-                  />
+                    onChange={event => this.setState({ option: event.target.value })}
+                    />
                   Pracodawcy
                 </label>
               </div>
@@ -94,9 +92,7 @@ class NavbarUnlogged extends Component {
                     name="optionsRadios"
                     id="optionsRadios2"
                     value="employees"
-                    onChange={event =>
-                      this.setState({ option: event.target.value })
-                    }
+                    onChange={event => this.setState({ option: event.target.value })}
                   />
                   Pracobiorcy
                 </label>

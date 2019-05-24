@@ -28,7 +28,6 @@ class Pagination extends Component {
       }
     }
 
-    // TODO: 2 komponent renderowany jest 2 razy (?)
     console.log("CURRENT PAGE: " + currentPage);
     for (let i = startPage; i <= endPage; i++) {
       let k = i === currentPage ? <a className="active">{i}</a> : <a onClick={() => this.props.handlePageChange({page: i})}>{i}</a>;

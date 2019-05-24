@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import {
   getOffers,
-  handleFilterSelect
-  // handlePageChange
 } from "../actions/SearchPageActions";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -21,6 +19,19 @@ export class SearchPageContainer extends Component {
     this.state = initialState;
   }
 
+  handleFilterSelect = e => {
+    let state = this.state;
+    state[e.target.name] = e.target.value;
+    this.setState(state);
+
+    this.props.actions.getOffers({
+      page: this.state.page,
+      option: this.state.option,
+      filter: this.state.filter,
+      phrase: this.state.phrase
+    });
+  };
+  
   componentDidMount = () => {
     this.props.actions.getOffers({
       page: this.state.page,
@@ -46,7 +57,7 @@ export class SearchPageContainer extends Component {
         option={option}
         filter={filter}
         page={page}
-        handleFilterSelect={this.props.actions.handleFilterSelect}
+        handleFilterSelect={this.handleFilterSelect}
         handlePageChange={this.props.actions.getOffers}
       />
     );
@@ -66,8 +77,6 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
       getOffers,
-      handleFilterSelect
-      // handlePageChange
     },
     dispatch
   )
