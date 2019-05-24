@@ -1,21 +1,27 @@
 import React, { Component } from "react";
 import validator from "validator";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import EditProfileForm from "../components/EditProfile/EditProfileForm.js";
+import { editProfile } from "../actions/EditProfileActions";
+import { getUser, addUser } from "../actions/UserActions";
+import { providers, roles } from "../enums";
 
-export default class EditProfileContainer extends Component {
+class EditProfileContainer extends Component {
   state = {
     email: { value: "", isValid: false },
     firstName: { value: "", isValid: false },
     lastName: { value: "", isValid: false },
-    birthday: { value: new Date(), isValid: false },
-    phone: { value: "", isValid: false },
-    jobTypeDescription: { value: "", isValid: false },
-    experienceDescription: { value: "", isValid: false },
-    personDescription: { value: "", isValid: false }
+    birthdate: { value: "", isValid: false },
+    phoneNumber: { value: "", isValid: false },
+    description: { value: "", isValid: false },
+    experience: { value: "", isValid: false },
+    fieldOfInterest: { value: "", isValid: false },
+    isFacebook: false
   };
 
-  handleBirthdayInput = date => {
-    this.handleUserInput({ target: { id: "birthday", value: date } });
+  handlebirthdateInput = date => {
+    this.handleUserInput({ target: { id: "birthdate", value: date } });
   };
 
   handleUserInput = e => {
@@ -29,7 +35,7 @@ export default class EditProfileContainer extends Component {
 
   validateField = target => {
     switch (target.id) {
-      case "birthday": {
+      case "birthdate": {
         return validator.isBefore(
           target.value.toString(),
           new Date().toString()
@@ -47,15 +53,15 @@ export default class EditProfileContainer extends Component {
           !validator.isEmpty(target.value)
         );
       }
-      case "phone": {
+      case "phoneNumber": {
         return (
           validator.isMobilePhone(target.value) &&
           !validator.isEmpty(target.value)
         );
       }
-      case "jobTypeDescription":
-      case "experienceDescription":
-      case "personDescription": {
+      case "description":
+      case "experience":
+      case "fieldOfInterest": {
         return (
           validator.isByteLength(target.value, { min: 0, max: 1000 }) &&
           !validator.isEmpty(target.value)
@@ -64,8 +70,128 @@ export default class EditProfileContainer extends Component {
     }
   };
 
-  componentDidMount() {
+  checkFormValid = () => {
     let state = this.state;
+    for (let prop in state) {
+      if (state.hasOwnProperty(prop)) {
+        let field = state[prop];
+        if (field.hasOwnProperty("isValid")) {
+          if (!field.isValid) {
+            return false;
+          }
+        }
+      }
+    }
+    return true;
+  };
+
+  handleConfirmation = () => {
+    if (!this.checkFormValid()) {
+      return;
+    }
+    let {
+      firstName,
+      lastName,
+      email,
+      birthdate,
+      description,
+      phoneNumber,
+      experience: experience,
+      fieldOfInterest,
+      isFacebook
+    } = this.state;
+    let { provider, facebook, google } = this.props;
+
+    let data = {
+      externalProviderName: provider,
+      roleName: roles.USER,
+      firstName: firstName.value,
+      lastName: lastName.value,
+      email: email.value,
+      birthdate: birthdate.value,
+      photoUrl: isFacebook ? facebook.picture.url : google.profileObj.imageUrl,
+      description: description.value,
+      phoneNumber: phoneNumber.value,
+      experience: experience.value,
+      fieldOfInterest: fieldOfInterest.value
+    };
+
+    if (this.props.isFirstLogin) {
+      this.addUser(data);
+    } else {
+      this.editUser(data);
+    }
+  };
+
+  addUser = data => {
+    this.props.actions.addUser(data);
+  };
+
+  editUser = data => {
+    let addData = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      birthdate: data.birthdate,
+      photoUrl: data.photoUrl,
+      description: data.description,
+      phoneNumber: data.phoneNumber,
+      experience: data.experience,
+      fieldOfInterest: data.fieldOfInterest
+    };
+
+    this.props.actions.editProfile(addData).then(() => {
+      this.props.history.push("/");
+    });
+  };
+
+  handleRejection = () => {
+    this.props.history.push("/");
+  };
+
+  loadUserInfoFromReducer = () => {
+    const { facebook, google } = this.props;
+    let state = this.state;
+
+    state.isFacebook = this.props.provider === providers.FACEBOOK;
+
+    state.email.value = state.isFacebook
+      ? facebook.email
+      : google.profileObj.email;
+    state.firstName.value = state.isFacebook
+      ? facebook.first_name
+      : google.profileObj.givenName;
+    state.lastName.value = state.isFacebook
+      ? facebook.last_name
+      : google.profileObj.familyName;
+
+    this.setState(state);
+  };
+
+  getUserInfoFromApi = () => {
+    this.props.actions.getUser(this.state.email.value).then(() => {
+      let state = this.state;
+      let user = this.props.user;
+      for (let prop in state) {
+        if (state.hasOwnProperty(prop)) {
+          if (prop == "birthdate") {
+            state["birthdate"].value = new Date(user["birthdate"]);
+          } else {
+            let field = state[prop];
+            if (field.hasOwnProperty("value")) {
+              field.value = user[prop];
+            }
+          }
+        }
+      }
+      this.setState(state);
+      this.initialValidation();
+    });
+  };
+
+  initialValidation = () => {
+    let state = this.state;
+
     for (let prop in state) {
       if (state.hasOwnProperty(prop)) {
         let field = state[prop];
@@ -74,7 +200,17 @@ export default class EditProfileContainer extends Component {
         }
       }
     }
+
     this.setState(state);
+  };
+
+  componentDidMount() {
+    this.loadUserInfoFromReducer();
+    if (this.props.isFirstLogin) {
+      this.initialValidation();
+    } else {
+      this.getUserInfoFromApi();
+    }
   }
 
   render() {
@@ -82,25 +218,52 @@ export default class EditProfileContainer extends Component {
       email,
       firstName,
       lastName,
-      birthday,
-      phone,
-      jobTypeDescription,
-      experienceDescription,
-      personDescription
+      birthdate,
+      phoneNumber,
+      description,
+      experience,
+      fieldOfInterest
     } = this.state;
     return (
       <EditProfileForm
         email={email}
         firstName={firstName}
         lastName={lastName}
-        phone={phone}
-        birthday={birthday}
-        jobTypeDescription={jobTypeDescription}
-        experienceDescription={experienceDescription}
-        personDescription={personDescription}
+        phoneNumber={phoneNumber}
+        birthdate={birthdate}
+        description={description}
+        experience={experience}
+        fieldOfInterest={fieldOfInterest}
         handleInput={this.handleUserInput}
-        handleBirthday={this.handleBirthdayInput}
+        handlebirthdate={this.handlebirthdateInput}
+        isFirstLogin={this.props.isFirstLogin}
+        handleConfirmation={this.handleConfirmation}
+        handleRejection={this.handleRejection}
       />
     );
   }
 }
+
+const mapStateToProps = state => ({
+  isFirstLogin: state.login.isFirstLogin,
+  provider: state.login.provider,
+  facebook: state.facebookLogin,
+  google: state.googleLogin,
+  user: state.user
+});
+
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(
+    {
+      editProfile,
+      getUser,
+      addUser
+    },
+    dispatch
+  )
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EditProfileContainer);
