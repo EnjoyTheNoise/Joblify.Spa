@@ -9,9 +9,9 @@ class BasicUserData extends React.Component {
       firstName,
       lastName,
       email,
-      phone,
-      birthday,
-      handleBirthday,
+      phoneNumber,
+      birthdate,
+      handlebirthdate,
       handleInput
     } = this.props;
 
@@ -25,6 +25,8 @@ class BasicUserData extends React.Component {
 
     const validationStyleSuccess = "form-control is-valid";
     const validationStyleFail = "form-control is-invalid";
+
+    console.log("render: " + birthdate.value)
 
     return (
       <div className="form-group form-background-color">
@@ -58,10 +60,10 @@ class BasicUserData extends React.Component {
         <label>{phoneLabel}</label>
         <input
           className={
-            phone.isValid ? validationStyleSuccess : validationStyleFail
+            phoneNumber.isValid ? validationStyleSuccess : validationStyleFail
           }
-          id="phone"
-          value={phone.value}
+          id="phoneNumber"
+          value={phoneNumber.value}
           onChange={handleInput}
         />
         <div className="form-group">
@@ -69,12 +71,12 @@ class BasicUserData extends React.Component {
           <br />
           <DatePicker
             className={
-              birthday.isValid ? validationStyleSuccess : validationStyleFail
+              birthdate.isValid ? validationStyleSuccess : validationStyleFail
             }
-            id="birthday"
+            id="birthdate"
             dateFormat={dateFormat}
-            selected={birthday.value}
-            onChange={handleBirthday}
+            selected={birthdate.value}
+            onChange={handlebirthdate}
           />
         </div>
       </div>

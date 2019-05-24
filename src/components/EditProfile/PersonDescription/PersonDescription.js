@@ -3,7 +3,7 @@ import "./PersonDescription.css";
 
 class experienceDescription extends React.Component {
   render() {
-    const { personDescription, handleInput } = this.props;
+    const { fieldOfInterest, handleInput } = this.props;
     const validationStyleSuccess = "form-control is-valid";
     const validationStyleFail = "form-control is-invalid";
     const title = "Twój opis";
@@ -12,13 +12,13 @@ class experienceDescription extends React.Component {
         <label>{title}</label>
         <textarea
           className={
-            personDescription.isValid
+            fieldOfInterest.isValid
               ? validationStyleSuccess
               : validationStyleFail
           }
-          id="personDescription"
+          id="fieldOfInterest"
           rows="3"
-          value={personDescription.value}
+          value={fieldOfInterest.value}
           onChange={handleInput}
         />
       </div>
