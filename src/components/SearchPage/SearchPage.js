@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./SearchPage.css";
 import Offer from "./Offer/Offer";
-import Pagination from "./Pagination/Pagination";
+import PaginationContainer from "../../containers/PaginationContainer";
 
 class SearchPage extends Component {
   render() {
@@ -19,7 +19,7 @@ class SearchPage extends Component {
           lastName={offer.document.firstName}
           description={offer.document.firstName}
           price={offer.document.price}
-          />
+        />
       );
     });
 
@@ -53,7 +53,10 @@ class SearchPage extends Component {
 
           <div className="offers">
             {offers}
-            <Pagination
+            <PaginationContainer
+              phrase={this.props.phrase}
+              option={this.props.option}
+              filter={this.props.filter}
               currentPage={this.props.page}
               totalItems={offers.length}
               handlePageChange={this.props.handlePageChange}

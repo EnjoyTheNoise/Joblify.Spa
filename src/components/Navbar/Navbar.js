@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { getOffers } from "../../actions/SearchPageActions";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
 import "../../App.css";
 
 class NavbarUnlogged extends Component {
@@ -150,19 +147,5 @@ class NavbarUnlogged extends Component {
     );
   }
 }
-
-// const mapStateToProps = state => ({
-//   filter: state.searchPage.filter,
-// });
-
-
-// const mapDispatchToProps = dispatch => ({
-//   actions: bindActionCreators({ getOffers }, dispatch)
-// });
-
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(NavbarUnlogged);
 
 export default NavbarUnlogged;
