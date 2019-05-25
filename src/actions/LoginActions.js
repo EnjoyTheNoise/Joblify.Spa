@@ -6,6 +6,9 @@ export const FACEBOOK_FAILURE = "FACEBOOK_FAILURE";
 export const GOOGLE_SUCCESS = "GOOGLE_SUCCESS";
 export const GOOGLE_FAILURE = "GOOGLE_FAILURE";
 
+export const FIRST_LOGIN = "FIRST_LOGIN";
+export const LOGIN_COMPLETED = "LOGIN_COMPLETED";
+
 export const loginRequest = () => dispatch => {
   dispatch({ type: LOGIN_REQUESTED });
 };
