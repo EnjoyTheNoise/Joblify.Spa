@@ -1,16 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { searchOffers } from "../../actions/SearchPageActions";
+import { getOffers } from "../../actions/SearchPageActions";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import "../../App.css";
 
 class NavbarUnlogged extends Component {
-  state = {
-    phrase: "",
-    option: "employers"
-  };
-
   render() {
     const [
       routeToSearchPage,
@@ -67,7 +62,7 @@ class NavbarUnlogged extends Component {
               placeholder="Szukaj"
               aria-label="Search"
               style={{ width: "400px" }}
-              onChange={event => this.setState({ phrase: event.target.value })}
+              onChange={this.props.handlePhraseInput}
             />
             <fieldset className="form-group  my-2 my-lg-0">
               <div className="form-check">
@@ -79,7 +74,7 @@ class NavbarUnlogged extends Component {
                     id="optionsRadios1"
                     value="employers"
                     defaultChecked
-                    onChange={event => this.setState({ option: event.target.value })}
+                    onChange={this.props.handleOptionInput}
                     />
                   Pracodawcy
                 </label>
@@ -92,7 +87,7 @@ class NavbarUnlogged extends Component {
                     name="optionsRadios"
                     id="optionsRadios2"
                     value="employees"
-                    onChange={event => this.setState({ option: event.target.value })}
+                    onChange={this.props.handleOptionInput}
                   />
                   Pracobiorcy
                 </label>
@@ -108,10 +103,7 @@ class NavbarUnlogged extends Component {
                 className="btn btn-secondary mx-3 my-2 my-sm-2"
                 type="submit"
                 onClick={() =>
-                  this.props.actions.searchOffers(
-                    this.state.phrase,
-                    this.state.option
-                  )
+                  this.props.getOffers({phrase: this.props.phrase, option: this.props.option, page: 1, filter: this.props.filter})
                 }
               >
                 Szukaj
@@ -159,11 +151,18 @@ class NavbarUnlogged extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ searchOffers }, dispatch)
-});
+// const mapStateToProps = state => ({
+//   filter: state.searchPage.filter,
+// });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(NavbarUnlogged);
+
+// const mapDispatchToProps = dispatch => ({
+//   actions: bindActionCreators({ getOffers }, dispatch)
+// });
+
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(NavbarUnlogged);
+
+export default NavbarUnlogged;

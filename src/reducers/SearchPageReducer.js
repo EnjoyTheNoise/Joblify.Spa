@@ -2,16 +2,16 @@ import {
   GET_OFFERS,
   GET_OFFERS_SUCCESS,
   GET_OFFERS_FAILURE,
-  SEARCH_OFFERS
 } from "../actions/SearchPageActions";
 
 const initialState = {
   isFetching: false,
-  error: null,
+  error: {},
   phrase: "",
   option: "",
   page: "",
-  filter: "stars"
+  filter: "stars",
+  offers: []
 };
 
 export default function searchPage(state = initialState, action) {
@@ -23,7 +23,8 @@ export default function searchPage(state = initialState, action) {
         page: action.params.page,
         filter: action.params.filter,
         option: action.params.option,
-        offers: []
+        phrase: action.params.phrase,
+        offers: [],
       };
     case GET_OFFERS_SUCCESS:
       return {
@@ -32,7 +33,8 @@ export default function searchPage(state = initialState, action) {
         page: action.params.page,
         option: action.params.option,
         filter: action.params.filter,
-        offers: action.payload
+        offers: action.payload,
+        phrase: action.params.phrase
       };
     case GET_OFFERS_FAILURE:
       return {
@@ -40,13 +42,6 @@ export default function searchPage(state = initialState, action) {
         page: action.page,
         isFetching: false,
         error: action.error.response.data
-      };
-    case SEARCH_OFFERS:
-      return {
-        ...state,
-        phrase: action.phrase,
-        option: action.option,
-        page: 1
       };
     default:
       return state;

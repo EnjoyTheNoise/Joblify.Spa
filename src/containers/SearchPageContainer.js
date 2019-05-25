@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import {
-  getOffers,
-} from "../actions/SearchPageActions";
+import { getOffers } from "../actions/SearchPageActions";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import SearchPage from "../components/SearchPage/SearchPage";
 
 const initialState = {
+  offers: [],
   phrase: "",
   option: "",
   filter: "stars",
@@ -24,30 +23,19 @@ export class SearchPageContainer extends Component {
     state[e.target.name] = e.target.value;
     this.setState(state);
 
+    console.log("Fraza" + this.state.phrase);
+
     this.props.actions.getOffers({
-      page: this.state.page,
-      option: this.state.option,
+      page: this.props.searchPage.page,
+      option: this.props.searchPage.option,
       filter: this.state.filter,
-      phrase: this.state.phrase
+      phrase: this.props.searchPage.phrase
     });
-  };
-  
-  componentDidMount = () => {
-    this.props.actions.getOffers({
-      page: this.state.page,
-      option: this.state.option,
-      filter: this.state.filter,
-      phrase: this.state.phrase
-    });
-    console.log("Did mount: " + Date.now());
   };
 
   render() {
-    const { isFetching, offers, phrase, filter, page, option } = this.props;
-    this.state.phrase = phrase;
-    this.state.filter = filter;
-    this.state.page = page;
-    this.state.option = option;
+    console.log(this.props.searchPage);
+    const { isFetching, offers, phrase, filter, page, option } = this.props.searchPage;
 
     return (
       <SearchPage
@@ -65,18 +53,14 @@ export class SearchPageContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  isFetching: state.searchPage.isFetching,
-  offers: state.searchPage.offers,
-  phrase: state.searchPage.phrase,
-  option: state.searchPage.option,
-  filter: state.searchPage.filter,
-  page: state.searchPage.page
+  searchPage: state.searchPage,
 });
+
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
-      getOffers,
+      getOffers
     },
     dispatch
   )

@@ -4,7 +4,8 @@ import "./Pagination.css";
 class Pagination extends Component {
   render() {
     const currentPage = parseInt(this.props.currentPage);
-    const totalItems = parseInt(this.props.totalItems);
+    // const totalItems = parseInt(this.props.totalItems);
+    const totalItems = 200;
     const pageSize = 10;
     const totalPages = Math.ceil(totalItems / pageSize);
     let startPage, endPage;
@@ -28,8 +29,10 @@ class Pagination extends Component {
       }
     }
 
+    // TODO: 2 komponent renderowany jest 2 razy (?)
     console.log("CURRENT PAGE: " + currentPage);
     for (let i = startPage; i <= endPage; i++) {
+      // tu musi poleciec redux
       let k = i === currentPage ? <a className="active">{i}</a> : <a onClick={() => this.props.handlePageChange({page: i})}>{i}</a>;
       pagesToRender.push(k);
     }
