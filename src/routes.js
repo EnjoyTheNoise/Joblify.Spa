@@ -1,12 +1,12 @@
-import React from 'react'
+import React from "react";
 import { Route, Switch } from "react-router-dom";
 
 import LoginFormContainer from "./containers/LoginFormContainer";
 import EditProfileContainer from "./containers/EditProfileContainer";
 import HomePage from "./components/HomePage/HomePage";
 import Navbar from "./components/Navbar/Navbar";
-import AddOfferContainer  from './containers/AddOfferContainer';
-
+import AddOfferContainer from "./containers/AddOfferContainer";
+import ShowOfferContainer from "./containers/ShowOfferContainer";
 const routes = (
   <div className="App">
     <Navbar />
@@ -16,6 +16,7 @@ const routes = (
         <Route path="/login" component={LoginFormContainer} />
         <Route path="/edit-profile" component={EditProfileContainer} />
         <Route path="/add-offer" component={AddOfferContainer} />
+        <Route path="/offer" component={ShowOfferContainer} />
       </Switch>
     </div>
   </div>
