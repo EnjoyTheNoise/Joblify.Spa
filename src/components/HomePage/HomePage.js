@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "../../App.css";
-// import Page from "./Page";
 import BlueSection from "./BlueSection/BlueSection";
 
 class HomePage extends Component {

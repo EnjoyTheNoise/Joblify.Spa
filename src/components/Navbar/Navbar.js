@@ -4,11 +4,38 @@ import "../../App.css";
 
 class NavbarUnlogged extends Component {
   render() {
+    const [
+      routeToEditProfile,
+      routeToLogin,
+      siteName,
+      employers,
+      employees,
+      search,
+      createOffer,
+      favorite,
+      myOffers,
+      editProfile,
+      login
+    ] = [
+      "/edit-profile",
+      "/login",
+      "Joblify",
+      "Pracodawcy",
+      "Pracobiorcy",
+      "Szukaj",
+      "Stwórz ofertę",
+      "Ulubione",
+      "Moje oferty",
+      "Edytuj profil",
+      "Login"
+    ];
+
+    const userName = "user123"; //it will change later
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <a className="navbar-brand" href="#">
           <Link to="/" className="navbar-brand">
-            Joblify
+            {siteName}
           </Link>
         </a>
         <button
@@ -41,7 +68,7 @@ class NavbarUnlogged extends Component {
                     id="optionsRadios1"
                     value="option1"
                   />
-                  Pracodawcy
+                  {employers}
                 </label>
               </div>
               <div className="form-check disabled">
@@ -53,20 +80,23 @@ class NavbarUnlogged extends Component {
                     id="optionsRadios2"
                     value="option2"
                   />
-                  Pracobiorcy
+                  {employees}
                 </label>
               </div>
             </fieldset>
-            <button className="btn btn-secondary mx-3 my-2 my-sm-2" type="submit">
-              Szukaj
+            <button
+              className="btn btn-secondary mx-3 my-2 my-sm-2"
+              type="submit"
+            >
+              {search}
             </button>
           </form>
           <button className="btn btn-secondary" type="button">
-            Stwórz ofertę
-            </button>
+            {createOffer}
+          </button>
           <ul className="navbar-nav ml-auto">
             <li className="nav-item dropdown">
-              <a
+              <div
                 className="nav-link dropdown-toggle"
                 href="#"
                 id="navbarDropdown"
@@ -75,24 +105,24 @@ class NavbarUnlogged extends Component {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                user123
-              </a>
+                {userName}
+              </div>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a className="dropdown-item" href="#">
-                  Ulubione
+                  {favorite}
                 </a>
                 <a className="dropdown-item" href="#">
-                  Moje Oferty
+                  {myOffers}
                 </a>
                 <div className="dropdown-divider" />
-                <a className="dropdown-item" href="#">
-                  Edytuj Profil
-                </a>
+                <Link to="/edit-profile" className="dropdown-item">
+                  Edytuj profil
+                </Link>
               </div>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/login">
-                Login
+              <Link className="nav-link" to={routeToLogin}>
+                {login}
               </Link>
             </li>
           </ul>

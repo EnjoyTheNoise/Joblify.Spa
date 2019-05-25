@@ -5,27 +5,27 @@ import {
 } from "../actions/LoginActions";
 
 const initialState = {
-  accessToken: null,
+  accessToken: "",
   data_access_expiration_time: 0,
-  email: null,
+  email: "",
   expiresIn: 0,
-  first_name: null,
-  id: null,
-  last_name: null,
+  first_name: "",
+  id: "",
+  last_name: "",
   picture: {
     data: {
       height: 0,
       width: 0,
       is_silhouette: false,
-      url: null
+      url: ""
     }
   },
   reauthorize_required_in: 0,
-  signedRequest: null,
-  userID: null,
+  signedRequest: "",
+  userID: "",
   isFetching: false,
   isLegit: false,
-  error: null
+  error: {}
 };
 
 const facebookLogin = (state = initialState, action) => {
@@ -34,7 +34,7 @@ const facebookLogin = (state = initialState, action) => {
       return {
         ...state,
         isFetching: true,
-        error: null
+        error: {}
       };
     }
     case FACEBOOK_SUCCESS: {
