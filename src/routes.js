@@ -4,12 +4,15 @@ import { Route, Switch } from "react-router-dom";
 import LoginFormContainer from "./containers/LoginFormContainer";
 import EditProfileContainer from "./containers/EditProfileContainer";
 import HomePage from "./components/HomePage/HomePage";
-import Navbar from "./components/Navbar/Navbar";
 import AddOfferContainer from "./containers/AddOfferContainer";
 import ShowOfferContainer from "./containers/ShowOfferContainer";
+import NavbarContainer from "./containers/NavbarContainer";
+import SearchPageContainer from "./containers/SearchPageContainer";
+import Footer from "./components/Footer/Footer";
+
 const routes = (
   <div className="App">
-    <Navbar />
+    <NavbarContainer />
     <div className="content">
       <Switch>
         <Route exact path="/" component={HomePage} />
@@ -17,8 +20,10 @@ const routes = (
         <Route path="/edit-profile" component={EditProfileContainer} />
         <Route path="/add-offer" component={AddOfferContainer} />
         <Route path="/offer" component={ShowOfferContainer} />
+        <Route path="/search" component={SearchPageContainer} />
       </Switch>
     </div>
+    <Footer />
   </div>
 );
 
