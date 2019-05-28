@@ -5,20 +5,20 @@ import {
 } from "../actions/LoginActions";
 
 const initialState = {
-  accessToken: null,
-  tokendId: null,
-  googleId: null,
+  accessToken: "",
+  tokendId: "",
+  googleId: "",
   profileObj: {
-    email: null,
-    familyName: null,
-    givenName: null,
-    googleId: null,
-    imageUrl: null,
-    name: null
+    email: "",
+    familyName: "",
+    givenName: "",
+    googleId: "",
+    imageUrl: "",
+    name: ""
   },
   isFetching: false,
   isLegit: false,
-  error: null
+  error: {}
 };
 
 const googleLogin = (state = initialState, action) => {
@@ -27,7 +27,7 @@ const googleLogin = (state = initialState, action) => {
       return {
         ...state,
         isFetching: true,
-        error: null
+        error: {}
       };
     }
     case GOOGLE_SUCCESS: {

@@ -1,11 +1,12 @@
-import { call, put, takeEvery } from "redux-saga/effects";
+import { call, put, takeEvery, all } from "redux-saga/effects";
 import axios from "axios";
 import { push } from "connected-react-router";
 import { FACEBOOK_SUCCESS, GOOGLE_SUCCESS } from "../actions/LoginActions";
 import { BASE_URL } from "../constants";
+import { providers } from "../enums";
 
 const checkEmail = email => {
-  return axios.get(`${BASE_URL}/login/${email}`);
+  return axios.get(`${BASE_URL}/user/check/${email}`);
 };
 
 function* handleLogin(action) {
@@ -19,9 +20,21 @@ function* handleLogin(action) {
   let userExists = response.data;
 
   if (!userExists) {
-    yield put(push("/edit-profile"));
+    yield all([
+      put({
+        type: "FIRST_LOGIN",
+        payload: isFacebook ? providers.FACEBOOK : providers.GOOGLE
+      }),
+      put(push("/edit-profile"))
+    ]);
   } else {
-    yield put(push("/"));
+    yield all([
+      put(push("/")),
+      put({
+        type: "LOGIN_COMPLETED",
+        payload: isFacebook ? providers.FACEBOOK : providers.GOOGLE
+      })
+    ]);
   }
 }
 
