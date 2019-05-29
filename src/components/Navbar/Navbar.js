@@ -1,8 +1,12 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import "../../App.css";
 
-class NavbarUnlogged extends Component {
+class Navbar extends Component {
+  handleAddOffer = () => {
+    this.props.history.push("/add-offer");
+  };
+
   render() {
     const [
       routeToSearchPage,
@@ -108,8 +112,12 @@ class NavbarUnlogged extends Component {
             </Link>
               {search}
           </form>
-          <button className="btn btn-secondary" type="button">
-            {createOffer}
+          <button
+            className="btn btn-secondary"
+            type="button"
+            onClick={this.handleAddOffer}
+          >
+            Stwórz ofertę
           </button>
           <ul className="navbar-nav ml-auto">
             <li className="nav-item dropdown">
@@ -149,4 +157,4 @@ class NavbarUnlogged extends Component {
   }
 }
 
-export default NavbarUnlogged;
+export default withRouter(Navbar);
