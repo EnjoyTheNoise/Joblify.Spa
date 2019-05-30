@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { getOffers } from "../actions/SearchPageActions";
 import { getAllTrades } from "../actions/AddOfferAction";
+import { getOfferById } from "../actions/ShowOfferAction";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import SearchPage from "../components/SearchPage/SearchPage";
@@ -65,6 +66,7 @@ export class SearchPageContainer extends Component {
         trades={tradesOptionItems}
         handleFilterSelect={this.handleFilterSelect}
         handlePageChange={this.props.actions.getOffers}
+        handleShowOffer={this.props.actions.getOfferById}
       />
     );
   }
@@ -78,7 +80,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
-      getOffers, getAllTrades
+      getOffers, getAllTrades, getOfferById
     },
     dispatch
   )

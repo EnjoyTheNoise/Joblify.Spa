@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./SearchPage.css";
 import Offer from "./Offer/Offer";
 import PaginationContainer from "../../containers/PaginationContainer";
+import { Link } from "react-router-dom";
 
 class SearchPage extends Component {
   render() {
@@ -14,13 +15,14 @@ class SearchPage extends Component {
 
     let offers = this.props.offers.map(offer => {
       return (
-        <Offer
-          key={offer.document.id}
-          firstName={offer.document.firstName}
-          lastName={offer.document.firstName}
-          description={offer.document.firstName}
-          price={offer.document.price}
-        />
+        <Link to={"/offer/"+offer.document.id} className="navbar-brand">
+          <Offer
+            key={offer.document.id}
+            rating={4} // ocena 1-5 gwiazdek, ma dostać od API
+            firstName={offer.document.firstName}
+            description={offer.document.description}
+          />
+        </Link>
       );
     });
 

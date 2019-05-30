@@ -19,7 +19,7 @@ const routes = (
         <Route path="/login" component={LoginFormContainer} />
         <Route path="/edit-profile" component={EditProfileContainer} />
         <Route path="/add-offer" component={AddOfferContainer} />
-        <Route path="/offer" component={ShowOfferContainer} />
+        <Route path="/offer/:id" component={ShowOfferContainer} />
         <Route path="/search" component={SearchPageContainer} />
       </Switch>
     </div>
