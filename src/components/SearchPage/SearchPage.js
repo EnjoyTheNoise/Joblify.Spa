@@ -8,6 +8,7 @@ class SearchPage extends Component {
     let optionDisplay =
       this.props.option === "employers" ? "Pracodawcy" : "Pracobiorcy";
     const filterState = this.props.filter;
+    const tradeState = this.props.trade;
 
     console.log(this.props.offers);
 
@@ -45,6 +46,19 @@ class SearchPage extends Component {
                   <option value="stars">wg ilości gwiazdek</option>
                   <option value="price">wg ceny</option>
                   <option value="date">wg daty utworzenia</option>
+                </select>
+              </label>
+
+              <label className="control-label filterDropboxLabel">
+                {"Branża"}
+                <select
+                  value={tradeState}
+                  className="form-control"
+                  name="trade"
+                  onChange={this.props.handleFilterSelect}
+                >
+                  <option value="all">Wszystkie</option>
+                  {this.props.trades}
                 </select>
               </label>
             </div>
