@@ -5,7 +5,7 @@ class PaginationContainer extends Component {
   render() {
     const pageSize = 10;
     const currentPage = parseInt(this.props.currentPage);
-    // const totalItems = 200; to test if pagination works.
+    //const totalItems = 200; //to test if pagination works.
     const totalItems = parseInt(this.props.totalItems);
     const totalPages = Math.ceil(totalItems / pageSize);
     let startPage, endPage;

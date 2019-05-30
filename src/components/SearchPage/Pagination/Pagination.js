@@ -6,19 +6,18 @@ class Pagination extends Component {
     let pagesToRender = [];
     
     const{ startPage, currentPage, endPage, totalPages } = this.props;
-
-    // TODO: 2 komponent renderowany jest 2 razy (przez <a> (?))
+    
     console.log("CURRENT PAGE: " + currentPage);
     for (let i = startPage; i <= endPage; i++) {
-      let k = i === currentPage ? <a className="active">{i}</a> : <a onClick={() => this.props.handlePageChange({page: i, phrase: this.props.phrase, filter: this.props.filter, option: this.props.option})}>{i}</a>;
+      let k = i === currentPage ? <p className="active">{i}</p> : <p onClick={() => this.props.handlePageChange({page: i, phrase: this.props.phrase, filter: this.props.filter, option: this.props.option})}>{i}</p>;
       pagesToRender.push(k);
     }
 
     return (
       <div className="pagination">
-        {currentPage-1 < 1 ? <a>&laquo;</a> : <a onClick={() => this.props.handlePageChange({page: currentPage-1, phrase: this.props.phrase, filter: this.props.filter, option: this.props.option})}>&laquo;</a>}
+        {currentPage-1 < 1 ? <p>&laquo;</p> : <p onClick={() => this.props.handlePageChange({page: currentPage-1, phrase: this.props.phrase, filter: this.props.filter, option: this.props.option})}>&laquo;</p>}
         {pagesToRender}
-        {currentPage+1 > totalPages ? <a>&raquo;</a> : <a onClick={() => this.props.handlePageChange({page: currentPage+1, phrase: this.props.phrase, filter: this.props.filter, option: this.props.option})}>&raquo;</a>}
+        {currentPage+1 > totalPages ? <p>&raquo;</p> : <p onClick={() => this.props.handlePageChange({page: currentPage+1, phrase: this.props.phrase, filter: this.props.filter, option: this.props.option})}>&raquo;</p>}
       </div>
     );
   }
