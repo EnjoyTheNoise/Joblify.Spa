@@ -10,7 +10,7 @@ const initialState = {
   offers: [],
   trades: [],
   phrase: "",
-  option: "",
+  category: "",
   trade: "all",
   filter: "stars",
   page: 1
@@ -33,7 +33,7 @@ export class SearchPageContainer extends Component {
 
     this.props.actions.getOffers({
       page: this.props.searchPage.page,
-      option: this.props.searchPage.option,
+      category: this.props.searchPage.category,
       filter: this.state.filter,
       phrase: this.props.searchPage.phrase,
       trade: this.state.trade
@@ -42,7 +42,7 @@ export class SearchPageContainer extends Component {
 
   render() {
     //console.log(this.props.searchPage);
-    const { isFetching, offers, phrase, filter, page, option, trades, trade } = this.props.searchPage;
+    const { isFetching, offers, phrase, filter, page, category, trades, trade } = this.props.searchPage;
 
     let tradesOptionItems;
     if (trades != null) {
@@ -57,7 +57,7 @@ export class SearchPageContainer extends Component {
         isFetching={isFetching}
         offers={offers}
         phrase={phrase}
-        option={option}
+        category={category}
         filter={filter}
         trade={trade}
         page={page}

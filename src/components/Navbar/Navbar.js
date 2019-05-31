@@ -76,7 +76,7 @@ class Navbar extends Component {
                     id="optionsRadios1"
                     value="employers"
                     defaultChecked
-                    onChange={this.props.handleOptionInput}
+                    onChange={this.props.handleCategoryInput}
                     />
                   {employers}
                 </label>
@@ -89,7 +89,7 @@ class Navbar extends Component {
                     name="optionsRadios"
                     id="optionsRadios2"
                     value="employees"
-                    onChange={this.props.handleOptionInput}
+                    onChange={this.props.handleCategoryInput}
                   />
                   {employees}
                 </label>
@@ -105,7 +105,7 @@ class Navbar extends Component {
                 className="btn btn-secondary mx-3 my-2 my-sm-2"
                 type="submit"
                 onClick={() =>
-                  this.props.getOffers({phrase: this.props.phrase, option: this.props.option, page: 1, filter: this.props.filter, trade: this.props.trade})
+                  this.props.getOffers({phrase: this.props.phrase, category: this.props.category, page: 1, filter: this.props.filter, trade: this.props.trade})
                 }
               >
               {search}

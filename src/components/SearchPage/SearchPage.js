@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 
 class SearchPage extends Component {
   render() {
-    let optionDisplay =
-      this.props.option === "employers" ? "Pracodawcy" : "Pracobiorcy";
+    let categoryDisplay =
+      this.props.category === "employers" ? "Pracodawcy" : "Pracobiorcy";
     const filterState = this.props.filter;
     const tradeState = this.props.trade;
 
@@ -37,7 +37,7 @@ class SearchPage extends Component {
           <form className="form-inline filter" style={{ clear: "both" }}>
             <div className="form-group">
               <label className="control-label filterDropboxLabel">
-                {optionDisplay}
+                {categoryDisplay}
                 <select
                   value={filterState}
                   className="form-control dropdown"
@@ -70,7 +70,7 @@ class SearchPage extends Component {
             {offers}
             <PaginationContainer
               phrase={this.props.phrase}
-              option={this.props.option}
+              category={this.props.category}
               filter={this.props.filter}
               currentPage={this.props.page}
               totalItems={offers.length}

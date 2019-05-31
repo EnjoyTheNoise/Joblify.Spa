@@ -9,15 +9,15 @@ class Pagination extends Component {
     
     console.log("CURRENT PAGE: " + currentPage);
     for (let i = startPage; i <= endPage; i++) {
-      let k = i === currentPage ? <p className="active">{i}</p> : <p onClick={() => this.props.handlePageChange({page: i, phrase: this.props.phrase, filter: this.props.filter, option: this.props.option})}>{i}</p>;
+      let k = i === currentPage ? <p className="active">{i}</p> : <p onClick={() => this.props.handlePageChange({page: i, phrase: this.props.phrase, filter: this.props.filter, categorys: this.props.category})}>{i}</p>;
       pagesToRender.push(k);
     }
 
     return (
       <div className="pagination">
-        {currentPage-1 < 1 ? <p>&laquo;</p> : <p onClick={() => this.props.handlePageChange({page: currentPage-1, phrase: this.props.phrase, filter: this.props.filter, option: this.props.option})}>&laquo;</p>}
+        {currentPage-1 < 1 ? <p>&laquo;</p> : <p onClick={() => this.props.handlePageChange({page: currentPage-1, phrase: this.props.phrase, filter: this.props.filter, category: this.props.category})}>&laquo;</p>}
         {pagesToRender}
-        {currentPage+1 > totalPages ? <p>&raquo;</p> : <p onClick={() => this.props.handlePageChange({page: currentPage+1, phrase: this.props.phrase, filter: this.props.filter, option: this.props.option})}>&raquo;</p>}
+        {currentPage+1 > totalPages ? <p>&raquo;</p> : <p onClick={() => this.props.handlePageChange({page: currentPage+1, phrase: this.props.phrase, filter: this.props.filter, category: this.props.category})}>&raquo;</p>}
       </div>
     );
   }
