@@ -108,9 +108,10 @@ class Navbar extends Component {
                   this.props.getOffers({phrase: this.props.phrase, option: this.props.option, page: 1, filter: this.props.filter})
                 }
               >
+              {search}
               </button>
             </Link>
-              {search}
+              
           </form>
           <button
             className="btn btn-secondary"

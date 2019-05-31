@@ -6,6 +6,7 @@ import EditProfileContainer from "./containers/EditProfileContainer";
 import HomePage from "./components/HomePage/HomePage";
 import AddOfferContainer from "./containers/AddOfferContainer";
 import ShowOfferContainer from "./containers/ShowOfferContainer";
+import UserProfileContainer from "./containers/UserProfileContainer";
 import NavbarContainer from "./containers/NavbarContainer";
 import SearchPageContainer from "./containers/SearchPageContainer";
 import Footer from "./components/Footer/Footer";
@@ -21,6 +22,7 @@ const routes = (
         <Route path="/add-offer" component={AddOfferContainer} />
         <Route path="/offer" component={ShowOfferContainer} />
         <Route path="/search" component={SearchPageContainer} />
+        <Route path="/user" component={UserProfileContainer} />
       </Switch>
     </div>
     <Footer />
