@@ -4,7 +4,10 @@ import {
   GET_USER_FAILURE,
   ADD_USER_REQUESTED,
   ADD_USER_SUCCESS,
-  ADD_USER_FAILURE
+  ADD_USER_FAILURE,
+  GET_USER_OFFERS_REQUESTED,
+  GET_USER_OFFERS_FAILURE,
+  GET_USER_OFFERS_SUCCESS
 } from "../actions/UserActions";
 
 const initialState = {
@@ -26,8 +29,9 @@ const initialState = {
 
 const user = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_USER_REQUESTED:
-    case GET_USER_REQUESTED: {
+    case ADD_USER_REQUESTED:    
+    case GET_USER_REQUESTED:
+    case GET_USER_OFFERS_REQUESTED: {
       return {
         ...state,
         isFetching: true
@@ -66,8 +70,17 @@ const user = (state = initialState, action) => {
         photoUrl: action.payload.photoUrl
       };
     }
+    case GET_USER_OFFERS_SUCCESS: {
+      return {
+        ...state,
+        isFetching: false,
+        offers: action.payload,
+      };
+    }
+
     case ADD_USER_FAILURE:
-    case GET_USER_FAILURE: {
+    case GET_USER_FAILURE:
+    case GET_USER_OFFERS_FAILURE: {
       return {
         ...state,
         isFetching: false,
