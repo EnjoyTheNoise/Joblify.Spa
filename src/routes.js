@@ -1,5 +1,6 @@
-import React from "react";
+import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 import LoginFormContainer from "./containers/LoginFormContainer";
 import EditProfileContainer from "./containers/EditProfileContainer";
@@ -10,21 +11,33 @@ import NavbarContainer from "./containers/NavbarContainer";
 import SearchPageContainer from "./containers/SearchPageContainer";
 import Footer from "./components/Footer/Footer";
 
-const routes = (
-  <div className="App">
-    <NavbarContainer />
-    <div className="content">
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/login" component={LoginFormContainer} />
-        <Route path="/edit-profile" component={EditProfileContainer} />
-        <Route path="/add-offer" component={AddOfferContainer} />
-        <Route path="/offer" component={ShowOfferContainer} />
-        <Route path="/search" component={SearchPageContainer} />
-      </Switch>
-    </div>
-    <Footer />
-  </div>
-);
+class Routes extends Component {
+  render() {
+    const { isLoggedIn } = this.props;
+    return (
+      <div className="App">
+        <NavbarContainer />
+        <div className="content">
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/login" component={LoginFormContainer} />
+            <Route
+              path="/edit-profile"
+              component={isLoggedIn ? EditProfileContainer : HomePage}
+            />
+            <Route
+              path="/add-offer"
+              component={isLoggedIn ? AddOfferContainer : LoginFormContainer}
+            />
+            <Route path="/offer" component={ShowOfferContainer} />
+            <Route path="/search" component={SearchPageContainer} />
+          </Switch>
+        </div>
+        <Footer />
+        <ToastContainer />
+      </div>
+    );
+  }
+}
 
-export default routes;
+export default Routes;
