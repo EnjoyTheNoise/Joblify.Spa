@@ -8,7 +8,7 @@ import {
   POST_NEW_OFFER,
   POST_NEW_OFFER_SUCCESS,
   POST_NEW_OFFER_FAILURE
-} from "../actions/AddOfferAction";
+} from "../actions/AddOfferActions";
 
 const initialState = {
   isFetching: false,
