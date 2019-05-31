@@ -33,7 +33,7 @@ class PaginationContainer extends Component {
         handlePageChange={this.props.handlePageChange}
         phrase={this.props.phrase}
         category={this.props.category}
-        filter={this.props.filter}
+        orderBy={this.props.orderBy}
         startPage={startPage}
         endPage={endPage}
         totalPages={totalPages}

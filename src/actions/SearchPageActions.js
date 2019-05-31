@@ -5,9 +5,6 @@ export const GET_OFFERS = "GET_OFFERS";
 export const GET_OFFERS_SUCCESS = "GET_OFFERS_SUCCESS";
 export const GET_OFFERS_FAILURE = "GET_OFFERS_FAILURE";
 
-export const HANDLE_FILTER_SELECT = "HANDLE_FILTER_SELECT";
-export const HANDLE_PAGE_CHANGE = "HANDLE_PAGE_CHANGE";
-
 const getOffersSuccess = (response, params) => ({
   type: GET_OFFERS_SUCCESS,
   payload: response.data,
@@ -25,7 +22,7 @@ export const getOffers = params => dispatch => {
   return (
     axios
     //.get(BASE_URL + "/offer/search/employee/" + params.phrase)
-       .get(BASE_URL + "/offer/search/?phrase="+params.phrase+"&category="+params.category+"&trade="+params.trade+"&filter="+params.filter+"&page="+params.page)
+       .get(BASE_URL + "/offer/search/?phrase="+params.phrase+"&category="+params.category+"&trade="+params.trade+"&orderBy="+params.orderBy+"&page="+params.page)
       .then(
         response => {
           console.log(response);

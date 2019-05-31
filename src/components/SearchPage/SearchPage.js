@@ -7,8 +7,8 @@ import { Link } from "react-router-dom";
 class SearchPage extends Component {
   render() {
     let categoryDisplay =
-      this.props.category === "employer" ? "Pracodawcy" : "Pracobiorcy";
-    const filterState = this.props.filter;
+      this.props.category === "Employer" ? "Pracodawcy" : "Pracobiorcy";
+    const orderByState = this.props.orderBy;
     const tradeState = this.props.trade;
 
     console.log(this.props.offers);
@@ -34,31 +34,31 @@ class SearchPage extends Component {
           <p className="phraseSearchPage">
             wyniki dla frazy: {this.props.phrase}
           </p>
-          <form className="form-inline filter" style={{ clear: "both" }}>
+          <form className="form-inline orderBy" style={{ clear: "both" }}>
             <div className="form-group">
-              <label className="control-label filterDropboxLabel">
+              <label className="control-label orderByDropboxLabel">
                 {categoryDisplay}
                 <select
-                  value={filterState}
+                  value={orderByState}
                   className="form-control dropdown"
-                  name="filter"
-                  onChange={this.props.handleFilterSelect}
+                  name="orderBy"
+                  onChange={this.props.handleOrderBySelect}
                 >
-                  <option value="stars">wg ilości gwiazdek</option>
-                  <option value="price">wg ceny</option>
-                  <option value="date">wg daty utworzenia</option>
+                  <option value="price desc">wg ceny malejąco</option>
+                  <option value="price asc">wg ceny rosnąco</option>
+                  {/* <option value="date">wg daty utworzenia</option> */}
                 </select>
               </label>
 
-              <label className="control-label filterDropboxLabel">
+              <label className="control-label orderByDropboxLabel">
                 {"Branża"}
                 <select
                   value={tradeState}
                   className="form-control dropdown"
                   name="trade"
-                  onChange={this.props.handleFilterSelect}
+                  onChange={this.props.handleOrderBySelect}
                 >
-                  <option value="all">Wszystkie</option>
+                  <option value="All">Wszystkie</option>
                   {this.props.trades}
                 </select>
               </label>
@@ -71,7 +71,7 @@ class SearchPage extends Component {
             <PaginationContainer
               phrase={this.props.phrase}
               category={this.props.category}
-              filter={this.props.filter}
+              orderBy={this.props.orderBy}
               currentPage={this.props.page}
               totalItems={offers.length}
               handlePageChange={this.props.handlePageChange}

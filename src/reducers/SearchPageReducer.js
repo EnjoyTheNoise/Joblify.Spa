@@ -16,8 +16,8 @@ const initialState = {
   phrase: "",
   category: "",
   page: "",
-  filter: "stars",
-  trade: "all",
+  orderBy: "price asc",
+  trade: "All",
   offers: [],
   trades: []
 };
@@ -29,7 +29,7 @@ export default function searchPage(state = initialState, action) {
         ...state,
         isFetching: true,
         page: action.params.page,
-        filter: action.params.filter,
+        orderBy: action.params.orderBy,
         category: action.params.category,
         phrase: action.params.phrase,
         trade: action.params.trade,
@@ -41,7 +41,7 @@ export default function searchPage(state = initialState, action) {
         isFetching: false,
         page: action.params.page,
         category: action.params.category,
-        filter: action.params.filter,
+        orderBy: action.params.orderBy,
         offers: action.payload,
         phrase: action.params.phrase,
         trade: action.params.trade

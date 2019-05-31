@@ -12,7 +12,7 @@ const initialState = {
   phrase: "",
   category: "",
   trade: "all",
-  filter: "stars",
+  orderBy: "price asc",
   page: 1
 };
 
@@ -26,7 +26,7 @@ export class SearchPageContainer extends Component {
     this.props.actions.getAllTrades();
   }
 
-  handleFilterSelect = e => {
+  handleOrderBySelect = e => {
     let state = this.state;
     state[e.target.name] = e.target.value;
     this.setState(state);
@@ -34,7 +34,7 @@ export class SearchPageContainer extends Component {
     this.props.actions.getOffers({
       page: this.props.searchPage.page,
       category: this.props.searchPage.category,
-      filter: this.state.filter,
+      orderBy: this.state.orderBy,
       phrase: this.props.searchPage.phrase,
       trade: this.state.trade
     });
@@ -42,7 +42,7 @@ export class SearchPageContainer extends Component {
 
   render() {
     //console.log(this.props.searchPage);
-    const { isFetching, offers, phrase, filter, page, category, trades, trade } = this.props.searchPage;
+    const { isFetching, offers, phrase, orderBy, page, category, trades, trade } = this.props.searchPage;
 
     let tradesOptionItems;
     if (trades != null) {
@@ -58,11 +58,11 @@ export class SearchPageContainer extends Component {
         offers={offers}
         phrase={phrase}
         category={category}
-        filter={filter}
+        orderBy={orderBy}
         trade={trade}
         page={page}
         trades={tradesOptionItems}
-        handleFilterSelect={this.handleFilterSelect}
+        handleOrderBySelect={this.handleOrderBySelect}
         handlePageChange={this.props.actions.getOffers}
         handleShowOffer={this.props.actions.getOfferById}
       />

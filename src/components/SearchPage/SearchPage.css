@@ -9,12 +9,12 @@
   margin-right: 0;
 }
 
-.filter {
+.orderBy {
   margin-left: auto;
   margin-right: auto;
 }
 
-.filterDropboxLabel {
+.orderByDropboxLabel {
   padding-right: 5px;
 }
 
