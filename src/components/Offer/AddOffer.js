@@ -36,7 +36,7 @@ class AddOffer extends Component {
               </label>
               <div className="col-sm-10">
                 <select id="inputCategory" className="form-control" name="categoryId" onChange={this.props.handleUserSelect}>
-                  <option value="" disabled selected>Wybierz kategorię</option>
+                  <option value="" disabled selected hidden>Wybierz kategorię</option>
                   {categoriesOptionItems}
                 </select>
               </div>
@@ -47,7 +47,7 @@ class AddOffer extends Component {
               </label>
               <div className="col-sm-10">
                 <select id="inputTrade" className="form-control" name="tradeId" onChange={this.props.handleUserSelect}>
-                  <option value="" disabled selected>Wybierz branżę</option>
+                  <option value="" disabled selected hidden>Wybierz branżę</option>
                   {tradesOptionItems}
                 </select>
               </div>
@@ -126,7 +126,7 @@ class AddOffer extends Component {
         </div>
 
         <div className="col-sm-12">
-          <button onClick={this.props.onSubmit} className="btn btn-primary saveOfferButton">Zapisz</button>
+          <button onClick={this.props.onSubmit} className="btn btn-primary saveOfferButton" disabled={this.props.isFetching}>Zapisz</button>
         </div>
       </div>
     );
