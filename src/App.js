@@ -2,10 +2,16 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { ConnectedRouter } from "connected-react-router";
 import "./App.css";
-import routes from "./routes";
+import Routes from "./Routes";
 
-const App = ({ history }) => {
-  return <ConnectedRouter history={history}>{routes}</ConnectedRouter>;
-};
+class App extends Component {
+  render() {
+    return (
+      <ConnectedRouter history={this.props.history}>
+        <Routes isLoggedIn={this.props.isLoggedIn} />
+      </ConnectedRouter>
+    );
+  }
+}
 
 export default App;

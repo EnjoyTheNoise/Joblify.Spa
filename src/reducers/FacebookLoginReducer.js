@@ -1,7 +1,8 @@
 import {
   LOGIN_REQUESTED,
   FACEBOOK_SUCCESS,
-  FACEBOOK_FAILURE
+  FACEBOOK_FAILURE,
+  LOGOUT
 } from "../actions/LoginActions";
 
 const initialState = {
@@ -24,7 +25,6 @@ const initialState = {
   signedRequest: "",
   userID: "",
   isFetching: false,
-  isLegit: false,
   error: {}
 };
 
@@ -51,17 +51,18 @@ const facebookLogin = (state = initialState, action) => {
         reauthorize_required_in: action.payload.reauthorize_required_in,
         signedRequest: action.payload.signedRequest,
         userID: action.payload.userID,
-        isFetching: false,
-        isLegit: true
+        isFetching: false
       };
     }
     case FACEBOOK_FAILURE: {
       return {
         ...state,
         isFetching: false,
-        isLegit: false,
         error: action.payload.error
       };
+    }
+    case LOGOUT: {
+      return {};
     }
     default: {
       return state;

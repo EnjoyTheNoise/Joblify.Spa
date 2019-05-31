@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 import EditProfileForm from "../components/EditProfile/EditProfileForm.js";
 import { editProfile } from "../actions/EditProfileActions";
 import { getUser, addUser } from "../actions/UserActions";
+import { logout } from "../actions/LoginActions";
 import { providers, roles } from "../enums";
 
 class EditProfileContainer extends Component {
@@ -96,7 +97,7 @@ class EditProfileContainer extends Component {
       birthdate,
       description,
       phoneNumber,
-      experience: experience,
+      experience,
       fieldOfInterest,
       isFacebook
     } = this.state;
@@ -140,12 +141,13 @@ class EditProfileContainer extends Component {
       fieldOfInterest: data.fieldOfInterest
     };
 
-    this.props.actions.editProfile(addData).then(() => {
-      this.props.history.push("/");
-    });
+    this.props.actions.editProfile(addData);
   };
 
   handleRejection = () => {
+    if (this.props.isFirstLogin) {
+      this.props.actions.logout();
+    }
     this.props.history.push("/");
   };
 
@@ -174,7 +176,7 @@ class EditProfileContainer extends Component {
       let user = this.props.user;
       for (let prop in state) {
         if (state.hasOwnProperty(prop)) {
-          if (prop == "birthdate") {
+          if (prop === "birthdate") {
             state["birthdate"].value = new Date(user["birthdate"]);
           } else {
             let field = state[prop];
@@ -237,6 +239,7 @@ class EditProfileContainer extends Component {
         handleInput={this.handleUserInput}
         handlebirthdate={this.handlebirthdateInput}
         isFirstLogin={this.props.isFirstLogin}
+        isFetching={this.props.isFetching}
         handleConfirmation={this.handleConfirmation}
         handleRejection={this.handleRejection}
       />
@@ -246,6 +249,7 @@ class EditProfileContainer extends Component {
 
 const mapStateToProps = state => ({
   isFirstLogin: state.login.isFirstLogin,
+  isFetching: state.edit.isFetching,
   provider: state.login.provider,
   facebook: state.facebookLogin,
   google: state.googleLogin,
@@ -257,7 +261,8 @@ const mapDispatchToProps = dispatch => ({
     {
       editProfile,
       getUser,
-      addUser
+      addUser,
+      logout
     },
     dispatch
   )

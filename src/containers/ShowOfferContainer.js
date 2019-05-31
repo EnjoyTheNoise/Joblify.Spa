@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getOfferById } from "../actions/ShowOfferAction";
+import { getOfferById } from "../actions/ShowOfferActions";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Offer from "../components/Offer/Offer";

@@ -1,5 +1,7 @@
 import axios from "axios";
 import { BASE_URL } from "../constants";
+import { notifySuccess } from "../common/Notify";
+import { handleError } from "./HandleError";
 
 export const EDIT_PROFILE_REQUESTED = "EDIT_PROFILE_REQUESTED";
 
@@ -21,9 +23,15 @@ export const editProfile = data => dispatch => {
 
   return axios.put(BASE_URL + "/user", data).then(
     response => {
+      notifySuccess("Profile saved!");
       dispatch(editSuccess(response));
     },
     error => {
+      handleError(
+        error,
+        editFailure,
+        "Failed to edit profile, try again later."
+      );
       dispatch(editFailure(error));
     }
   );

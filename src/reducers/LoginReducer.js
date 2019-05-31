@@ -1,8 +1,10 @@
-import { FIRST_LOGIN, LOGIN_COMPLETED } from "../actions/LoginActions";
+import { FIRST_LOGIN, LOGIN_COMPLETED, LOGOUT } from "../actions/LoginActions";
+import { REGISTER_COMPLETED } from "../actions/UserActions";
 
 const initialState = {
   provider: null,
-  isFirstLogin: false
+  isFirstLogin: false,
+  isLoggedIn: false
 };
 
 const login = (state = initialState, action) => {
@@ -11,15 +13,26 @@ const login = (state = initialState, action) => {
       return {
         ...state,
         isFirstLogin: true,
-        provider: action.payload
+        provider: action.payload,
+        isLoggedIn: true
       };
     }
     case LOGIN_COMPLETED: {
       return {
         ...state,
         isFirstLogin: false,
-        provider: action.payload
+        provider: action.payload,
+        isLoggedIn: true
       };
+    }
+    case REGISTER_COMPLETED: {
+      return {
+        ...state,
+        isFirstLogin: false
+      };
+    }
+    case LOGOUT: {
+      return {};
     }
     default: {
       return state;

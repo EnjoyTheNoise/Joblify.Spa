@@ -1,0 +1,14 @@
+.save-button-extension {
+  width: 50%;
+  margin-bottom: 5%;
+}
+
+.warning-header {
+  border:1px solid #bec6c7;
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -webkit-box-shadow: 0px 3px 3px 1px #d6d6d6;
+  -moz-box-shadow: 0px 3px 3px 1px #d6d6d6;
+  box-shadow: 0px 3px 3px 1px #d6d6d6;
+}

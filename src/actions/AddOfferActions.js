@@ -1,6 +1,7 @@
 import axios from "axios";
 import { BASE_URL } from "../constants";
-import { handleHttpError } from "./HttpErrorAction";
+import { notifySuccess } from "../common/Notify";
+import { handleError } from "./HandleError";
 
 export const GET_ALL_CATEGORIES = "GET_ALL_CATEGORIES";
 export const GET_ALL_CATEGORIES_SUCCESS = "GET_ALL_CATEGORIES_SUCCESS";
@@ -43,56 +44,57 @@ const postNewOfferFailure = error => ({
   type: POST_NEW_OFFER_FAILURE,
   error
 });
-export const getAllCategories = props => dispatch => {
+
+export const getAllCategories = () => dispatch => {
   dispatch({ type: GET_ALL_CATEGORIES });
 
   return axios.get(BASE_URL + "/offer/getallcategories").then(
     response => {
-      console.log(response);
       dispatch(getAllCategoriesSuccess(response));
     },
     error => {
-      if (error.response.status === 400) {
-        dispatch(getAllCategoriesFailure(error));
-      } else {
-        dispatch(handleHttpError(error, props));
-      }
+      handleError(
+        dispatch,
+        error,
+        getAllCategoriesFailure,
+        "Failed to fetch categories, try again later."
+      );
     }
   );
 };
 
-export const getAllTrades = props => dispatch => {
+export const getAllTrades = () => dispatch => {
   dispatch({ type: GET_ALL_TRADES });
 
   return axios.get(BASE_URL + "/offer/getalltrades").then(
     response => {
-      console.log(response);
       dispatch(getAllTradesSuccess(response));
     },
     error => {
-      if (error.response.status === 400) {
-        dispatch(getAllTradesFailure(error));
-      } else {
-        dispatch(handleHttpError(error, props));
-      }
+      handleError(
+        dispatch,
+        error,
+        getAllTradesFailure,
+        "Failed to fetch trades, try again later."
+      );
     }
   );
 };
 
-export const postNewOffer = (offer, props) => dispatch => {
+export const postNewOffer = offer => dispatch => {
   dispatch({ type: POST_NEW_OFFER });
-  console.log(offer);
   return axios.post(BASE_URL + "/offer/", offer).then(
     response => {
-      console.log(response);
+      notifySuccess("Successfully added new offer!");
       dispatch(postNewOfferSuccess(response));
     },
     error => {
-      if (error.response.status === 400) {
-        dispatch(postNewOfferFailure(error));
-      } else {
-        dispatch(handleHttpError(error, props));
-      }
+      handleError(
+        dispatch,
+        error,
+        postNewOfferFailure,
+        "Failed to add new offer, try again later."
+      );
     }
   );
 };

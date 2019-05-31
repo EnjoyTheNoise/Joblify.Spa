@@ -2,11 +2,11 @@ import {
   GET_OFFER_BY_ID,
   GET_OFFER_BY_ID_FAILURE,
   GET_OFFER_BY_ID_SUCCESS
-} from "../actions/ShowOfferAction";
+} from "../actions/ShowOfferActions";
 
 const initialState = {
   isFetching: false,
-  error: null,
+  error: {},
   title: "",
   description: "",
   price: "",

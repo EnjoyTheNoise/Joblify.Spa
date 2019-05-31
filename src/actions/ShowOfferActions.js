@@ -1,6 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "../constants";
-import { handleHttpError } from "./HttpErrorAction";
+import { handleError } from "./HandleError";
 
 export const GET_OFFER_BY_ID = "GET_OFFER_BY_ID";
 export const GET_OFFER_BY_ID_SUCCESS = "GET_OFFER_BY_ID_SUCCESS";
@@ -18,20 +18,17 @@ const getOfferByIdFailure = error => ({
 
 export const getOfferById = (props, offerId) => dispatch => {
   dispatch({ type: GET_OFFER_BY_ID });
-  console.log("-------------------------------------");
-  console.log(BASE_URL + "/offer/getById/?id=" + offerId);
 
   return axios.get(BASE_URL + "/offer/getById?id=" + offerId).then(
     response => {
-      console.log(response);
       dispatch(getOfferByIdSuccess(response));
     },
     error => {
-      if (error.response.status === 400) {
-        dispatch(getOfferByIdFailure(error));
-      } else {
-        dispatch(handleHttpError(error, props));
-      }
+      handleError(
+        error,
+        getOfferByIdFailure,
+        `Failed to get offer with id ${offerId}, try again later.`
+      );
     }
   );
 };

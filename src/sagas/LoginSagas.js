@@ -4,6 +4,7 @@ import { push } from "connected-react-router";
 import { FACEBOOK_SUCCESS, GOOGLE_SUCCESS } from "../actions/LoginActions";
 import { BASE_URL } from "../constants";
 import { providers } from "../enums";
+import { notifyError } from "../common/Notify";
 
 const checkEmail = email => {
   return axios.get(`${BASE_URL}/user/check/${email}`);
@@ -11,13 +12,19 @@ const checkEmail = email => {
 
 function* handleLogin(action) {
   let isFacebook = action.type === FACEBOOK_SUCCESS;
+  let response, userExists;
 
   let email = isFacebook
     ? action.payload.email
     : action.payload.profileObj.email;
-
-  let response = yield call(checkEmail, email);
-  let userExists = response.data;
+    
+  try {
+    response = yield call(checkEmail, email);
+    userExists = response.data;
+  } catch {
+    notifyError("Failed to log in.");
+    return;
+  }
 
   if (!userExists) {
     yield all([

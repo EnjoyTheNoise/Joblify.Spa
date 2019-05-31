@@ -9,6 +9,8 @@ export const ADD_USER_REQUESTED = "ADD_USER_REQUESTED";
 export const ADD_USER_SUCCESS = "ADD_USER_SUCCESS";
 export const ADD_USER_FAILURE = "ADD_USER_FAILURE";
 
+export const REGISTER_COMPLETED = "REGISTER_COMPLETED";
+
 const getUserSuccess = response => ({
   type: GET_USER_SUCCESS,
   payload: response.data
@@ -42,12 +44,18 @@ const addUserFailure = error => ({
   error
 });
 
+const registerCompleted = data => ({
+  type: REGISTER_COMPLETED,
+  payload: data
+});
+
 export const addUser = data => dispatch => {
   dispatch({ type: ADD_USER_REQUESTED });
 
   return axios.post(BASE_URL + `/user/`, data).then(
     response => {
       dispatch(addUserSuccess(response));
+      dispatch(registerCompleted(data));
     },
     error => {
       dispatch(addUserFailure(error));

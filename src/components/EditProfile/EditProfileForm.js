@@ -3,7 +3,7 @@ import JobTypeDescription from "./JobTypeDescription/JobTypeDescription";
 import ExperienceDescription from "./ExperienceDescription/ExperienceDescription.js";
 import PersonDescription from "./PersonDescription/PersonDescription.js";
 import BasicUserData from "./PersonalData/BasicUserData/BasicUserData.js";
-import "./EditProfileButtonsExtensions.css";
+import "./EditProfile.css";
 
 class EditProfileForm extends React.Component {
   render() {
@@ -17,24 +17,26 @@ class EditProfileForm extends React.Component {
       experience,
       fieldOfInterest,
       handleInput,
-      handlebirthdate
+      handlebirthdate,
+      isFetching,
+      isFirstLogin
     } = this.props;
 
     const [successButtonText, warningButtonText] = [
-      "Potwierdź zmiany",
-      "Usuń konto"
+      "Zapisz zmiany",
+      isFirstLogin ? "Usuń konto" : "Powrót"
     ];
 
     const firstLogin = (
       <div className="col-sm-12">
-        <div className="row-fluid">Pierwszy login, potwierdz albo elo XD</div>
+        <div className="row-fluid warning-header">Pierwszy login, potwierdz albo elo XD</div>
       </div>
     );
 
     return (
       <div className="container-fluid">
         <form className="form-center">
-          {this.props.isFirstLogin ? firstLogin : null}
+          {isFirstLogin ? firstLogin : firstLogin}
           <div className="col-sm-12">
             <div className="row-fluid">
               <BasicUserData
@@ -78,6 +80,7 @@ class EditProfileForm extends React.Component {
                 type="button"
                 className="btn btn-success save-button-extension"
                 onClick={this.props.handleConfirmation}
+                disabled={isFetching}
               >
                 {successButtonText}
               </button>
@@ -89,6 +92,7 @@ class EditProfileForm extends React.Component {
                 type="button"
                 className="btn btn-danger save-button-extension"
                 onClick={this.props.handleRejection}
+                disabled={isFetching}
               >
                 {warningButtonText}
               </button>
