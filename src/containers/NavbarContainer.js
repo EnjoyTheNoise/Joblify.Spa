@@ -7,7 +7,7 @@ import Navbar from "../components/Navbar/Navbar";
 export class NavbarUnloggedContainer extends Component {
   state = {
     phrase: "",
-    category: "employers",
+    category: "employer",
     filter: "stars",
     trade: "all"
   };

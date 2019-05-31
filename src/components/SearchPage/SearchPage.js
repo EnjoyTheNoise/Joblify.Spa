@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 class SearchPage extends Component {
   render() {
     let categoryDisplay =
-      this.props.category === "employers" ? "Pracodawcy" : "Pracobiorcy";
+      this.props.category === "employer" ? "Pracodawcy" : "Pracobiorcy";
     const filterState = this.props.filter;
     const tradeState = this.props.trade;
 

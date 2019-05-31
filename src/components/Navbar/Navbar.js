@@ -74,7 +74,7 @@ class Navbar extends Component {
                     className="form-check-input"
                     name="optionsRadios"
                     id="optionsRadios1"
-                    value="employers"
+                    value="employer"
                     defaultChecked
                     onChange={this.props.handleCategoryInput}
                     />
@@ -88,7 +88,7 @@ class Navbar extends Component {
                     className="form-check-input"
                     name="optionsRadios"
                     id="optionsRadios2"
-                    value="employees"
+                    value="employee"
                     onChange={this.props.handleCategoryInput}
                   />
                   {employees}
