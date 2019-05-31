@@ -1,3 +1,5 @@
+import { notifyError } from "../common/Notify";
+
 export const LOGIN_REQUESTED = "LOGIN_REQUESTED";
 
 export const FACEBOOK_SUCCESS = "FACEBOOK_SUCCESS";
@@ -9,6 +11,8 @@ export const GOOGLE_FAILURE = "GOOGLE_FAILURE";
 export const FIRST_LOGIN = "FIRST_LOGIN";
 export const LOGIN_COMPLETED = "LOGIN_COMPLETED";
 
+export const LOGOUT = "LOGOUT";
+
 export const loginRequest = () => dispatch => {
   dispatch({ type: LOGIN_REQUESTED });
 };
@@ -18,6 +22,7 @@ export const handleGoogleSuccess = response => dispatch => {
 };
 
 export const handleGoogleFailure = response => dispatch => {
+  notifyError("Failed to log in.");
   dispatch(googleFailure(response));
 };
 
@@ -33,6 +38,7 @@ const googleSuccess = response => ({
 
 export const handleFacebookResponse = response => dispatch => {
   if (response.hasOwnProperty("status")) {
+    notifyError("Failed to log in.");
     dispatch({ type: FACEBOOK_FAILURE });
   } else {
     dispatch(facebookSuccess(response));
@@ -43,3 +49,7 @@ const facebookSuccess = response => ({
   type: FACEBOOK_SUCCESS,
   payload: response
 });
+
+export const logout = () => dispatch => {
+  dispatch({ type: LOGOUT });
+};
