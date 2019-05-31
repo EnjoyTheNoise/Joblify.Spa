@@ -4,6 +4,11 @@
   padding-bottom: 30px;
 }
 
+.content > .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 .filter {
   margin-left: auto;
   margin-right: auto;
@@ -13,6 +18,13 @@
   padding-right: 5px;
 }
 
+select.dropdown {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 .offers {
-    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
 }

@@ -105,7 +105,7 @@ class Navbar extends Component {
                 className="btn btn-secondary mx-3 my-2 my-sm-2"
                 type="submit"
                 onClick={() =>
-                  this.props.getOffers({phrase: this.props.phrase, option: this.props.option, page: 1, filter: this.props.filter})
+                  this.props.getOffers({phrase: this.props.phrase, option: this.props.option, page: 1, filter: this.props.filter, trade: this.props.trade})
                 }
               >
               {search}

@@ -15,7 +15,7 @@ class SearchPage extends Component {
 
     let offers = this.props.offers.map(offer => {
       return (
-        <Link to={"/offer/"+offer.document.id} className="navbar-brand">
+        <Link to={"/offer/" + offer.document.id}>
           <Offer
             key={offer.document.id}
             rating={4} // ocena 1-5 gwiazdek, ma dostać od API
@@ -34,14 +34,13 @@ class SearchPage extends Component {
           <p className="phraseSearchPage">
             wyniki dla frazy: {this.props.phrase}
           </p>
-
-          <form className="form-inline filter" style={{ clear: "left" }}>
+          <form className="form-inline filter" style={{ clear: "both" }}>
             <div className="form-group">
               <label className="control-label filterDropboxLabel">
                 {optionDisplay}
                 <select
                   value={filterState}
-                  className="form-control"
+                  className="form-control dropdown"
                   name="filter"
                   onChange={this.props.handleFilterSelect}
                 >
@@ -55,7 +54,7 @@ class SearchPage extends Component {
                 {"Branża"}
                 <select
                   value={tradeState}
-                  className="form-control"
+                  className="form-control dropdown"
                   name="trade"
                   onChange={this.props.handleFilterSelect}
                 >

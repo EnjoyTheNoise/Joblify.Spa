@@ -17,6 +17,7 @@ const initialState = {
   option: "",
   page: "",
   filter: "stars",
+  trade: "all",
   offers: [],
   trades: []
 };

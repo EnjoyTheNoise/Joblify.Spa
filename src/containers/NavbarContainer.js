@@ -8,7 +8,8 @@ export class NavbarUnloggedContainer extends Component {
   state = {
     phrase: "",
     option: "employers",
-    filter: "stars"
+    filter: "stars",
+    trade: "all"
   };
 
   handlePhraseInput = e => {
@@ -25,7 +26,7 @@ export class NavbarUnloggedContainer extends Component {
 
   render() {
     return (
-      <Navbar handlePhraseInput={this.handlePhraseInput} handleOptionInput={this.handleOptionInput} getOffers={this.props.actions.getOffers} phrase={this.state.phrase} option={this.state.option} filter={this.state.filter} />
+      <Navbar handlePhraseInput={this.handlePhraseInput} handleOptionInput={this.handleOptionInput} getOffers={this.props.actions.getOffers} phrase={this.state.phrase} option={this.state.option} filter={this.state.filter} trade={this.state.trade} />
     );
   }
 }
