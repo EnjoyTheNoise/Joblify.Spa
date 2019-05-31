@@ -3,35 +3,29 @@ import {
   getAllCategories,
   getAllTrades,
   postNewOffer
-} from "../actions/AddOfferAction";
+} from "../actions/AddOfferActions";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import AddOffer from "../components/Offer/AddOffer";
-import  PropTypes  from "prop-types";
 
-const initialState = {
-  title: "",
-  description: "",
-  price: 0,
-  categoryId: 0,
-  tradeId: 0,
-  availableTime: ""
-};
+class AddOfferContainer extends Component {
+  state = {
+    title: "",
+    description: "",
+    price: 0,
+    categoryId: 0,
+    tradeId: 0,
+    availableTime: ""
+  };
 
-export class AddOfferContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = initialState;
-  }
   componentDidMount = () => {
     this.props.actions.getAllCategories();
-
     this.props.actions.getAllTrades();
   };
+
   onSubmit = e => {
     e.preventDefault();
     const offer = {
-      //userId value for tests
       userId: 5,
       title: this.state.title,
       description: this.state.description,
@@ -103,7 +97,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(AddOfferContainer);
-
-AddOfferContainer.contextType = {
-  router: PropTypes.object.isRequired
-};
