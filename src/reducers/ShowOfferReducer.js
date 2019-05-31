@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   isFetching: false,
-  error: null,
+  error: {},
   title: "",
   description: "",
   price: "",

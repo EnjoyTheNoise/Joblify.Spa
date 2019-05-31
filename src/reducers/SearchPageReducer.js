@@ -1,7 +1,7 @@
 import {
   GET_OFFERS,
   GET_OFFERS_SUCCESS,
-  GET_OFFERS_FAILURE,
+  GET_OFFERS_FAILURE
 } from "../actions/SearchPageActions";
 
 const initialState = {
@@ -24,7 +24,7 @@ export default function searchPage(state = initialState, action) {
         filter: action.params.filter,
         option: action.params.option,
         phrase: action.params.phrase,
-        offers: [],
+        offers: []
       };
     case GET_OFFERS_SUCCESS:
       return {
