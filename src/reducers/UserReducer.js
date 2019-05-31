@@ -24,6 +24,7 @@ const initialState = {
   fieldOfInterest: "",
   photoUrl: "",
   isFetching: false,
+  offers: [],
   error: {}
 };
 

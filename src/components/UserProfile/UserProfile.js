@@ -1,7 +1,23 @@
 import React, { Component } from "react";
+import Offer  from "../SearchPage/Offer/Offer"
 
 class UserProfile extends Component {
   render() {
+
+    console.log(this.props.offers);
+
+    let offers = this.props.offers.map(offer => {
+      return (
+        <Offer
+          key={offer.document.id}
+          firstName={offer.document.firstName}
+          lastName={offer.document.firstName}
+          description={offer.document.firstName}
+          price={offer.document.price}
+        />
+      );
+    });
+
     return (
       <div className="row">
         <div className="titleAddOffer">
@@ -30,12 +46,12 @@ class UserProfile extends Component {
                 </label>
               </div>
             </div>
-          
-           
-            
+
+
+
             <div className="form-group row">
-                <label htmlFor="description" className="col-sm-2 col-form-label">
-                  Opis
+              <label htmlFor="description" className="col-sm-2 col-form-label">
+                Opis
                 </label>
               <div className="col-sm-10">
                 <label
@@ -47,9 +63,9 @@ class UserProfile extends Component {
                   {this.props.description}
                 </label>
               </div>
-              </div>
+            </div>
 
-              <div className="form-group row">
+            <div className="form-group row">
               <label htmlFor="description" className="col-sm-2 col-form-label">
                 Zainteresowania
               </label>
@@ -63,9 +79,9 @@ class UserProfile extends Component {
                   {this.props.fieldOfInterest}
                 </label>
               </div>
-              </div>
+            </div>
 
-              <div className="form-group row">
+            <div className="form-group row">
               <label htmlFor="description" className="col-sm-2 col-form-label">
                 Doswiadczenie
               </label>
@@ -79,7 +95,7 @@ class UserProfile extends Component {
                   {this.props.experience}
                 </label>
               </div>
-              </div>
+            </div>
 
           </form>
         </div>
@@ -88,6 +104,10 @@ class UserProfile extends Component {
           {/* dodaj on change*/}
           <button className="btn btn-primary">Pokaż numer telefonu</button>
         </div>
+        <div className="offers">
+          {offers}
+        </div>
+
       </div>
     );
   }
