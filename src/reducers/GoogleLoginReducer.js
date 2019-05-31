@@ -1,7 +1,8 @@
 import {
   LOGIN_REQUESTED,
   GOOGLE_SUCCESS,
-  GOOGLE_FAILURE
+  GOOGLE_FAILURE,
+  LOGOUT
 } from "../actions/LoginActions";
 
 const initialState = {
@@ -17,7 +18,6 @@ const initialState = {
     name: ""
   },
   isFetching: false,
-  isLegit: false,
   error: {}
 };
 
@@ -37,17 +37,18 @@ const googleLogin = (state = initialState, action) => {
         tokendId: action.payload.tokendId,
         googleId: action.payload.googleId,
         profileObj: action.payload.profileObj,
-        isFetching: false,
-        isLegit: true
+        isFetching: false
       };
     }
     case GOOGLE_FAILURE: {
       return {
         ...state,
         isFetching: false,
-        isLegit: false,
         error: action.payload.error
       };
+    }
+    case LOGOUT: {
+      return {};
     }
     default: {
       return state;
