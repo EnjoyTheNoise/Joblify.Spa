@@ -4,7 +4,6 @@ import facebookLogin from "./reducers/FacebookLoginReducer";
 import googleLogin from "./reducers/GoogleLoginReducer";
 import addOffer from "./reducers/AddOfferReducer";
 import getOffer from "./reducers/ShowOfferReducer";
-import httpError from "./reducers/HttpErrorReducer";
 import user from "./reducers/UserReducer";
 import edit from "./reducers/EditProfileReducer";
 import login from "./reducers/LoginReducer";
@@ -21,7 +20,6 @@ const createRootReducer = history =>
     googleLogin,
     addOffer,
     getOffer,
-    httpError,
     searchPage
   });
 
