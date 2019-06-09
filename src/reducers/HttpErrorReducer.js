@@ -3,7 +3,7 @@ import {
   HTTP_404_ERROR,
   HTTP_500_ERROR,
   HTTP_OTHER_ERROR
-} from "../actions/httpErrorAction";
+} from "../actions/HttpErrorAction";
 
 const initialState = {
   errorMessage: ""

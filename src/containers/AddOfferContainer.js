@@ -3,7 +3,7 @@ import {
   getAllCategories,
   getAllTrades,
   postNewOffer
-} from "../actions/addOfferAction";
+} from "../actions/AddOfferAction";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import AddOffer from "../components/Offer/AddOffer";

@@ -34,33 +34,31 @@ class SearchPage extends Component {
       return (
         <div className="row">
           <p className="phraseSearchPage">
-            wyniki dla frazy: {this.props.phrase}
+            wyniki dla frazy: {this.props.phrase}, kategoria: {categoryDisplay}
           </p>
           <form className="form-inline orderBy" style={{ clear: "both" }}>
             <div className="form-group">
               <label className="control-label orderByDropboxLabel">
-                {categoryDisplay}
                 <select
                   value={orderByState}
                   className="form-control dropdown"
                   name="orderBy"
                   onChange={this.props.handleOrderBySelect}
                 >
-                  <option value="price desc">wg ceny malejąco</option>
-                  <option value="price asc">wg ceny rosnąco</option>
+                  <option value="price desc">Sortuj wg ceny malejąco</option>
+                  <option value="price asc">Sortuj wg ceny rosnąco</option>
                   {/* <option value="date">wg daty utworzenia</option> */}
                 </select>
               </label>
 
               <label className="control-label orderByDropboxLabel">
-                {"Branża"}
                 <select
                   value={tradeState}
                   className="form-control dropdown"
                   name="trade"
                   onChange={this.props.handleOrderBySelect}
                 >
-                  <option value="all">Wszystkie</option>
+                  <option value="all">Wszystkie branże</option>
                   {this.props.trades}
                 </select>
               </label>
