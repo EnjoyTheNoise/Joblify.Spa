@@ -2,24 +2,29 @@ import React, { Component } from "react";
 import "./SearchPage.css";
 import Offer from "./Offer/Offer";
 import PaginationContainer from "../../containers/PaginationContainer";
+import { Link } from "react-router-dom";
 
 class SearchPage extends Component {
   render() {
-    let optionDisplay =
-      this.props.option === "employers" ? "Pracodawcy" : "Pracobiorcy";
-    const filterState = this.props.filter;
+    let categoryDisplay =
+      this.props.category === "Employer" ? "Pracodawcy" : "Pracobiorcy";
+    const orderByState = this.props.orderBy;
+    const tradeState = this.props.trade;
 
     console.log(this.props.offers);
 
+    // let offers = this.props.offers.foundOffers;
+
     let offers = this.props.offers.map(offer => {
       return (
-        <Offer
-          key={offer.document.id}
-          firstName={offer.document.firstName}
-          lastName={offer.document.firstName}
-          description={offer.document.firstName}
-          price={offer.document.price}
-        />
+        <Link to={"/offer/" + offer.document.id}>
+          <Offer
+            key={offer.document.id}
+            rating={4} // ocena 1-5 gwiazdek, ma dostać od API
+            firstName={offer.document.firstName}
+            description={offer.document.description}
+          />
+        </Link>
       );
     });
 
@@ -29,22 +34,32 @@ class SearchPage extends Component {
       return (
         <div className="row">
           <p className="phraseSearchPage">
-            wyniki dla frazy: {this.props.phrase}
+            wyniki dla frazy: {this.props.phrase}, kategoria: {categoryDisplay}
           </p>
-
-          <form className="form-inline filter" style={{ clear: "left" }}>
+          <form className="form-inline orderBy" style={{ clear: "both" }}>
             <div className="form-group">
-              <label className="control-label filterDropboxLabel">
-                {optionDisplay}
+              <label className="control-label orderByDropboxLabel">
                 <select
-                  value={filterState}
-                  className="form-control"
-                  name="filter"
-                  onChange={this.props.handleFilterSelect}
+                  value={orderByState}
+                  className="form-control dropdown"
+                  name="orderBy"
+                  onChange={this.props.handleOrderBySelect}
                 >
-                  <option value="stars">wg ilości gwiazdek</option>
-                  <option value="price">wg ceny</option>
-                  <option value="date">wg daty utworzenia</option>
+                  <option value="price desc">Sortuj wg ceny malejąco</option>
+                  <option value="price asc">Sortuj wg ceny rosnąco</option>
+                  {/* <option value="date">wg daty utworzenia</option> */}
+                </select>
+              </label>
+
+              <label className="control-label orderByDropboxLabel">
+                <select
+                  value={tradeState}
+                  className="form-control dropdown"
+                  name="trade"
+                  onChange={this.props.handleOrderBySelect}
+                >
+                  <option value="all">Wszystkie branże</option>
+                  {this.props.trades}
                 </select>
               </label>
             </div>
@@ -55,10 +70,10 @@ class SearchPage extends Component {
             {offers}
             <PaginationContainer
               phrase={this.props.phrase}
-              option={this.props.option}
-              filter={this.props.filter}
+              category={this.props.category}
+              orderBy={this.props.orderBy}
               currentPage={this.props.page}
-              totalItems={offers.length}
+              totalItems={this.props.offersCount}
               handlePageChange={this.props.handlePageChange}
             />
           </div>

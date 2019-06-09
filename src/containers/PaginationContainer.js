@@ -5,7 +5,7 @@ class PaginationContainer extends Component {
   render() {
     const pageSize = 10;
     const currentPage = parseInt(this.props.currentPage);
-    // const totalItems = 200; to test if pagination works.
+    //const totalItems = 200; //to test if pagination works.
     const totalItems = parseInt(this.props.totalItems);
     const totalPages = Math.ceil(totalItems / pageSize);
     let startPage, endPage;
@@ -32,8 +32,8 @@ class PaginationContainer extends Component {
       <Pagination
         handlePageChange={this.props.handlePageChange}
         phrase={this.props.phrase}
-        option={this.props.option}
-        filter={this.props.filter}
+        category={this.props.category}
+        orderBy={this.props.orderBy}
         startPage={startPage}
         endPage={endPage}
         totalPages={totalPages}

@@ -7,8 +7,9 @@ import Navbar from "../components/Navbar/Navbar";
 export class NavbarUnloggedContainer extends Component {
   state = {
     phrase: "",
-    option: "employers",
-    filter: "stars"
+    category: "Employer",
+    orderBy: "price asc",
+    trade: "all"
   };
 
   handlePhraseInput = e => {
@@ -17,21 +18,21 @@ export class NavbarUnloggedContainer extends Component {
     this.setState(state);
   };
 
-  handleOptionInput = e => {
+  handleCategoryInput = e => {
     let state = this.state;
-    state["option"] = e.target.value;
+    state["category"] = e.target.value;
     this.setState(state);
   };
 
   render() {
     return (
-      <Navbar handlePhraseInput={this.handlePhraseInput} handleOptionInput={this.handleOptionInput} getOffers={this.props.actions.getOffers} phrase={this.state.phrase} option={this.state.option} filter={this.state.filter} />
+      <Navbar handlePhraseInput={this.handlePhraseInput} handleCategoryInput={this.handleCategoryInput} getOffers={this.props.actions.getOffers} phrase={this.state.phrase} category={this.state.category} orderBy={this.state.orderBy} trade={this.state.trade} />
     );
   }
 }
 
 const mapStateToProps = state => ({
-    filter: state.searchPage.filter,
+    orderBy: state.searchPage.orderBy,
   });
   
   

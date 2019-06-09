@@ -74,9 +74,9 @@ class Navbar extends Component {
                     className="form-check-input"
                     name="optionsRadios"
                     id="optionsRadios1"
-                    value="employers"
+                    value="Employer"
                     defaultChecked
-                    onChange={this.props.handleOptionInput}
+                    onChange={this.props.handleCategoryInput}
                     />
                   {employers}
                 </label>
@@ -88,8 +88,8 @@ class Navbar extends Component {
                     className="form-check-input"
                     name="optionsRadios"
                     id="optionsRadios2"
-                    value="employees"
-                    onChange={this.props.handleOptionInput}
+                    value="Employee"
+                    onChange={this.props.handleCategoryInput}
                   />
                   {employees}
                 </label>
@@ -105,15 +105,15 @@ class Navbar extends Component {
                 className="btn btn-secondary mx-3 my-2 my-sm-2"
                 type="submit"
                 onClick={() =>
-                  this.props.getOffers({phrase: this.props.phrase, option: this.props.option, page: 1, filter: this.props.filter})
+                  this.props.getOffers({phrase: this.props.phrase, category: this.props.category, page: 1, orderBy: this.props.orderBy, trade: this.props.trade})
                 }
               >
+              {search}
               </button>
             </Link>
-              {search}
           </form>
           <button
-            className="btn btn-secondary"
+            className="btn btn-secondary" 
             type="button"
             onClick={this.handleAddOffer}
           >

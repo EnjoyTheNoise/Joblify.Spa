@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 
 export class OfferContainer extends Component {
   componentDidMount() {
-    this.props.actions.getOfferById(this.props, 1);
+    this.props.actions.getOfferById(this.props, this.props.match.params.id);
   }
 
   onSubmit = e => {
