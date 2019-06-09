@@ -23,7 +23,7 @@ class Offer extends Component {
               >
                 Właściel oferty
               </label>
-              <div className="col-sm-3">
+              <div className="col-sm-3 offer-data">
                 <label
                   type="text"
                   className="col-form-label"
@@ -41,7 +41,7 @@ class Offer extends Component {
               >
                 Dostępny czas
               </label>
-              <div className="col-sm-3">
+              <div className="col-sm-3 offer-data">
                 <label
                   type="text"
                   className="col-form-label"
@@ -56,14 +56,14 @@ class Offer extends Component {
               <label htmlFor="price" className="col-sm-2 col-form-label">
                 Cena
               </label>
-              <div className="col-sm-3">
+              <div className="col-sm-3 offer-data">
                 <label
                   type="text"
                   className="col-form-label"
                   id="price"
                   name="price"
                 >
-                  {this.props.price}
+                  {this.props.price} zł
                 </label>
               </div>
             </div>
@@ -71,7 +71,7 @@ class Offer extends Component {
               <label htmlFor="description" className="col-sm-2 col-form-label">
                 Opis
               </label>
-              <div className="col-sm-10">
+              <div className="col-sm-10 offer-data">
                 <label
                   className="col-form-label"
                   id="Description"
