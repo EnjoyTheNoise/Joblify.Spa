@@ -60,7 +60,7 @@ class SearchPage extends Component {
                   name="trade"
                   onChange={this.props.handleOrderBySelect}
                 >
-                  <option value="All">Wszystkie</option>
+                  <option value="all">Wszystkie</option>
                   {this.props.trades}
                 </select>
               </label>
@@ -75,7 +75,7 @@ class SearchPage extends Component {
               category={this.props.category}
               orderBy={this.props.orderBy}
               currentPage={this.props.page}
-              totalItems={offers.length}
+              totalItems={this.props.offersCount}
               handlePageChange={this.props.handlePageChange}
             />
           </div>

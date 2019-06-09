@@ -113,7 +113,7 @@ class Navbar extends Component {
             </Link>
           </form>
           <button
-            className="btn btn-secondary"
+            className="btn btn-secondary" 
             type="button"
             onClick={this.handleAddOffer}
           >

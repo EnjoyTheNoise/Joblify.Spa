@@ -8,7 +8,7 @@ import {
   GET_ALL_TRADES,
   GET_ALL_TRADES_SUCCESS,
   GET_ALL_TRADES_FAILURE
-} from "../actions/addOfferAction";
+} from "../actions/AddOfferAction";
 
 const initialState = {
   isFetching: false,
@@ -17,7 +17,8 @@ const initialState = {
   category: "",
   page: "",
   orderBy: "price asc",
-  trade: "All",
+  trade: "all",
+  offersCount: 0,
   offers: [],
   trades: []
 };
@@ -33,7 +34,8 @@ export default function searchPage(state = initialState, action) {
         category: action.params.category,
         phrase: action.params.phrase,
         trade: action.params.trade,
-        offers: [],
+        offersCount: 0,
+        offers: []
       };
     case GET_OFFERS_SUCCESS:
       return {
@@ -44,7 +46,8 @@ export default function searchPage(state = initialState, action) {
         orderBy: action.params.orderBy,
         offers: action.payload.foundOffers,
         phrase: action.params.phrase,
-        trade: action.params.trade
+        trade: action.params.trade,
+        offersCount: action.payload.offersCount
       };
     case GET_OFFERS_FAILURE:
       return {

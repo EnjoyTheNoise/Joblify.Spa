@@ -9,7 +9,7 @@ export class NavbarUnloggedContainer extends Component {
     phrase: "",
     category: "Employer",
     orderBy: "price asc",
-    trade: "All"
+    trade: "all"
   };
 
   handlePhraseInput = e => {
