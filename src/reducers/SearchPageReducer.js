@@ -8,7 +8,7 @@ import {
   GET_ALL_TRADES,
   GET_ALL_TRADES_SUCCESS,
   GET_ALL_TRADES_FAILURE
-} from "../actions/AddOfferAction";
+} from "../actions/addOfferAction";
 
 const initialState = {
   isFetching: false,
@@ -42,7 +42,7 @@ export default function searchPage(state = initialState, action) {
         page: action.params.page,
         category: action.params.category,
         orderBy: action.params.orderBy,
-        offers: action.payload,
+        offers: action.payload.foundOffers,
         phrase: action.params.phrase,
         trade: action.params.trade
       };

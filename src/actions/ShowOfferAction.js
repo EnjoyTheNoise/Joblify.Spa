@@ -1,6 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "../constants";
-import { handleHttpError } from "./HttpErrorAction";
+import { handleHttpError } from "./httpErrorAction";
 
 export const GET_OFFER_BY_ID = "GET_OFFER_BY_ID";
 export const GET_OFFER_BY_ID_SUCCESS = "GET_OFFER_BY_ID_SUCCESS";

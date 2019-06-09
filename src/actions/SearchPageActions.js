@@ -22,7 +22,7 @@ export const getOffers = params => dispatch => {
   return (
     axios
     //.get(BASE_URL + "/offer/search/employee/" + params.phrase)
-       .get(BASE_URL + "/offer/search/?phrase="+params.phrase+"&category="+params.category+"&trade="+params.trade+"&orderBy="+params.orderBy+"&page="+params.page)
+       .get(BASE_URL + "/offer/search/page/"+ params.page +"/?phrase="+params.phrase+"&category="+params.category+"&trade="+params.trade+"&orderBy="+params.orderBy)
       .then(
         response => {
           console.log(response);

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { getOffers } from "../actions/SearchPageActions";
-import { getAllTrades } from "../actions/AddOfferAction";
+import { getAllTrades } from "../actions/addOfferAction";
 import { getOfferById } from "../actions/ShowOfferAction";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -11,7 +11,7 @@ const initialState = {
   trades: [],
   phrase: "",
   category: "",
-  trade: "all",
+  trade: "All",
   orderBy: "price asc",
   page: 1
 };
@@ -43,6 +43,7 @@ export class SearchPageContainer extends Component {
   render() {
     //console.log(this.props.searchPage);
     const { isFetching, offers, phrase, orderBy, page, category, trades, trade } = this.props.searchPage;
+    // const offers = this.props.searchPage.offers.foundOffers;
 
     let tradesOptionItems;
     if (trades != null) {

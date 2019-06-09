@@ -13,6 +13,8 @@ class SearchPage extends Component {
 
     console.log(this.props.offers);
 
+    // let offers = this.props.offers.foundOffers;
+
     let offers = this.props.offers.map(offer => {
       return (
         <Link to={"/offer/" + offer.document.id}>
